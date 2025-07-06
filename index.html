@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Chen - Robotics Engineering Technology</title>
+    <!-- Favicon settings -->
+    <link rel="icon" type="image/svg+xml" href="pictures/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="pictures/apple-touch-icon.png">
+    <meta name="msapplication-TileImage" content="pictures/favicon-32x32.png">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <style>
+        /* Custom favicon media queries */
+        @media (prefers-color-scheme: light) {
+            link[rel="icon"] { 
+                object-fit: contain !important;
+            }
+        }
+        
+        /* Critical CSS for immediate styling */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-radius-lg: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            margin-top: -60px;
+        }
+        
+        .education-card, .skill-category, .timeline-content, .project-card, .overview-card {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .about-education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .about-education-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css?v=2024">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Max Chen - Robotics Engineering Technology student at Purdue University. Experienced in robotics, embedded systems, and research.">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="hero-text">
+                <h1>Max Chen</h1>
+                <p class="subtitle">Robotics Engineering Technology</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <a href="#top" class="mobile-home-icon" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about-education">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </nav>
+    
+    <div class="nav-overlay"></div>
+
+    <main>
+        <section id="about-education" class="content-section">
+            <div class="section-content">
+                <div class="about-education-grid">
+                    <div class="overview-card">
+                        <p>
+                            A dedicated Robotics Engineer with a passion for innovation in robotics, embedded systems, and AI.
+                        </p>
+                        <br>
+                        <p>
+                            With expertise in computer vision, machine learning, hardware design, and fabrication. 
+                            Having worked on cutting-edge projects including AI-powered PPE detection systems, educational robotics kits, and advanced instrumentation systems. 
+                            My interests are in the intersection of robotics and human interaction but I am also open to vastly different fields such as Audio Engineering.
+                        </p>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3>Purdue University</h3>
+                            <span class="location">West Lafayette, IN</span>
+                        </div>
+                        <div class="education-details">
+                            <div class="degree">
+                                <strong>Bachelor of Science in Robotics Engineering Technology</strong>
+                                <span class="minor">Minor in Electrical Engineering Technology</span>
+                            </div>
+                            <div class="graduation">Graduated: <strong>May 2025</strong></div>
+                            <div class="honors">
+                                <span class="badge">Dean's List & Semester Honors 2022-2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2><i class="fas fa-tools"></i> Technical Skills</h2>
+            <div class="section-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cube"></i> CAD Software</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SolidWorks</span>
+                            <span class="skill-tag">Siemens NX</span>
+                            <span class="skill-tag primary">Autodesk Inventor</span>
+                            <span class="skill-tag">Fusion 360</span>
+                            <span class="skill-tag">TinkerCAD</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag primary">Python</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">MATLAB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-robot"></i> Robotics</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag primary">ROS</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">LabVIEW</span>
+                            <span class="skill-tag">PLC</span>
+                            <span class="skill-tag">OpenCV</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-hammer"></i> Digital Fabrication</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag primary">3D Printing</span>
+                            <span class="skill-tag">Laser Cutting</span>
+                            <span class="skill-tag">Soldering</span>
+                            <span class="skill-tag">KiCad</span>
+                            <span class="skill-tag">NI Multisim</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-microchip"></i> Embedded Systems</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag primary">Arduino</span>
+                            <span class="skill-tag">Microbit</span>
+                            <span class="skill-tag">Raspberry Pi</span>
+                            <span class="skill-tag">Nvidia Jetson</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quick-overview" class="content-section">
+            <h2><i class="fas fa-rocket"></i> Experience & Projects Overview</h2>
+            <div class="section-content">
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                        <p>
+                            Currently serving as an Audio Engineering Research Assistant at Purdue, 
+                            with previous experience as an Engineering Intern at Purdue Applied Research Institute with Crane NAVSEA,
+                            and ongoing prosthetics research at HIRoLab.
+                        </p>
+                        <a href="experience.html" class="overview-link">
+                            View Detailed Experience <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+                        <p>
+                            Led development of AI-powered PPE detection system, 
+                            manufactured 100+ educational robotics kits, 
+                            and created custom hardware/software for research applications.
+                        </p>
+                        <a href="projects.html" class="overview-link">
+                            View Project Portfolio <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-contact">
+                <div class="footer-main">
+                    <div class="footer-left">
+                        <div class="social-links">
+                            <a href="contact.html" target="_self" aria-label="Contact">
+                                <i class="fas fa-user"></i>
+                                <span>Contact</span>
+                            </a>
+                            <a href="mailto:chen3901@purdue.edu?cc=ckyb63@gmail.com" target="_blank" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-right">
+                        <div class="footer-info">
+                            <p class="footer-title">© 2025 Max Chen - Robotics Engineering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c2410c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lightOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb923c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main angular/octagonal outer shape -->
+  <polygon points="20,4 44,4 60,20 60,44 44,60 20,60 4,44 4,20" fill="url(#orangeGrad)" stroke="#c2410c" stroke-width="1"/>
+  
+  <!-- Top angular piece -->
+  <polygon points="20,4 44,4 52,12 40,12 24,12 12,12" fill="url(#lightOrangeGrad)"/>
+  
+  <!-- Top-right angular piece -->
+  <polygon points="52,12 60,20 52,28 52,12" fill="url(#lightOrangeGrad)"/>
+  
+  <!-- Top-left angular piece -->
+  <polygon points="12,12 4,20 12,28 12,12" fill="url(#lightOrangeGrad)"/>
+  
+  <!-- Central square frame (white) -->
+  <rect x="18" y="18" width="28" height="28" fill="white" rx="2"/>
+  
+  <!-- Inner center square (dark) -->
+  <rect x="24" y="24" width="16" height="16" fill="url(#orangeGrad)" rx="1"/>
+  
+  <!-- Bottom-left angular piece -->
+  <polygon points="12,52 4,44 12,36 12,52" fill="url(#lightOrangeGrad)"/>
+  
+  <!-- Bottom-right angular piece -->
+  <polygon points="52,52 60,44 52,36 52,52" fill="url(#lightOrangeGrad)"/>
+  
+  <!-- Bottom angular piece -->
+  <polygon points="12,52 24,52 40,52 52,52 44,60 20,60" fill="url(#lightOrangeGrad)"/>
+</svg> 
