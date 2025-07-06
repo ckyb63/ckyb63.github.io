@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Max Chen</title>
+    <link rel="icon" type="image/svg+xml" href="pictures/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="pictures/apple-touch-icon.png">
+    <meta name="msapplication-TileImage" content="pictures/favicon-32x32.png">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <style>
+        /* Critical CSS for immediate styling */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #ffffff;
+            --background-alt: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-radius-lg: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px;
+            background-color: var(--background);
+            color: var(--text-primary);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            margin-top: -60px;
+        }
+        
+        .project-card {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1rem;
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css?v=2024">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Project Portfolio">
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-content">
+            <h1><i class="fas fa-project-diagram"></i> Project Portfolio</h1>
+            <p class="subtitle">Robotics • AI • Engineering Solutions</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <button class="hamburger-menu" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <a href="index.html" class="mobile-home-icon" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </nav>
+    
+    <div class="nav-overlay"></div>
+
+    <main>
+        <section id="featured-projects" class="content-section">
+            <h2><i class="fas fa-star"></i> Featured Projects</h2>
+            <div class="section-content">
+                <div class="projects-grid">
+                    <div class="project-card featured">
+                        <div class="project-header">
+                            <h3>PPE A.I. Vending Machine</h3>
+                            <span class="project-type featured">Senior Capstone Project</span>
+                        </div>
+                        <div class="project-image clickable-image">
+                            <img src="pictures/ai_vending_machine.jpg" alt="PPE AI Vending Machine" loading="lazy">
+                        </div>
+                        <p>
+                            Intelligent vending machine system utilizing AI camera technology to detect PPE compliance and automatically dispense missing Personal Protective Equipment to workers (users). 
+                            This project addresses workplace safety by ensuring proper protective equipment usage through computer vision technology.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-cogs"></i> Key Features</h4>
+                            <ul>
+                                <li>Real-time PPE detection using YOLO object detection algorithm</li>
+                                <li>Automated dispensing system</li>
+                                <li>User-friendly GUI built with PySide6 for operator interface</li>
+                                <li>Nvidia Jetson Orin Nano used for edge AI processing</li>
+                                <li>Database logging for compliance tracking and reporting</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-tools"></i> Technical Implementation</h4>
+                            <ul>
+                                <li>Trained custom YOLO model on PPE dataset</li>
+                                <li>Implemented Python-based control system for hardware integration</li>
+                                <li>Custom implementation of off the shelf hardware to interface with an exisiting snacks vending machine.</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-external-link-alt"></i> Project Link</h4>
+                            <div class="project-links">
+                                <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" class="project-link-btn">
+                                    <i class="fas fa-globe"></i> View Project Website
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag primary">Computer Vision</span>
+                            <span class="tech-tag primary">YOLO</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PySide6</span>
+                            <span class="tech-tag">Nvidia Jetson Orin Nano</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Hardware Integration</span>
+                            <span class="tech-tag">Networking Systems</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card featured">
+                        <div class="project-header">
+                            <h3>Educational Robotics</h3>
+                            <span class="project-type featured">Research Project</span>
+                        </div>
+                        <p>
+                            Educational robotics program designed to engage K-12 students in STEM learning through hands-on robotics experiences. 
+                            Includes custom hardware design, manufacturing, and curriculum development.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-graduation-cap"></i> Educational Impact</h4>
+                            <ul>
+                                <li>Designed and fabricated over 100 STEM-education robotic kits</li>
+                                <li>Developed standards-based curriculum for 2-week robotics programs</li>
+                                <li>Created age-appropriate learning materials for different grade levels</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-robot"></i> Technical Components</h4>
+                            <ul>
+                                <li>Custom PCB design for educational microcontroller boards</li>
+                                <li>Improved hardware design for ease of use and manufacturability</li>
+                                <li>Laser cut in place components for student assembly</li>
+                                <li>EMG circuit to control the robot arm based on the Microchip platform</li>
+                                <li>ROS-based software framework for advanced students</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-external-link-alt"></i> Project Link</h4>
+                            
+                            <div class="project-links">
+                                <a href="http://dx.doi.org/10.1007/s41686-025-00102-9" target="_blank" class="project-link-btn">
+                                    <i class="fas fa-globe"></i> View Publication
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag lab">HIRoLab</span>
+                            <span class="tech-tag primary">ROS</span>
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">Laser Cutting</span>
+                            <span class="tech-tag">PCB Design</span>
+                            <span class="tech-tag">Curriculum Design</span>
+                            <span class="tech-tag">Manufacturing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="research-projects" class="content-section">
+            <h2><i class="fas fa-flask"></i> Research & Development Projects</h2>
+            <div class="section-content">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Silicon Wafer Probe Station</h3>
+                            <span class="project-type">Internship Project</span>
+                        </div>
+                        <p>
+                            Assembled and optimized a prototype silicon wafer probe station for semiconductor testing with custom automation controls and enhanced measurement capabilities.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-microchip"></i> Technical Achievements</h4>
+                            <ul>
+                                <li>Integrated diverse components into cohesive testing system</li>
+                                <li>Designed custom controller for linear positioning rails</li>
+                                <li>Implemented automated measurement protocols with a custom GUI</li>
+                                <li>Custom implementation of off-the-shelf hardware to interface with the wafer probe station.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag lab">PARI Microelectronics Lab</span>
+                            <span class="tech-tag">Hardware System Design</span>
+                            <span class="tech-tag">Microelectronics</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Software Development</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Audio Impedance Measurement System</h3>
+                            <span class="project-type">Research Project</span>
+                        </div>
+                        <p>
+                            Improved and automated data collection system for earphone impedance measurements using Python scripting and creating procedures.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-chart-line"></i> Technical Improvements</h4>
+                            <ul>
+                                <li>Developed Python automation scripts and application for data collection</li>
+                                <li>Improved overall measurement efficiency</li>
+                                <li>Integrated DIGILENT instrumentation tools</li>
+                                <li>Created standardized testing procedures</li>
+                                <li>Investigated environmental factors that affect the measurement</li>
+                            </ul>
+
+                            <h4><i class="fas fa-external-link-alt"></i> Project Link</h4>
+                            
+                            <div class="project-links">
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.5703/1288284317876" target="_blank" class="project-link-btn">
+                                        <i class="fas fa-file-alt"></i> View Publication - Extended Abstract
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag lab">SEAT Lab</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Data Acquisition</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Audio Engineering</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Prosthetics Research Platform</h3>
+                            <span class="project-type">Research Project</span>
+                        </div>
+                        <p>
+                            Design and fabrication of lower leg prosthesis adapter for biomechanics research with healthy subjects, 
+                            contributing to advancement in below ankle prosthetic device development and testing.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-walking"></i> Research Contributions</h4>
+                            <ul>
+                                <li>Rapid prototyping of various prosthetic adapter designs</li>
+                                <li>CAD design of prosthetic adapter components</li>
+                                <li>Prototype manufacturing and testing</li>
+                                <li>Testing protocol development for human subjects</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag lab">HIRoLab</span>
+                            <span class="tech-tag">Biomechanics</span>
+                            <span class="tech-tag">CAD Design</span>
+                            <span class="tech-tag">Rapid Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="academic-projects" class="content-section">
+            <h2><i class="fas fa-university"></i> Academic Projects</h2>
+            <div class="section-content">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Autonomous Rally Car Race</h3>
+                            <span class="project-type">Course Project</span>
+                        </div>
+                        <div class="project-image clickable-image">
+                            <img src="pictures/442_Car.jpg" alt="MFET442 Team 6 Rally Car" loading="lazy">
+                        </div>
+                        <p>
+                            Developed an autonomous navigation system for a rally car with wall-following capabilities and waypoint-based path navigation given a map. 
+                            Achieved <strong> a 48 second lap time</strong> in the KNOY 500 competition using ROS-based control systems and LIDAR-guided navigation.
+                        </p>
+                        
+                        <div class="project-details">
+                            <h4><i class="fas fa-car"></i> Key Achievements</h4>
+                            <ul>
+                                <li>Implemented wall-following algorithm using LIDAR distance measurements and PD control</li>
+                                <li>Developed waypoint navigation system with AMCL localization</li>
+                                <li>Optimized path planning for improved performance</li>
+                                <li>Integrated IMU and LIDAR sensor readings for robust autonomous navigation</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-cogs"></i> Technical Implementation</h4>
+                            <ul>
+                                <li>ROS1 Noetic workspace with custom navigation nodes</li>
+                                <li>LIDAR-based wall following with outlier detection for windows/doors</li>
+                                <li>AMCL localization with Hector mapping for robust pose estimation</li>
+                                <li>PID controller tuning for steering and acceleration optimization</li>
+                            </ul>
+                            
+                            <h4><i class="fas fa-video"></i> Project Videos</h4>
+                            <div class="project-videos">
+                                <div class="youtube-embed">
+                                    <iframe src="https://www.youtube.com/embed/4C2afGXk0eE" 
+                                            title="Rally Car Navigation Demo 1" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <div class="youtube-embed">
+                                    <iframe src="https://www.youtube.com/embed/88CAjAFp_bs" 
+                                            title="Rally Car Navigation Demo 2" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                            
+                            <h4><i class="fas fa-external-link-alt"></i> Project Links</h4>
+                            <div class="project-links">
+                                <a href="https://github.com/ckyb63/MFET442-Team6-Exploding-Car.git" target="_blank" class="project-link-btn">
+                                    <i class="fab fa-github"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag lab">MFET 442</span>
+                            <span class="tech-tag primary">ROS</span>
+                            <span class="tech-tag primary">SLAM</span>
+                            <span class="tech-tag">Path Planning</span>
+                            <span class="tech-tag">LIDAR</span>
+                            <span class="tech-tag">AMCL</span>
+                            <span class="tech-tag">PD Control</span>
+                            <span class="tech-tag">Sensor Fusion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="project-gallery" class="content-section">
+            <h2><i class="fas fa-images"></i> Project Gallery</h2>
+            <div class="section-content">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="pictures/ai_vending_machine.jpg" alt="PPE AI Vending Machine" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>PPE AI Vending Machine</h4>
+                            <p>Computer vision-based safety system</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pictures/ai_vending_machine_demo.jpg" alt="PPE AI Vending Machine Demo" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>PPE Detection Demo</h4>
+                            <p>AI system identifying missing safety equipment</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pictures/442_Car.jpg" alt="Autonomous Rally Car" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Autonomous Rally Car</h4>
+                            <p>LIDAR-guided navigation system</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pictures/Nuplator_1.png" alt="Educational Robotics Kit" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Nuplator Robotics Kit</h4>
+                            <p>Fully assembled robot arm</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pictures/Nuplator_2.jpg" alt="Nuplator Assembly Process" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>End Effector Location</h4>
+                            <p>Students to design their own end effector for the robot arm</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="pictures/Nuplator_3.jpg" alt="Nuplator in Action" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h4>Sample End Effector</h4>
+                            <p>One of the end effector sample designs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-contact">
+                <div class="footer-main">
+                    <div class="footer-left">
+                        <div class="social-links">
+                            <a href="mailto:chen3901@purdue.edu?cc=ckyb63@gmail.com" target="_blank" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/ckyb63" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-right">
+                        <div class="footer-info">
+                            <p class="footer-title">© 2025 Max Chen - Robotics Engineering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
