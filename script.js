@@ -228,35 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Contact form handling (if on contact page)
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Basic validation
-            if (!data.name || !data.email || !data.subject || !data.message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // For now, just show a success message
-            // In production, you'd send this to a server
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            contactForm.reset();
-        });
-    }
+
     
     // Gallery functionality for project images
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -264,8 +236,22 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryItems.forEach(item => {
             item.addEventListener('click', function() {
                 const img = this.querySelector('img');
+                const overlay = this.querySelector('.gallery-overlay');
                 if (img) {
-                    openImageModal(img.src, img.alt);
+                    let description = img.alt;
+                    
+                    // Try to get more descriptive text from overlay
+                    if (overlay) {
+                        const title = overlay.querySelector('h4');
+                        const subtitle = overlay.querySelector('p');
+                        if (title && subtitle) {
+                            description = `${title.textContent} - ${subtitle.textContent}`;
+                        } else if (title) {
+                            description = title.textContent;
+                        }
+                    }
+                    
+                    openImageModal(img.src, img.alt, description);
                 }
             });
         });
@@ -278,21 +264,52 @@ document.addEventListener('DOMContentLoaded', function() {
             item.addEventListener('click', function() {
                 const img = this.querySelector('img');
                 if (img) {
-                    openImageModal(img.src, img.alt);
+                    // Try to find a more descriptive caption nearby
+                    let description = img.alt;
+                    
+                    // Look for project header or title in parent elements
+                    const projectCard = this.closest('.project-card');
+                    if (projectCard) {
+                        const projectTitle = projectCard.querySelector('h3');
+                        if (projectTitle) {
+                            description = `${projectTitle.textContent} - ${img.alt}`;
+                        }
+                    }
+                    
+                    // Look for timeline content headers
+                    const timelineContent = this.closest('.timeline-content');
+                    if (timelineContent) {
+                        const jobTitle = timelineContent.querySelector('.job-title');
+                        if (jobTitle) {
+                            description = `${jobTitle.textContent} - ${img.alt}`;
+                        }
+                    }
+                    
+                    openImageModal(img.src, img.alt, description);
                 }
             });
         });
     }
     
-    // Simple image modal for gallery
-    function openImageModal(src, alt) {
+    // Enhanced image modal with description
+    function openImageModal(src, alt, description = null) {
+        // Use alt text as description if no specific description provided
+        const modalDescription = description || alt;
+        
         // Create modal
         const modal = document.createElement('div');
         modal.className = 'image-modal';
         modal.innerHTML = `
             <div class="modal-backdrop">
                 <div class="modal-content">
-                    <img src="${src}" alt="${alt}">
+                    <div class="modal-image-container">
+                        <img src="${src}" alt="${alt}">
+                    </div>
+                    ${modalDescription ? `
+                        <div class="modal-description">
+                            <h3>${modalDescription}</h3>
+                        </div>
+                    ` : ''}
                     <button class="modal-close" aria-label="Close">&times;</button>
                 </div>
             </div>
@@ -310,55 +327,126 @@ document.addEventListener('DOMContentLoaded', function() {
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
         `;
         
         const modalContent = modal.querySelector('.modal-content');
         modalContent.style.cssText = `
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            max-width: 90vw;
+            max-height: 90vh;
+            gap: 1rem;
+            background: transparent;
+        `;
+        
+        const imageContainer = modal.querySelector('.modal-image-container');
+        imageContainer.style.cssText = `
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            max-height: 80vh;
         `;
         
         const modalImg = modal.querySelector('img');
         modalImg.style.cssText = `
-            max-width: 80vw;
-            max-height: 70vh;
+            max-width: 100%;
+            max-height: 100%;
             width: auto;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         `;
+        
+        const descriptionEl = modal.querySelector('.modal-description');
+        if (descriptionEl) {
+            descriptionEl.style.cssText = `
+                background: rgba(255, 255, 255, 0.95);
+                color: #1f2937;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                text-align: center;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                max-width: 600px;
+            `;
+            
+            const titleEl = descriptionEl.querySelector('h3');
+            if (titleEl) {
+                titleEl.style.cssText = `
+                    margin: 0;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    color: #1f2937;
+                    line-height: 1.4;
+                `;
+            }
+        }
         
         const closeBtn = modal.querySelector('.modal-close');
         closeBtn.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             border: none;
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 10px;
-            width: 40px;
-            height: 40px;
+            padding: 12px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1001;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         `;
+        
+        // Enhanced close button hover effect
+        closeBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'rgba(239, 68, 68, 0.9)';
+            this.style.transform = 'scale(1.1)';
+        });
+        
+        closeBtn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(0, 0, 0, 0.8)';
+            this.style.transform = 'scale(1)';
+        });
         
         // Close modal function
         function closeModal() {
-            modal.remove();
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.remove();
+            }, 300);
         }
+        
+        // Fade in animation
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
         
         // Event listeners
         closeBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', function(e) {
-            if (e.target === modal || e.target === modal.querySelector('.modal-backdrop')) {
+            if (e.target === modal || e.target === modal.querySelector('.modal-backdrop') || e.target === modal.querySelector('.modal-content')) {
+                closeModal();
+            }
+        });
+        
+        // Allow clicking on modal content area to close
+        const modalContentEl = modal.querySelector('.modal-content');
+        modalContentEl.addEventListener('click', function(e) {
+            // Only close if clicking directly on the modal content container, not on image or description
+            if (e.target === modalContentEl) {
                 closeModal();
             }
         });
@@ -369,8 +457,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Add to DOM
+        // Add to DOM and fade in
         document.body.appendChild(modal);
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
     }
     
     // Progress bar functionality
@@ -422,6 +513,256 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transform = 'translateY(30px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         sectionObserver.observe(section);
+    });
+
+    // Collapsible experience cards functionality
+    const timelineContents = document.querySelectorAll('.timeline-content');
+    if (timelineContents.length > 0) {
+        timelineContents.forEach(content => {
+            // Add accessibility attributes
+            content.setAttribute('role', 'button');
+            content.setAttribute('tabindex', '0');
+            content.setAttribute('aria-expanded', 'true'); // Default expanded on desktop
+            
+            content.addEventListener('click', function(e) {
+                // Prevent clicking on links from triggering collapse
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                toggleTimelineContent(this);
+            });
+            
+            // Handle keyboard navigation
+            content.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    // Prevent clicking on links from triggering collapse
+                    if (e.target.tagName === 'A' || e.target.closest('a')) {
+                        return;
+                    }
+                    
+                    toggleTimelineContent(this);
+                }
+            });
+            
+            // Add cursor pointer to indicate it's clickable
+            content.style.cursor = 'pointer';
+        });
+    }
+
+    // Ensure chevron buttons are specifically clickable
+    const collapseButtons = document.querySelectorAll('.collapse-btn');
+    if (collapseButtons.length > 0) {
+        collapseButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Don't prevent propagation - let it bubble up to the card
+                const timelineContent = this.closest('.timeline-content');
+                if (timelineContent) {
+                    toggleTimelineContent(timelineContent);
+                }
+            });
+        });
+    }
+
+    // Ensure the header area (title/period area) is specifically clickable
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+    if (collapsibleHeaders.length > 0) {
+        collapsibleHeaders.forEach(header => {
+            header.addEventListener('click', function(e) {
+                // Prevent clicking on links from triggering collapse
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                const timelineContent = this.closest('.timeline-content');
+                if (timelineContent) {
+                    toggleTimelineContent(timelineContent);
+                }
+            });
+        });
+    }
+
+    // Project Cards Collapsible Functionality
+    const projectCards = document.querySelectorAll('.project-card');
+    if (projectCards.length > 0) {
+        projectCards.forEach(card => {
+            // Add accessibility attributes
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-expanded', 'true'); // Default expanded on desktop
+            
+            card.addEventListener('click', function(e) {
+                // Prevent clicking on links, images, or videos from triggering collapse
+                if (e.target.tagName === 'A' || e.target.closest('a') || 
+                    e.target.tagName === 'IMG' || e.target.closest('.clickable-image') ||
+                    e.target.tagName === 'IFRAME' || e.target.closest('.youtube-embed')) {
+                    return;
+                }
+                
+                toggleProjectCard(this);
+            });
+            
+            // Handle keyboard navigation
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    // Prevent clicking on links from triggering collapse
+                    if (e.target.tagName === 'A' || e.target.closest('a')) {
+                        return;
+                    }
+                    
+                    toggleProjectCard(this);
+                }
+            });
+            
+            // Add cursor pointer to indicate it's clickable
+            card.style.cursor = 'pointer';
+        });
+    }
+
+    // Ensure project header area is specifically clickable
+    const projectCollapsibleHeaders = document.querySelectorAll('.project-collapsible-header');
+    if (projectCollapsibleHeaders.length > 0) {
+        projectCollapsibleHeaders.forEach(header => {
+            header.addEventListener('click', function(e) {
+                // Prevent clicking on links from triggering collapse
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                const projectCard = this.closest('.project-card');
+                if (projectCard) {
+                    toggleProjectCard(projectCard);
+                }
+            });
+        });
+    }
+
+    // Ensure project headers (title area) are specifically clickable
+    const projectHeaders = document.querySelectorAll('.project-header');
+    if (projectHeaders.length > 0) {
+        projectHeaders.forEach(header => {
+            header.addEventListener('click', function(e) {
+                // Prevent clicking on links from triggering collapse
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                const projectCard = this.closest('.project-card');
+                if (projectCard) {
+                    toggleProjectCard(projectCard);
+                }
+            });
+        });
+    }
+
+    // Ensure project chevron buttons are specifically clickable
+    const projectCollapseButtons = document.querySelectorAll('.project-collapse-btn');
+    if (projectCollapseButtons.length > 0) {
+        projectCollapseButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Don't prevent propagation - let it bubble up to the card
+                const projectCard = this.closest('.project-card');
+                if (projectCard) {
+                    toggleProjectCard(projectCard);
+                }
+            });
+        });
+    }
+
+
+
+    // Function to toggle timeline content
+    function toggleTimelineContent(timelineContent) {
+        let isExpanded;
+        
+        if (window.innerWidth <= 768) {
+            // Mobile: toggle expanded class
+            timelineContent.classList.toggle('expanded');
+            isExpanded = timelineContent.classList.contains('expanded');
+        } else {
+            // Desktop: toggle collapsed class
+            timelineContent.classList.toggle('collapsed');
+            isExpanded = !timelineContent.classList.contains('collapsed');
+        }
+        
+        // Update aria-expanded attribute for accessibility
+        timelineContent.setAttribute('aria-expanded', isExpanded.toString());
+    }
+
+    // Function to toggle project card content
+    function toggleProjectCard(projectCard) {
+        let isExpanded;
+        
+        if (window.innerWidth <= 768) {
+            // Mobile: toggle expanded class
+            projectCard.classList.toggle('expanded');
+            isExpanded = projectCard.classList.contains('expanded');
+        } else {
+            // Desktop: toggle collapsed class
+            projectCard.classList.toggle('collapsed');
+            isExpanded = !projectCard.classList.contains('collapsed');
+        }
+        
+        // Update aria-expanded attribute for accessibility
+        projectCard.setAttribute('aria-expanded', isExpanded.toString());
+    }
+
+    // Initialize collapse states based on screen size
+    function initializeCollapseStates() {
+        const timelineContents = document.querySelectorAll('.timeline-content');
+        
+        timelineContents.forEach(content => {
+            let isExpanded;
+            
+            if (window.innerWidth <= 768) {
+                // Mobile: collapsed by default, use expanded class to show
+                content.classList.remove('collapsed');
+                content.classList.remove('expanded');
+                isExpanded = false;
+            } else {
+                // Desktop: expanded by default, use collapsed class to hide
+                content.classList.remove('collapsed');
+                content.classList.remove('expanded');
+                isExpanded = true;
+            }
+            
+            // Update aria-expanded attribute
+            content.setAttribute('aria-expanded', isExpanded.toString());
+        });
+
+        // Initialize project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            let isExpanded;
+            
+            if (window.innerWidth <= 768) {
+                // Mobile: collapsed by default, use expanded class to show
+                card.classList.remove('collapsed');
+                card.classList.remove('expanded');
+                isExpanded = false;
+            } else {
+                // Desktop: expanded by default, use collapsed class to hide
+                card.classList.remove('collapsed');
+                card.classList.remove('expanded');
+                isExpanded = true;
+            }
+            
+            // Update aria-expanded attribute
+            card.setAttribute('aria-expanded', isExpanded.toString());
+        });
+    }
+
+    // Initialize on load
+    initializeCollapseStates();
+
+    // Reinitialize on resize
+    let resizeCollapseTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeCollapseTimer);
+        resizeCollapseTimer = setTimeout(initializeCollapseStates, 100);
     });
 });
 
