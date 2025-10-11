@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="pictures/apple-touch-icon.png">
     <meta name="msapplication-TileImage" content="pictures/favicon-32x32.png">
     <meta name="msapplication-TileColor" content="#2563eb">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <style>
         /* Critical CSS for immediate styling */
         :root {
@@ -79,11 +80,10 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#education">Education</a></li>
                 <li><a href="index.html#skills">Skills</a></li>
                 <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html" class="active">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
         <div class="progress-container">
@@ -94,11 +94,37 @@
     <div class="nav-overlay"></div>
 
     <main>
+        <!-- Filter Controls -->
+        <section class="filter-section content-section">
+            <!-- <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-list"></i> All Projects
+                </button>
+                <button class="filter-btn" data-filter="featured">
+                    <i class="fas fa-star"></i> Featured
+                </button>
+                <button class="filter-btn" data-filter="research">
+                    <i class="fas fa-flask"></i> Research
+                </button>
+                <button class="filter-btn" data-filter="academic">
+                    <i class="fas fa-university"></i> Academic
+                </button>
+            </div> -->
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="detailed" title="Detailed View">
+                    <i class="fas fa-expand-arrows-alt"></i> Detailed
+                </button>
+                <button class="view-btn" data-view="compact" title="Compact View">
+                    <i class="fas fa-compress-arrows-alt"></i> Compact
+                </button>
+            </div>
+        </section>
+
         <section id="featured-projects" class="content-section">
             <h2><i class="fas fa-star"></i> Featured Projects</h2>
             <div class="section-content">
                 <div class="projects-grid">
-                    <div class="project-card featured">
+                    <div class="project-card featured" data-category="featured">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>PPE A.I. Vending Machine</h3>
@@ -153,7 +179,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card featured">
+                    <div class="project-card featured" data-category="featured">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>Educational Robotics</h3>
@@ -212,7 +238,7 @@
             <h2><i class="fas fa-flask"></i> Research & Development Projects</h2>
             <div class="section-content">
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-category="research">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>Silicon Wafer Probe Station</h3>
@@ -245,7 +271,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card" data-category="research">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>Audio Impedance Measurement System</h3>
@@ -289,7 +315,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <div class="project-card" data-category="research">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>Prosthetics Research Platform</h3>
@@ -329,7 +355,7 @@
             <h2><i class="fas fa-university"></i> Academic Projects</h2>
             <div class="section-content">
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-category="academic">
                         <div class="project-collapsible-header">
                             <div class="project-header">
                                 <h3>Autonomous Rally Car Race</h3>
@@ -494,5 +520,85 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize filters and view toggle for projects page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProjectFilters();
+            initializeProjectViewToggle();
+        });
+        
+        // Filter functionality for projects
+        function initializeProjectFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            const sections = document.querySelectorAll('#featured-projects, #research-projects, #academic-projects');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter items with animation
+                    projectCards.forEach((card, index) => {
+                        const category = card.getAttribute('data-category');
+                        
+                        let shouldShow = false;
+                        
+                        if (filter === 'all') {
+                            shouldShow = true;
+                        } else {
+                            shouldShow = category === filter;
+                        }
+                        
+                        if (shouldShow) {
+                            setTimeout(() => {
+                                card.style.display = '';
+                                card.style.animation = 'fadeInUp 0.4s ease-out forwards';
+                            }, index * 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide section headers based on visible items
+                    sections.forEach(section => {
+                        const visibleCards = section.querySelectorAll('.project-card:not([style*="display: none"])');
+                        if (filter === 'all') {
+                            section.style.display = '';
+                        } else {
+                            section.style.display = visibleCards.length > 0 ? '' : 'none';
+                        }
+                    });
+                });
+            });
+        }
+        
+        // View toggle functionality for projects
+        function initializeProjectViewToggle() {
+            const viewButtons = document.querySelectorAll('.view-btn');
+            const projectsGrids = document.querySelectorAll('.projects-grid');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    viewButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const view = this.getAttribute('data-view');
+                    
+                    projectsGrids.forEach(grid => {
+                        if (view === 'compact') {
+                            grid.classList.add('compact-view');
+                        } else {
+                            grid.classList.remove('compact-view');
+                        }
+                    });
+                });
+            });
+        }
+    </script>
 </body>
 </html> 

@@ -1,0 +1,12 @@
+# robots.txt for https://ckyb63.github.io/
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of backend support files
+Disallow: /back-support/
+
+# Sitemap location
+Sitemap: https://ckyb63.github.io/sitemap.xml
+
