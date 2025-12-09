@@ -1,892 +1,699 @@
-// Main JavaScript for Max Chen's Portfolio Website
+// ============================================================================
+// Shared JavaScript for Max Chen Portfolio Website
+// Consolidated from experience-visual.html, index-visual.html, projects-visual.html
+// ============================================================================
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle functionality
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const navLinks = document.querySelectorAll('.nav-links a');
+// ============================================================================
+// Intersection Observer for Animations
+// ============================================================================
+(function initIntersectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Support both 'visible' and 'animate-in' classes
+                entry.target.classList.add('visible', 'animate-in');
+                
+                // Animate stat numbers (for index-visual.html)
+                if (entry.target.classList.contains('stat-card') || entry.target.classList.contains('overview-stat')) {
+                    const statNumber = entry.target.querySelector('.stat-number, .overview-stat-number');
+                    if (statNumber) {
+                        const finalValue = statNumber.textContent;
+                        const isNumber = /^\d+/.test(finalValue);
+                        if (isNumber) {
+                            const num = parseInt(finalValue);
+                            const suffix = finalValue.replace(/^\d+/, '');
+                            let current = 0;
+                            const increment = num / 30;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= num) {
+                                    statNumber.textContent = finalValue;
+                                    clearInterval(timer);
+                                } else {
+                                    statNumber.textContent = Math.floor(current) + suffix;
+                                }
+                            }, 30);
+                        }
+                    }
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements based on what exists on the page
+    document.querySelectorAll('.animate-on-scroll, .timeline-item-wrapper, .development-card, .section-header').forEach(el => {
+        observer.observe(el);
+    });
+})();
+
+// ============================================================================
+// Mobile Menu Toggle
+// ============================================================================
+(function initMobileMenu() {
+    const hamburgerBtn = document.querySelector('.hamburger-menu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
     const body = document.body;
-    
+
     function toggleMobileMenu() {
         body.classList.toggle('menu-open');
+        if (body.classList.contains('menu-open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     }
-    
+
     function closeMobileMenu() {
         body.classList.remove('menu-open');
+        document.body.style.overflow = '';
     }
-    
-    // Add event listeners if elements exist
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMobileMenu);
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
     }
-    
-    if (navOverlay) {
-        navOverlay.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Close menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (body.classList.contains('menu-open')) {
+
+    // Close menu when clicking on overlay background
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
                 closeMobileMenu();
             }
         });
+    }
+
+    // Close menu when clicking on a link
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
     });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (body.classList.contains('menu-open')) {
-            const isMenuClick = e.target.closest('.nav-links') || 
-                               e.target.closest('.hamburger-menu');
-            if (!isMenuClick) {
-                closeMobileMenu();
-            }
-        }
-    });
-    
-    // Handle escape key to close menu
-    document.addEventListener('keydown', function(e) {
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && body.classList.contains('menu-open')) {
             closeMobileMenu();
         }
     });
+})();
+
+// ============================================================================
+// Navigation Hide/Show on Scroll
+// ============================================================================
+(function initNavScroll() {
+    let lastScrollTop = 0;
+    const nav = document.querySelector('nav');
+    let scrollTimeout;
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Clear any existing timeout
+        clearTimeout(scrollTimeout);
+        
+        // Always show nav at the top
+        if (scrollTop < 50) {
+            nav.classList.remove('hidden');
+            lastScrollTop = scrollTop;
+            return;
+        }
+        
+        // Hide nav when scrolling down, show when scrolling up
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            nav.classList.add('hidden');
+        } else {
+            // Scrolling up
+            nav.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop;
+    }, { passive: true });
+})();
+
+// ============================================================================
+// Back to Top Button
+// ============================================================================
+(function initBackToTop() {
+    const backToTop = document.querySelector('.back-to-top');
     
-    // Function to handle scrolling to an element with proper offset
-    function scrollToElement(targetElement, useSmooth = true) {
-        if (!targetElement) return;
-        
-        // Get the height of the fixed header
-        const nav = document.querySelector('nav');
-        const navHeight = nav ? nav.offsetHeight : 60;
-        // Add extra padding for better visual appearance
-        const extraPadding = 30;
-        const totalOffset = navHeight + extraPadding;
-        
-        // Get the element's position relative to the viewport
-        const elementRect = targetElement.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.pageYOffset;
-        
-        // Scroll to element
+    if (!backToTop) return;
+    
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    // Smooth scroll to top (for projects-visual.html)
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
         window.scrollTo({
-            top: absoluteElementTop - totalOffset,
-            behavior: useSmooth ? 'smooth' : 'auto'
-        });
-    }
-    
-    // Smooth scrolling for anchor links (only for same-page links)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            
-            // Skip if it's just "#" or empty
-            if (targetId === '#' || targetId === '#top') {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-                return;
-            }
-            
-            const targetElement = document.querySelector(targetId);
-            
-            // Only prevent default if target exists on current page
-            if (targetElement) {
-                e.preventDefault();
-                scrollToElement(targetElement, true);
-            }
-            // If target doesn't exist, let the browser handle it (might be on another page)
+            top: 0,
+            behavior: 'smooth'
         });
     });
-    
-    // Handle direct URL navigation to anchor links
-    if (window.location.hash) {
-        // Use a delay to ensure the page is fully loaded and rendered
-        setTimeout(function() {
-            const targetId = window.location.hash;
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                scrollToElement(targetElement, false);
-            }
-        }, 300);
-    }
-    
-    // Recalculate scroll positions when window is resized
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            // If we're at a hash location, reposition after resize
-            if (window.location.hash) {
-                const targetElement = document.querySelector(window.location.hash);
-                if (targetElement) {
-                    scrollToElement(targetElement, false);
+})();
+
+// ============================================================================
+// Experience Page Specific: Expand Details Buttons
+// ============================================================================
+(function initExpandDetails() {
+    document.querySelectorAll('.expand-details-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.experience-card');
+            if (card) {
+                card.classList.toggle('expanded');
+                const span = this.querySelector('span');
+                if (span) {
+                    if (card.classList.contains('expanded')) {
+                        span.textContent = 'Collapse details';
+                    } else {
+                        span.textContent = 'Expand for more details';
+                    }
                 }
             }
-        }, 250);
+        });
     });
+})();
+
+// ============================================================================
+// Experience Page Specific: Toggle Earlier Experiences
+// ============================================================================
+function toggleEarlierExperiences(button) {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('i');
     
-    // Add scrolled class to body when page is scrolled
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            body.classList.add('scrolled');
-        } else {
-            body.classList.remove('scrolled');
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        button.classList.remove('expanded');
+        const span = button.querySelector('span');
+        if (span) {
+            span.textContent = 'View Earlier Experiences & Education';
         }
-        
-        // Show/hide back to top button
-        const backToTop = document.querySelector('.back-to-top');
-        if (backToTop) {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+    } else {
+        content.classList.add('expanded');
+        button.classList.add('expanded');
+        const span = button.querySelector('span');
+        if (span) {
+            span.textContent = 'Hide Earlier Experiences & Education';
         }
+    }
+}
+
+// Make function globally available for onclick handlers
+window.toggleEarlierExperiences = toggleEarlierExperiences;
+
+// ============================================================================
+// Experience Page Specific: Move Job Tags on Mobile
+// ============================================================================
+(function initMoveJobTags() {
+    function moveJobTagsToDetails() {
+        if (window.innerWidth <= 968) {
+            document.querySelectorAll('.experience-card').forEach(card => {
+                const jobTags = card.querySelector('.job-tags:not(.job-details .job-tags)');
+                const jobDetails = card.querySelector('.job-details');
+                
+                if (jobTags && jobDetails && !jobDetails.querySelector('.job-tags')) {
+                    // Clone and move job-tags into job-details
+                    const clonedTags = jobTags.cloneNode(true);
+                    clonedTags.style.display = 'flex';
+                    clonedTags.style.marginTop = '1.5rem';
+                    clonedTags.style.padding = '0 0 1.5rem 0';
+                    
+                    // Insert before experience-links if it exists, otherwise at the end
+                    const experienceLinks = jobDetails.querySelector('.experience-links');
+                    if (experienceLinks) {
+                        jobDetails.insertBefore(clonedTags, experienceLinks);
+                    } else {
+                        jobDetails.appendChild(clonedTags);
+                    }
+                }
+            });
+        }
+    }
+    
+    // Run on load and resize
+    document.addEventListener('DOMContentLoaded', function() {
+        moveJobTagsToDetails();
+        window.addEventListener('resize', moveJobTagsToDetails);
+    });
+})();
+
+// ============================================================================
+// Floating TOC Functionality (Experience & Projects Pages)
+// ============================================================================
+(function initFloatingTOC() {
+    const floatingTOC = document.querySelector('.floating-toc');
+    const toggleButton = document.querySelector('.toc-toggle');
+    const tocPanel = document.querySelector('.toc-panel');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const progressBar = document.querySelector('.toc-progress-bar');
+    
+    if (!floatingTOC || !toggleButton) return;
+    
+    // Determine which selector to use for sections based on page
+    const sections = document.querySelectorAll('section[id], .timeline-item-wrapper[id]');
+    
+    let isExpanded = false;
+    
+    // Ensure TOC starts closed
+    function ensureTOCClosed() {
+        isExpanded = false;
+        floatingTOC.classList.remove('expanded');
+        toggleButton.setAttribute('aria-label', 'Open table of contents');
+    }
+    
+    // Function to update active navigation item and progress
+    function updateActiveNavItem() {
+        let currentSection = '';
+        const scrollY = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollProgress = (scrollY / documentHeight) * 100;
         
         // Update progress bar
-        updateProgressBar();
-    });
-    
-    // Active section highlighting in navigation (only for single-page sections)
-    const sections = document.querySelectorAll('.content-section');
-    const navLinksArray = document.querySelectorAll('nav ul li a[href^="#"]');
-    
-    if (sections.length > 0 && navLinksArray.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const nav = document.querySelector('nav');
-            const navHeight = nav ? nav.offsetHeight : 60;
-            const scrollPosition = window.scrollY + navHeight + 30;
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            // Update navigation active state for same-page links only
-            navLinksArray.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    }
-    
-    // Set active page in navigation for multi-page structure
-    function setActivePageNav() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('nav ul li a');
+        if (progressBar) {
+            progressBar.style.height = Math.min(scrollProgress, 100) + '%';
+        }
         
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const linkPath = link.getAttribute('href');
+        // Find current section
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + window.pageYOffset;
+            const sectionHeight = rect.height;
             
-            // Check if this link matches the current page
-            if (linkPath === currentPage || 
-                (currentPage === '' && linkPath === 'index.html') ||
-                (currentPage === 'index.html' && linkPath === 'index.html') ||
-                linkPath.endsWith(currentPage)) {
+            // Use the same offset calculation as the scroll function
+            const header = document.querySelector('nav');
+            const headerHeight = header ? header.offsetHeight : 60;
+            const threshold = headerHeight + 50;
+            
+            if (scrollY >= sectionTop - threshold && scrollY < sectionTop + sectionHeight - threshold) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        // Update active states
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
                 link.classList.add('active');
             }
         });
     }
     
-    // Set active page navigation on load
-    setActivePageNav();
-    
-    // Image lazy loading
-    const lazyImages = document.querySelectorAll('img[loading="lazy"], .gallery-item img, .project-image img');
-    
-    // For browsers that support IntersectionObserver
-    if ('IntersectionObserver' in window && lazyImages.length > 0) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const image = entry.target;
-                    
-                    // If the image has a data-src, load that image
-                    if (image.dataset.src) {
-                        image.src = image.dataset.src;
-                        image.removeAttribute('data-src');
-                    }
-                    
-                    image.classList.add('loaded');
-                    imageObserver.unobserve(image);
-                }
-            });
-        });
-        
-        lazyImages.forEach(image => {
-            imageObserver.observe(image);
-        });
-    }
-    
-
-    
-    // Gallery functionality for project images
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    if (galleryItems.length > 0) {
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const overlay = this.querySelector('.gallery-overlay');
-                if (img) {
-                    let description = img.alt;
-                    
-                    // Try to get more descriptive text from overlay
-                    if (overlay) {
-                        const title = overlay.querySelector('h4');
-                        const subtitle = overlay.querySelector('p');
-                        if (title && subtitle) {
-                            description = `${title.textContent} - ${subtitle.textContent}`;
-                        } else if (title) {
-                            description = title.textContent;
-                        }
-                    }
-                    
-                    openImageModal(img.src, img.alt, description);
-                }
-            });
-        });
-    }
-    
-    // Clickable image functionality
-    const clickableImages = document.querySelectorAll('.clickable-image');
-    if (clickableImages.length > 0) {
-        clickableImages.forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                if (img) {
-                    // Try to find a more descriptive caption nearby
-                    let description = img.alt;
-                    
-                    // Look for project header or title in parent elements
-                    const projectCard = this.closest('.project-card');
-                    if (projectCard) {
-                        const projectTitle = projectCard.querySelector('h3');
-                        if (projectTitle) {
-                            description = `${projectTitle.textContent} - ${img.alt}`;
-                        }
-                    }
-                    
-                    // Look for timeline content headers
-                    const timelineContent = this.closest('.timeline-content');
-                    if (timelineContent) {
-                        const jobTitle = timelineContent.querySelector('.job-title');
-                        if (jobTitle) {
-                            description = `${jobTitle.textContent} - ${img.alt}`;
-                        }
-                    }
-                    
-                    openImageModal(img.src, img.alt, description);
-                }
-            });
-        });
-    }
-    
-    // Enhanced image modal with description
-    function openImageModal(src, alt, description = null) {
-        // Use alt text as description if no specific description provided
-        const modalDescription = description || alt;
-        
-        // Create modal
-        const modal = document.createElement('div');
-        modal.className = 'image-modal';
-        modal.innerHTML = `
-            <div class="modal-backdrop">
-                <div class="modal-content">
-                    <div class="modal-image-container">
-                        <img src="${src}" alt="${alt}">
-                    </div>
-                    ${modalDescription ? `
-                        <div class="modal-description">
-                            <h3>${modalDescription}</h3>
-                        </div>
-                    ` : ''}
-                    <button class="modal-close" aria-label="Close">&times;</button>
-                </div>
-            </div>
-        `;
-        
-        // Add modal styles
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 2rem;
-            box-sizing: border-box;
-        `;
-        
-        const modalContent = modal.querySelector('.modal-content');
-        modalContent.style.cssText = `
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            max-width: 90vw;
-            max-height: 90vh;
-            gap: 1rem;
-            background: transparent;
-        `;
-        
-        const imageContainer = modal.querySelector('.modal-image-container');
-        imageContainer.style.cssText = `
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 100%;
-            max-height: 80vh;
-        `;
-        
-        const modalImg = modal.querySelector('img');
-        modalImg.style.cssText = `
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        `;
-        
-        const descriptionEl = modal.querySelector('.modal-description');
-        if (descriptionEl) {
-            descriptionEl.style.cssText = `
-                background: rgba(255, 255, 255, 0.95);
-                color: #1f2937;
-                padding: 1rem 1.5rem;
-                border-radius: 12px;
-                text-align: center;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-                max-width: 600px;
-            `;
+    // Smooth scroll function
+    function smoothScrollTo(targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            // Calculate offset based on fixed header height and desired padding
+            const header = document.querySelector('nav');
+            const headerHeight = header ? header.offsetHeight : 60;
+            const additionalPadding = 40;
+            const offset = headerHeight + additionalPadding;
             
-            const titleEl = descriptionEl.querySelector('h3');
-            if (titleEl) {
-                titleEl.style.cssText = `
-                    margin: 0;
-                    font-size: 1.1rem;
-                    font-weight: 600;
-                    color: #1f2937;
-                    line-height: 1.4;
-                `;
-            }
-        }
-        
-        const closeBtn = modal.querySelector('.modal-close');
-        closeBtn.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 12px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        `;
-        
-        // Enhanced close button hover effect
-        closeBtn.addEventListener('mouseenter', function() {
-            this.style.background = 'rgba(239, 68, 68, 0.9)';
-            this.style.transform = 'scale(1.1)';
-        });
-        
-        closeBtn.addEventListener('mouseleave', function() {
-            this.style.background = 'rgba(0, 0, 0, 0.8)';
-            this.style.transform = 'scale(1)';
-        });
-        
-        // Close modal function
-        function closeModal() {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
-        }
-        
-        // Fade in animation
-        modal.style.opacity = '0';
-        modal.style.transition = 'opacity 0.3s ease';
-        
-        // Event listeners
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal || e.target === modal.querySelector('.modal-backdrop') || e.target === modal.querySelector('.modal-content')) {
-                closeModal();
-            }
-        });
-        
-        // Allow clicking on modal content area to close
-        const modalContentEl = modal.querySelector('.modal-content');
-        modalContentEl.addEventListener('click', function(e) {
-            // Only close if clicking directly on the modal content container, not on image or description
-            if (e.target === modalContentEl) {
-                closeModal();
-            }
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-        
-        // Add to DOM and fade in
-        document.body.appendChild(modal);
-        setTimeout(() => {
-            modal.style.opacity = '1';
-        }, 10);
-    }
-    
-    // Progress bar functionality
-    function updateProgressBar() {
-        const progressBar = document.getElementById('progress-bar');
-        if (!progressBar) return;
-        
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        
-        progressBar.style.width = scrolled + '%';
-    }
-    
-    // Initialize progress bar
-    updateProgressBar();
-    
-    // Smooth scroll for back to top button
-    const backToTopBtn = document.querySelector('.back-to-top');
-    if (backToTopBtn) {
-        backToTopBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Get the element's position relative to the document
+            const elementRect = targetElement.getBoundingClientRect();
+            const elementPosition = elementRect.top + window.pageYOffset;
+            const offsetPosition = Math.max(0, elementPosition - offset);
+            
+            // Ensure we don't scroll past the bottom of the document
+            const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+            const finalPosition = Math.min(offsetPosition, maxScrollTop);
+            
             window.scrollTo({
-                top: 0,
+                top: finalPosition,
                 behavior: 'smooth'
             });
-        });
-    }
-    
-    // Add animation on scroll for content sections
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe content sections for animation
-    const contentSections = document.querySelectorAll('.content-section');
-    contentSections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        sectionObserver.observe(section);
-    });
-
-    // Collapsible experience cards functionality
-    const timelineContents = document.querySelectorAll('.timeline-content');
-    if (timelineContents.length > 0) {
-        timelineContents.forEach(content => {
-            // Add accessibility attributes
-            content.setAttribute('role', 'button');
-            content.setAttribute('tabindex', '0');
-            content.setAttribute('aria-expanded', 'true'); // Default expanded on desktop
-            
-            content.addEventListener('click', function(e) {
-                // Prevent clicking on links from triggering collapse
-                if (e.target.tagName === 'A' || e.target.closest('a')) {
-                    return;
-                }
-                
-                toggleTimelineContent(this);
-            });
-            
-            // Handle keyboard navigation
-            content.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    // Prevent clicking on links from triggering collapse
-                    if (e.target.tagName === 'A' || e.target.closest('a')) {
-                        return;
-                    }
-                    
-                    toggleTimelineContent(this);
-                }
-            });
-            
-            // Add cursor pointer to indicate it's clickable
-            content.style.cursor = 'pointer';
-        });
-    }
-
-    // Ensure chevron buttons are specifically clickable
-    const collapseButtons = document.querySelectorAll('.collapse-btn');
-    if (collapseButtons.length > 0) {
-        collapseButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Don't prevent propagation - let it bubble up to the card
-                const timelineContent = this.closest('.timeline-content');
-                if (timelineContent) {
-                    toggleTimelineContent(timelineContent);
-                }
-            });
-        });
-    }
-
-    // Ensure the header area (title/period area) is specifically clickable
-    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-    if (collapsibleHeaders.length > 0) {
-        collapsibleHeaders.forEach(header => {
-            header.addEventListener('click', function(e) {
-                // Prevent clicking on links from triggering collapse
-                if (e.target.tagName === 'A' || e.target.closest('a')) {
-                    return;
-                }
-                
-                const timelineContent = this.closest('.timeline-content');
-                if (timelineContent) {
-                    toggleTimelineContent(timelineContent);
-                }
-            });
-        });
-    }
-
-    // Project Cards Collapsible Functionality
-    const projectCards = document.querySelectorAll('.project-card');
-    if (projectCards.length > 0) {
-        projectCards.forEach(card => {
-            // Add accessibility attributes
-            card.setAttribute('role', 'button');
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('aria-expanded', 'true'); // Default expanded on desktop
-            
-            card.addEventListener('click', function(e) {
-                // Prevent clicking on links, images, or videos from triggering collapse
-                if (e.target.tagName === 'A' || e.target.closest('a') || 
-                    e.target.tagName === 'IMG' || e.target.closest('.clickable-image') ||
-                    e.target.tagName === 'IFRAME' || e.target.closest('.youtube-embed')) {
-                    return;
-                }
-                
-                toggleProjectCard(this);
-            });
-            
-            // Handle keyboard navigation
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    // Prevent clicking on links from triggering collapse
-                    if (e.target.tagName === 'A' || e.target.closest('a')) {
-                        return;
-                    }
-                    
-                    toggleProjectCard(this);
-                }
-            });
-            
-            // Add cursor pointer to indicate it's clickable
-            card.style.cursor = 'pointer';
-        });
-    }
-
-    // Ensure project header area is specifically clickable
-    const projectCollapsibleHeaders = document.querySelectorAll('.project-collapsible-header');
-    if (projectCollapsibleHeaders.length > 0) {
-        projectCollapsibleHeaders.forEach(header => {
-            header.addEventListener('click', function(e) {
-                // Prevent clicking on links from triggering collapse
-                if (e.target.tagName === 'A' || e.target.closest('a')) {
-                    return;
-                }
-                
-                const projectCard = this.closest('.project-card');
-                if (projectCard) {
-                    toggleProjectCard(projectCard);
-                }
-            });
-        });
-    }
-
-    // Ensure project headers (title area) are specifically clickable
-    const projectHeaders = document.querySelectorAll('.project-header');
-    if (projectHeaders.length > 0) {
-        projectHeaders.forEach(header => {
-            header.addEventListener('click', function(e) {
-                // Prevent clicking on links from triggering collapse
-                if (e.target.tagName === 'A' || e.target.closest('a')) {
-                    return;
-                }
-                
-                const projectCard = this.closest('.project-card');
-                if (projectCard) {
-                    toggleProjectCard(projectCard);
-                }
-            });
-        });
-    }
-
-    // Ensure project chevron buttons are specifically clickable
-    const projectCollapseButtons = document.querySelectorAll('.project-collapse-btn');
-    if (projectCollapseButtons.length > 0) {
-        projectCollapseButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Don't prevent propagation - let it bubble up to the card
-                const projectCard = this.closest('.project-card');
-                if (projectCard) {
-                    toggleProjectCard(projectCard);
-                }
-            });
-        });
-    }
-
-
-
-    // Function to toggle timeline content
-    function toggleTimelineContent(timelineContent) {
-        let isExpanded;
-        
-        if (window.innerWidth <= 768) {
-            // Mobile: toggle expanded class
-            timelineContent.classList.toggle('expanded');
-            isExpanded = timelineContent.classList.contains('expanded');
-        } else {
-            // Desktop: toggle collapsed class
-            timelineContent.classList.toggle('collapsed');
-            isExpanded = !timelineContent.classList.contains('collapsed');
         }
-        
-        // Update aria-expanded attribute for accessibility
-        timelineContent.setAttribute('aria-expanded', isExpanded.toString());
     }
-
-    // Function to toggle project card content
-    function toggleProjectCard(projectCard) {
-        let isExpanded;
-        
-        if (window.innerWidth <= 768) {
-            // Mobile: toggle expanded class
-            projectCard.classList.toggle('expanded');
-            isExpanded = projectCard.classList.contains('expanded');
-        } else {
-            // Desktop: toggle collapsed class
-            projectCard.classList.toggle('collapsed');
-            isExpanded = !projectCard.classList.contains('collapsed');
-        }
-        
-        // Update aria-expanded attribute for accessibility
-        projectCard.setAttribute('aria-expanded', isExpanded.toString());
-    }
-
-    // Initialize collapse states based on screen size
-    function initializeCollapseStates() {
-        const timelineContents = document.querySelectorAll('.timeline-content');
-        
-        timelineContents.forEach(content => {
-            let isExpanded;
-            
-            if (window.innerWidth <= 768) {
-                // Mobile: collapsed by default, use expanded class to show
-                content.classList.remove('collapsed');
-                content.classList.remove('expanded');
-                isExpanded = false;
-            } else {
-                // Desktop: expanded by default, use collapsed class to hide
-                content.classList.remove('collapsed');
-                content.classList.remove('expanded');
-                isExpanded = true;
-            }
-            
-            // Update aria-expanded attribute
-            content.setAttribute('aria-expanded', isExpanded.toString());
-        });
-
-        // Initialize project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        
-        projectCards.forEach(card => {
-            let isExpanded;
-            
-            if (window.innerWidth <= 768) {
-                // Mobile: collapsed by default, use expanded class to show
-                card.classList.remove('collapsed');
-                card.classList.remove('expanded');
-                isExpanded = false;
-            } else {
-                // Desktop: expanded by default, use collapsed class to hide
-                card.classList.remove('collapsed');
-                card.classList.remove('expanded');
-                isExpanded = true;
-            }
-            
-            // Update aria-expanded attribute
-            card.setAttribute('aria-expanded', isExpanded.toString());
-        });
-    }
-
-    // Initialize on load
-    initializeCollapseStates();
-
-    // Reinitialize on resize
-    let resizeCollapseTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeCollapseTimer);
-        resizeCollapseTimer = setTimeout(initializeCollapseStates, 100);
-    });
-});
-
-// Helper function to close TOC if it's open
-function closeTOCIfOpen() {
-    const floatingTOC = document.querySelector('.floating-toc');
-    const toggleButton = document.querySelector('.toc-toggle');
     
-    if (floatingTOC && floatingTOC.classList.contains('expanded')) {
+    // Toggle TOC function
+    function toggleTOC() {
+        isExpanded = !isExpanded;
+        floatingTOC.classList.toggle('expanded', isExpanded);
+        
+        // Update button aria-label
+        toggleButton.setAttribute('aria-label', 
+            isExpanded ? 'Close table of contents' : 'Open table of contents'
+        );
+    }
+    
+    // Close TOC function
+    function closeTOC() {
+        isExpanded = false;
         floatingTOC.classList.remove('expanded');
-        if (toggleButton) {
-            toggleButton.setAttribute('aria-label', 'Open table of contents');
-        }
+        toggleButton.setAttribute('aria-label', 'Open table of contents');
     }
-}
-
-// Modal functions for resume preview
-function openResumeModal() {
-    // Close TOC if it's open
-    closeTOCIfOpen();
     
+    // Event listeners
+    if (toggleButton) {
+        toggleButton.addEventListener('click', toggleTOC);
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', updateActiveNavItem, { passive: true });
+    
+    // Add resize event listener to ensure TOC stays closed
+    window.addEventListener('resize', function() {
+        if (!isExpanded) {
+            ensureTOCClosed();
+        }
+    });
+    
+    // Initialize active state and ensure TOC is closed
+    updateActiveNavItem();
+    ensureTOCClosed();
+    
+    // Add click event listeners for all TOC links
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            smoothScrollTo(targetId);
+            
+            // Close TOC after navigation on mobile
+            if (window.innerWidth <= 768) {
+                setTimeout(closeTOC, 300);
+            }
+        });
+    });
+    
+    // Handle escape key to close TOC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isExpanded) {
+            closeTOC();
+        }
+    });
+    
+    // Close TOC when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isExpanded && !floatingTOC.contains(e.target)) {
+            closeTOC();
+        }
+    });
+})();
+
+// ============================================================================
+// Index Page Specific: Modal Functions for Resume/CV
+// ============================================================================
+function openResumeModal() {
     const modal = document.getElementById('resumeModal');
     const frame = document.getElementById('resumeFrame');
-    
-    // Set the PDF source
-    frame.src = 'documents/Max_Chen_Resume.pdf';
-    
-    // Show modal
-    modal.style.display = 'block';
-    
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
+    if (modal && frame) {
+        // Open without side panel, fit width for better initial zoom
+        frame.src = 'https://drive.google.com/file/d/1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH/preview?usp=sharing#pagemode=none&view=FitH';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeResumeModal() {
     const modal = document.getElementById('resumeModal');
     const frame = document.getElementById('resumeFrame');
-    
-    // Hide modal
-    modal.style.display = 'none';
-    
-    // Clear iframe source to stop loading
-    frame.src = '';
-    
-    // Re-enable body scrolling
-    document.body.style.overflow = 'auto';
+    if (modal && frame) {
+        modal.classList.remove('active');
+        frame.src = '';
+        document.body.style.overflow = '';
+    }
 }
 
-function downloadFromModal() {
-    // Create temporary link and trigger download
-    const link = document.createElement('a');
-    link.href = 'documents/Max_Chen_Resume.pdf';
-    link.download = 'Max_Chen_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-// CV Modal functions
 function openCVModal() {
-    // Close TOC if it's open
-    closeTOCIfOpen();
-    
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
-    
-    // Set the PDF source
-    frame.src = 'documents/Max_Chen_CV.pdf';
-    
-    // Show modal
-    modal.style.display = 'block';
-    
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
+    if (modal && frame) {
+        // Open with thumbnails TOC visible, fit width for less zoom
+        frame.src = 'https://drive.google.com/file/d/1Jqawj3NNS9IppNr9htB7A40ifYQvji4g/preview?usp=sharing#pagemode=bookmarks&view=FitH';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeCVModal() {
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
-    
-    // Hide modal
-    modal.style.display = 'none';
-    
-    // Clear iframe source to stop loading
-    frame.src = '';
-    
-    // Re-enable body scrolling
-    document.body.style.overflow = 'auto';
+    if (modal && frame) {
+        modal.classList.remove('active');
+        frame.src = '';
+        document.body.style.overflow = '';
+    }
+}
+
+function downloadFromModal() {
+    const link = document.createElement('a');
+    link.href = 'https://drive.google.com/uc?export=download&id=1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH';
+    link.download = 'Max_Chen_Resume.pdf';
+    link.click();
 }
 
 function downloadCVFromModal() {
-    // Create temporary link and trigger download
     const link = document.createElement('a');
-    link.href = 'documents/Max_Chen_CV.pdf';
+    link.href = 'https://drive.google.com/uc?export=download&id=1Jqawj3NNS9IppNr9htB7A40ifYQvji4g';
     link.download = 'Max_Chen_CV.pdf';
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
 }
 
-// Close modal when clicking outside of it
-window.onclick = function(event) {
+// Make functions globally available for onclick handlers
+window.openResumeModal = openResumeModal;
+window.closeResumeModal = closeResumeModal;
+window.openCVModal = openCVModal;
+window.closeCVModal = closeCVModal;
+window.downloadFromModal = downloadFromModal;
+window.downloadCVFromModal = downloadCVFromModal;
+
+// Close modals when clicking outside
+window.addEventListener('click', (e) => {
     const resumeModal = document.getElementById('resumeModal');
     const cvModal = document.getElementById('cvModal');
     
-    if (event.target === resumeModal) {
+    if (e.target === resumeModal) {
         closeResumeModal();
     }
-    if (event.target === cvModal) {
+    if (e.target === cvModal) {
         closeCVModal();
+    }
+});
+
+// ============================================================================
+// Performance-lite mode for heavier browsers (e.g., Opera) or low-memory devices
+// ============================================================================
+(() => {
+    const ua = navigator.userAgent || '';
+    const isOpera = ua.includes('OPR/') || ua.includes('Opera');
+    const isLowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4;
+    if (isOpera || isLowMemory) {
+        document.body.classList.add('performance-lite');
+    }
+})();
+
+// Close modals with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeResumeModal();
+        closeCVModal();
+    }
+});
+
+// ============================================================================
+// Projects Page Specific: Toggle Details Function
+// ============================================================================
+function toggleDetails(button) {
+    const detailsSection = button.nextElementSibling;
+    const icon = button.querySelector('i');
+    
+    if (detailsSection.classList.contains('expanded')) {
+        detailsSection.classList.remove('expanded');
+        button.innerHTML = '<i class="fas fa-chevron-down"></i> Show More Details';
+    } else {
+        detailsSection.classList.add('expanded');
+        button.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
     }
 }
 
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const resumeModal = document.getElementById('resumeModal');
-        const cvModal = document.getElementById('cvModal');
+// Make function globally available for onclick handlers
+window.toggleDetails = toggleDetails;
+
+// ============================================================================
+// Projects Page Specific: Smooth Scroll for Navigation Links
+// ============================================================================
+(function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+})();
+
+// ============================================================================
+// Projects Page Specific: Project Card Hover Effects
+// ============================================================================
+(function initProjectCardHover() {
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
         
-        if (resumeModal.style.display === 'block') {
-            closeResumeModal();
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+})();
+
+// ============================================================================
+// Projects Page Specific: Image Modal Functionality
+// ============================================================================
+function openImageModal(imageSrc, imageAlt, imageElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBadge = document.getElementById('modalBadge');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalTech = document.getElementById('modalTech');
+    
+    if (!modal || !modalImg) return;
+    
+    modalImg.src = imageSrc;
+    modalImg.alt = imageAlt;
+    
+    // Get project details from data attributes
+    if (imageElement && imageElement.dataset) {
+        const title = imageElement.dataset.projectTitle || imageAlt;
+        const badge = imageElement.dataset.projectBadge || '';
+        const description = imageElement.dataset.projectDescription || '';
+        const tech = imageElement.dataset.projectTech || '';
+        
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalBadge) modalBadge.textContent = badge;
+        if (modalDescription) modalDescription.textContent = description;
+        
+        // Clear and populate tech tags
+        if (modalTech) {
+            modalTech.innerHTML = '';
+            if (tech) {
+                const techArray = tech.split(',');
+                techArray.forEach(tag => {
+                    const techTag = document.createElement('span');
+                    techTag.className = 'modal-tech-tag';
+                    techTag.textContent = tag.trim();
+                    modalTech.appendChild(techTag);
+                });
+            }
         }
-        if (cvModal.style.display === 'block') {
-            closeCVModal();
+        
+        // Show/hide details based on available data
+        const detailsDiv = document.getElementById('modalDetails');
+        if (detailsDiv) {
+            if (title || badge || description) {
+                detailsDiv.style.display = 'block';
+            } else {
+                detailsDiv.style.display = 'none';
+            }
         }
+    } else {
+        // Fallback if no data attributes
+        if (modalTitle) modalTitle.textContent = imageAlt;
+        if (modalBadge) modalBadge.textContent = '';
+        if (modalDescription) modalDescription.textContent = '';
+        if (modalTech) modalTech.innerHTML = '';
+        const detailsDiv = document.getElementById('modalDetails');
+        if (detailsDiv) detailsDiv.style.display = 'none';
     }
-}); 
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Make functions globally available for onclick handlers
+window.openImageModal = openImageModal;
+window.closeImageModal = closeImageModal;
+
+// Initialize image modal functionality
+(function initImageModal() {
+    const imageModal = document.getElementById('imageModal');
+    if (!imageModal) return;
+    
+    const imageModalContent = document.querySelector('.image-modal-content');
+    
+    // Close modal when clicking outside the content
+    imageModal.addEventListener('click', function(e) {
+        // Close if clicking directly on the modal background (not on content)
+        if (e.target === imageModal) {
+            closeImageModal();
+        }
+    });
+    
+    // Prevent closing when clicking on modal content
+    if (imageModalContent) {
+        imageModalContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+    
+    // Add click handlers to all project images and containers (excluding video cards)
+    document.querySelectorAll('.showcase-image-card, .project-card.has-image').forEach(container => {
+        container.style.cursor = 'pointer';
+        container.setAttribute('title', 'Click to enlarge');
+        
+        container.addEventListener('click', function(e) {
+            // Don't trigger if clicking on content overlay
+            if (e.target.classList.contains('project-card-content') || 
+                e.target.closest('.project-card-content')) {
+                return;
+            }
+            
+            // Don't trigger if clicking on iframe (video)
+            if (e.target.tagName === 'IFRAME' || e.target.closest('iframe')) {
+                return;
+            }
+            
+            const img = this.querySelector('img');
+            if (img) {
+                e.stopPropagation();
+                
+                // For gallery cards, try to extract info from card content
+                if (this.classList.contains('project-card') && !img.dataset.projectTitle) {
+                    const cardContent = this.querySelector('.project-card-content');
+                    if (cardContent) {
+                        const title = cardContent.querySelector('h3')?.textContent || img.alt;
+                        const description = cardContent.querySelector('p')?.textContent || '';
+                        const badge = cardContent.querySelector('.project-card-badge')?.textContent || '';
+                        
+                        img.dataset.projectTitle = title;
+                        img.dataset.projectBadge = badge;
+                        img.dataset.projectDescription = description;
+                    }
+                }
+                
+                openImageModal(img.src, img.alt, img);
+            }
+        });
+    });
+})();
+

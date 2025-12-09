@@ -11,58 +11,25 @@
     <meta name="msapplication-TileImage" content="pictures/favicon-32x32.png">
     <meta name="msapplication-TileColor" content="#2563eb">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-    <style>
-        /* Critical CSS for above-the-fold content */
-        body {
-            margin: 0;
-            padding: 0;
-            padding-top: 60px;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .page-header {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem 3rem;
-            margin-top: -60px;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 100;
-            height: 60px;
-        }
-        
-        /* Smooth scrolling handled by JavaScript */
-    </style>
-    <link rel="stylesheet" href="styles.css?v=2024">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="description" content="Professional experience of Max Chen - Research positions, internships, and teaching roles in robotics, AI, and engineering.">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="page-header">
-        <div class="header-content">
-            <h1><i class="fas fa-briefcase"></i> Professional Experience</h1>
-            <p class="subtitle">Research • Innovation • Teaching</p>
-        </div>
-    </header>
-
     <nav>
         <div class="nav-container">
-            <button class="hamburger-menu" aria-label="Toggle menu">
+            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
-            <a href="index.html" class="mobile-home-icon" aria-label="Home">
+            <a href="index.html" class="nav-logo-link">
+                <img src="pictures/favicon.svg" alt="Max Chen Logo" class="nav-logo" loading="lazy">
+            </a>
+            <a href="index.html" class="nav-home-icon" aria-label="Go to home page">
                 <i class="fas fa-home"></i>
             </a>
             <ul class="nav-links">
@@ -73,12 +40,20 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
     </nav>
-    
-    <div class="nav-overlay"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <ul class="mobile-menu-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Floating TOC -->
     <div class="floating-toc">
@@ -97,6 +72,9 @@
                     <a href="#experience" class="toc-link">Professional Timeline</a>
                     <ul class="toc-list">
                         <li class="toc-item toc-subitem">
+                            <a href="#military-service" class="toc-link">Military Service</a>
+                        </li>
+                        <li class="toc-item toc-subitem">
                             <a href="#audio-research" class="toc-link">Audio Engineering RA (SEAT)</a>
                         </li>
                         <li class="toc-item toc-subitem">
@@ -106,10 +84,10 @@
                             <a href="#engineering-intern" class="toc-link">Engineering Intern (PARI)</a>
                         </li>
                         <li class="toc-item toc-subitem">
-                            <a href="#robotics-research" class="toc-link">Robotics Research (HIRo)</a>
+                            <a href="#assessment-creator" class="toc-link">Content Creator</a>
                         </li>
                         <li class="toc-item toc-subitem">
-                            <a href="#assessment-creator" class="toc-link">Content Creator</a>
+                            <a href="#robotics-research" class="toc-link">Robotics Research (HIRo)</a>
                         </li>
                         <li class="toc-item toc-subitem">
                             <a href="#rover-team" class="toc-link">Rover Club Lead</a>
@@ -125,434 +103,570 @@
                 <li class="toc-item">
                     <a href="#technical-expertise" class="toc-link">Technical Expertise</a>
                 </li>
-                <!--<li class="toc-item">
-                    <a href="#recommendations" class="toc-link">References</a>
-                </li>-->
             </ul>
         </div>
     </div>
 
-    <main>
-        <!-- Filter Controls -->
-        <section class="filter-section content-section">
-            <div class="filter-controls">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-list"></i> All Experience
-                </button>
-                <button class="filter-btn" data-filter="current">
-                    <i class="fas fa-clock"></i> Current
-                </button>
-                <button class="filter-btn" data-filter="research">
-                    <i class="fas fa-flask"></i> Research
-                </button>
-                <button class="filter-btn" data-filter="teaching">
-                    <i class="fas fa-graduation-cap"></i> Teaching
-                </button>
-                <button class="filter-btn" data-filter="leadership">
-                    <i class="fas fa-users"></i> Leadership
-                </button>
-            </div>
-            <div class="view-toggle">
-                <button class="view-btn active" data-view="detailed" title="Detailed View">
-                    <i class="fas fa-expand-arrows-alt"></i> Detailed
-                </button>
-                <button class="view-btn" data-view="compact" title="Compact View">
-                    <i class="fas fa-compress-arrows-alt"></i> Compact
-                </button>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="parallax-bg"></div>
+        <div class="hero-content">
+            <h1>Professional Experience</h1>
+            <p>Research • Innovation • Teaching</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
 
-        <section id="experience" class="content-section">
-            <h2><i class="fas fa-timeline"></i> Professional Timeline</h2>
-            <div class="section-content">
+    <!-- Experience Timeline -->
+    <section id="experience" class="experience-section">
+        <div class="section-header animate-on-scroll">
+            <h2>Professional Timeline</h2>
+            <p>Journey Through Innovation & Growth</p>
+        </div>
+        <div class="timeline">
+            <!-- 2025 -->
+            <div class="timeline-year-group">
+                <div class="year-divider">
+                    <span class="year-label">2025</span>
+                </div>
+            </div>
+
+            <!-- 2024-2025 -->
+            <div class="timeline-year-group">
+                <div class="year-divider">
+                    <span class="year-label">2024 - Present</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item-wrapper" id="military-service" data-status="completed" data-category="leadership" data-year="2025">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="leadership-badge"><i class="fas fa-shield-alt"></i> Service</span>
+                        <h3><i class="fas fa-flag"></i> Military Service</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Republic of China Air Force -- Taiwan (ROC)</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Aug 2025 – Nov 2025</span>
+                                <span class="job-duration">4 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Completed compulsory military service, demonstrating discipline, responsibility, and effective teamwork.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-shield-alt"></i> Military Service</span>
+                        <span class="job-tag"><i class="fas fa-users"></i> Teamwork</span>
+                        <span class="job-tag"><i class="fas fa-cogs"></i> Technical Systems</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Service Completion:</strong> Completed compulsory military service, demonstrating discipline, responsibility, and effective teamwork</li>
+                            <li><strong>Technical Operations:</strong> Operated and maintained advanced technical systems in high pressure environments</li>
+                            <li><strong>Operational Excellence:</strong> Adhered to strict operational protocols and safety standards to ensure reliable daily operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="audio-research" data-status="completed" data-category="research" data-year="2024">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="experience-badge"><i class="fas fa-flask"></i> Research</span>
+                        <h3><i class="fas fa-volume-up"></i> Audio Engineering Research Assistant</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Sensor, Electro-Acoustics Technology Laboratory (SEAT Lab), Purdue University</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Aug 2024 – Present</span>
+                                <span class="job-duration">Ongoing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Conducting advanced audio research focusing on the relationship between acoustical loads and electrical impedance.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-flask"></i> Research</span>
+                        <span class="job-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="job-tag"><i class="fas fa-wave-square"></i> Signal Processing</span>
+                        <span class="job-tag"><i class="fas fa-microphone"></i> Acoustics</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Research Innovation:</strong> Conducting advanced audio research focusing on the relationship between acoustical loads and electrical impedance</li>
+                            <li><strong>Automation Development:</strong> Designed and implemented custom Python applications for semi-automated data collection, improving measurement process efficiency</li>
+                            <li><strong>Technical Expertise:</strong> Use advanced instrumentation tools for precise data acquisition, signal processing, and frequency response analysis</li>
+                            <li><strong>Web Development:</strong> Designed and deployed a website for the research laboratory</li>
+                        </ul>
+                        <div class="experience-links">
+                            <div class="publication-links">
+                                <a href="https://doi.org/10.5703/1288284317876" target="_blank" class="project-link-btn">
+                                    <i class="fas fa-file-alt"></i> View Publication - Extended Abstract
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="teaching-assistant" data-status="completed" data-category="teaching" data-year="2024">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="experience-badge"><i class="fas fa-graduation-cap"></i> Teaching</span>
+                        <h3><i class="fas fa-chalkboard-teacher"></i> Teaching Assistant / Laboratory Instructor</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">ECET 327 - Instrumentation and Data Acquisition Design</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Aug 2024 - Dec 2024</span>
+                                <span class="job-duration">5 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Instructing and mentoring students in course laboratory activities based on LabVIEW programming.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-graduation-cap"></i> Teaching</span>
+                        <span class="job-tag"><i class="fas fa-code"></i> LabVIEW</span>
+                        <span class="job-tag"><i class="fas fa-users"></i> Mentorship</span>
+                        <span class="job-tag"><i class="fas fa-tools"></i> Instrumentation</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Laboratory Instruction:</strong> Facilitated hands-on laboratory sessions for students in the course, ECET 327 (Instrumentation and Data Acquisition Design)</li>
+                            <li><strong>Teaching Support:</strong> Taught and provided support in NI LabVIEW programming</li>
+                            <li><strong>Student Mentorship:</strong> Provided detailed feedback on lab reports and assignments, ensuring mastery of course exercises</li>
+                            <li><strong>Technical Support:</strong> Troubleshot complex hardware and software issues</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="engineering-intern" data-status="completed" data-category="research" data-year="2024">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="experience-badge"><i class="fas fa-flask"></i> Research</span>
+                        <h3><i class="fas fa-microchip"></i> Engineering Intern</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Purdue Applied Research Institute - Microelectronics Lab</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">May 2024 - Aug 2024</span>
+                                <span class="job-duration">4 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Conducted advanced semiconductor research and developed custom instrumentation systems.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-industry"></i> Internship</span>
+                        <span class="job-tag"><i class="fas fa-microchip"></i> Semiconductors</span>
+                        <span class="job-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="job-tag"><i class="fas fa-eye"></i> Computer Vision</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Semiconductor Research:</strong> Performed cutting-edge research on silicon wafer manufacturing processes and direct bonding techniques</li>
+                            <li><strong>System Integration:</strong> Assembled and optimized a precision wafer probe station from diverse components</li>
+                            <li><strong>Custom Hardware Development:</strong> Designed and fabricated controller hardware/software to integrate linear positioning systems</li>
+                            <li><strong>Innovation:</strong> Created control schemes utilizing hand gestures with computer vision technology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2022-2023 -->
+            <div class="timeline-year-group">
+                <div class="year-divider">
+                    <span class="year-label">2022 - 2023</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item-wrapper" id="assessment-creator" data-status="completed" data-category="teaching" data-year="2023">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="experience-badge"><i class="fas fa-graduation-cap"></i> Teaching</span>
+                        <h3><i class="fas fa-file-alt"></i> Content Creator for Online Assessments</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Purdue University</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Sep 2023 - Mar 2025</span>
+                                <span class="job-duration">1 year 6 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Creating online assessments on the Variate and Brightspace platforms for Purdue courses.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-pen"></i> Content Creation</span>
+                        <span class="job-tag"><i class="fas fa-graduation-cap"></i> Education</span>
+                        <span class="job-tag"><i class="fas fa-superscript"></i> LaTeX</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Content Development:</strong> Developed and verified assignments for Purdue ECET and Physics courses using LaTeX, ensuring accuracy and consistency on the Variate and D2L Brightspace platforms</li>
+                            <li><strong>Assessment Verification:</strong> Verified assessments for Purdue Math classes on the D2L Brightspace online learning system</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="robotics-research" data-status="completed" data-category="research" data-year="2022">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="experience-badge"><i class="fas fa-flask"></i> Research</span>
+                        <h3><i class="fas fa-robot"></i> Robotics Research Assistant</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Human Interactive Robotics Laboratory (HIRoLab) - Purdue University</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Sept 2022 - Feb 2025</span>
+                                <span class="job-duration">2 years 5 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Research in educational robotics, prosthetics, and human-robot interaction with focus on K-12 STEM education.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-flask"></i> Research</span>
+                        <span class="job-tag"><i class="fas fa-robot"></i> Robotics</span>
+                        <span class="job-tag"><i class="fab fa-python"></i> ROS</span>
+                        <span class="job-tag"><i class="fas fa-heart"></i> Biomedical</span>
+                        <span class="job-tag"><i class="fas fa-graduation-cap"></i> Education</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Communication Systems:</strong> Developed I2C communication protocols between single-board computers and microcontrollers using Robot Operating System (ROS)</li>
+                            <li><strong>Educational Innovation:</strong> Designed, fabricated, and delivered 100+ STEM-education robotic kits using advanced digital fabrication</li>
+                            <li><strong>Biomedical Engineering:</strong> Assisted in testing Electromyography (EMG) muscle sensor systems for safe human-robot interaction in educational settings</li>
+                            <li><strong>Curriculum Development:</strong> Created comprehensive standards-based lesson plans and a 2-week robotics curriculum for K-12 students</li>
+                            <li><strong>Prosthetics Research:</strong> Designed and manufactured lower leg prosthesis adapters for biomechanics research with healthy subjects</li>
+                        </ul>
+                        <div class="experience-links">
+                            <div class="publication-links">
+                                <a href="https://dx.doi.org/10.1007/s41686-025-00102-9" target="_blank" class="project-link-btn">
+                                    <i class="fas fa-file-alt"></i> View Publication
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="timeline-item-wrapper" id="rover-team" data-status="completed" data-category="leadership" data-year="2022">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="leadership-badge"><i class="fas fa-users"></i> Leadership</span>
+                        <h3><i class="fas fa-rocket"></i> Instrumentation Team Member → Lead</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Human Exploration Rover Club - Purdue University</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Sep 2022 - Jan 2024</span>
+                                <span class="job-duration">1 year 4 months</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Progressed from contributing member to team lead for NASA Human Exploration Rover Challenge competition.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-users-cog"></i> Leadership</span>
+                        <span class="job-tag"><i class="fas fa-cogs"></i> Engineering Design</span>
+                        <span class="job-tag"><i class="fas fa-space-shuttle"></i> NASA Competition</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                        <li><strong>Leadership Progression:</strong> Led rapid prototyping of compliant end-effectors to accelerate sample collection process for the NASA Human Exploration Rover Challenge competition</li>
+                        <li><strong>Engineering Design:</strong> Designed mounting hardware under geometrical and weight constraints of the mobile rover</li>
+                        <li><strong>Team Development:</strong> Contributed to team development and mentored junior members in instrumentation design and rapid prototyping techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="robomasters" data-status="completed" data-category="leadership" data-year="2022">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="leadership-badge"><i class="fas fa-users"></i> Leadership</span>
+                        <h3><i class="fas fa-bolt"></i> Electrical Team Member</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Purdue Robomasters - West Lafayette, IN</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Sep 2022 - Sep 2023</span>
+                                <span class="job-duration">1 year</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Developed electrical systems for competitive robotics team.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-robot"></i> Robotics</span>
+                        <span class="job-tag"><i class="fas fa-microchip"></i> PCB Design</span>
+                        <span class="job-tag"><i class="fas fa-trophy"></i> Competition</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>PCB Design:</strong> Designed and manufactured custom PCBs for control of semi-autonomous mobile robots</li>
+                            <li><strong>CAD Tools:</strong> Applied EasyEDA and KiCAD for circuit design and circuit board layout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item-wrapper" id="space-day-volunteer" data-status="completed" data-category="leadership" data-year="2022">
+                <div class="timeline-node"></div>
+                <div class="timeline-connector"></div>
+                <div class="experience-card">
+                    <div class="experience-card-header">
+                        <span class="leadership-badge"><i class="fas fa-heart"></i> Service</span>
+                        <h3><i class="fas fa-hands-helping"></i> Volunteer & Group Leader</h3>
+                        <div class="job-subtitle-period">
+                            <div class="job-subtitle">Purdue Space Day - Purdue University</div>
+                            <div class="job-period-wrapper">
+                                <span class="job-period">Oct 2022, Oct 2023</span>
+                                <span class="job-duration">2 events</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Multi-year volunteer for campus-wide K-12 STEM outreach event, progressing to leadership role.</p>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag"><i class="fas fa-heart"></i> Volunteer</span>
+                        <span class="job-tag"><i class="fas fa-users"></i> Leadership</span>
+                        <span class="job-tag"><i class="fas fa-graduation-cap"></i> Outreach</span>
+                    </div>
+                    <button class="expand-details-btn" aria-label="Expand for more details">
+                        <span>Expand for more details</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="job-details">
+                        <ul class="job-responsibilities">
+                            <li><strong>Leadership Development:</strong> Led and managed a group of elementary students during the 2023 event, ensuring safe navigation and engagement in hands-on STEM demonstrations</li>
+                            <li><strong>Operations Support:</strong> Coordinated operations support and managed attendee check-in during the 2022 event</li>
+                            <li><strong>STEM Outreach:</strong> Demonstrated commitment to STEM education outreach through multi-year volunteer service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earlier Experiences Section (Collapsible) -->
+    <section class="experience-section">
+        <div class="earlier-experiences-container">
+            <button class="earlier-experiences-toggle" onclick="toggleEarlierExperiences(this)">
+                <i class="fas fa-chevron-down"></i>
+                <span>View Earlier Experiences & Education</span>
+                <small>High School Achievements, International Education, Early Robotics</small>
+            </button>
+            <div class="earlier-experiences-content">
                 <div class="timeline">
-                    <!-- 2024-2025 -->
+                    <!-- High School / International Education Section -->
                     <div class="timeline-year-group">
                         <div class="year-divider">
-                            <span class="year-label">2024 - Present</span>
+                            <span class="year-label">Earlier Education & Achievements</span>
                         </div>
                     </div>
-                    
-                    <div class="timeline-item" id="audio-research" data-status="completed" data-category="research" data-year="2024">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-volume-up"></i> Audio Engineering Research Assistant</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Purdue University - SEAT Lab</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Aug 2024 - Aug 2025</span>
-                                    <span class="job-duration">1 year 2 months</span>
-                                </div>
-                            </div>
-                            <div class="job-description">
-                                <p>
-                                    Conducting advanced audio research focusing on the relationship between acoustical loads and electrical impedance.
-                                </p>
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-flask"></i> Research</span>
-                                <span class="job-tag"><i class="fab fa-python"></i> Python</span>
-                                <span class="job-tag"><i class="fas fa-wave-square"></i> Signal Processing</span>
-                                <span class="job-tag"><i class="fas fa-microphone"></i> Acoustics</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li><strong>Research Innovation:</strong> Conducting research to explore electroacoustic coupling.</li>
-                                    <li><strong>Automation Development:</strong> Designed and implemented custom Python scripts for semi-automated data collection, greatly improving the overall measurement process efficiency.</li>
-                                    <li><strong>Technical Expertise:</strong> Utilized advanced instrumentation tools for precise data acquisition, signal processing, and frequency response analysis</li>
-                                    <li><strong>Collaborative Research:</strong> Partner with other researchers to design experimental protocols for audio device testing, validation, and performance optimization.</li>
-                                    <li><strong>Documentation & Publication:</strong> Maintain detailed research documentation and contribute to academic publications.</li>
-                                </ul>
 
-                                <div class="experience-links">
-                                    <div class="publication-links">
-                                        <a href="https://doi.org/10.5703/1288284317876" target="_blank" class="project-link-btn">
-                                            <i class="fas fa-file-alt"></i> View Publication - Extended Abstract
-                                        </a>
+                    <!-- High School Education -->
+                    <div class="timeline-item-wrapper" data-status="completed" data-category="education" data-year="earlier">
+                        <div class="timeline-node"></div>
+                        <div class="timeline-connector"></div>
+                        <div class="experience-card">
+                            <div class="experience-card-header">
+                                <span class="experience-badge"><i class="fas fa-graduation-cap"></i> Education</span>
+                                <h3><i class="fas fa-school"></i> International Bilingual School</h3>
+                                <div class="job-subtitle-period">
+                                    <div class="job-subtitle">Hsinchu Science Park, Taiwan</div>
+                                    <div class="job-period-wrapper">
+                                        <span class="job-period">High School</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" id="teaching-assistant" data-status="completed" data-category="teaching" data-year="2024">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-chalkboard-teacher"></i> Teaching Assistant / Laboratory Instructor</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">ECET 327 - Instrumentation and Data Acquisition Design</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Aug 2024 - Dec 2024</span>
-                                    <span class="job-duration">5 months</span>
-                                </div>
-                            </div>
                             <div class="job-description">
-                                <p>Instructing and mentoring students in course laboratory activities based on LabVIEW programming.</p>
+                                <p>International bilingual education with focus on STEM and robotics programs.</p>
                             </div>
                             <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-graduation-cap"></i> Teaching</span>
-                                <span class="job-tag"><i class="fas fa-code"></i> LabVIEW</span>
-                                <span class="job-tag"><i class="fas fa-users"></i> Mentorship</span>
-                                <span class="job-tag"><i class="fas fa-tools"></i> Instrumentation</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li><strong>Laboratory Instruction:</strong> Facilitated hands-on laboratory sessions for 25+ students, teaching NI LabVIEW programming and instrumentation principles</li>
-                                    <li><strong>Student Mentorship:</strong> Provided detailed feedback on lab reports and assignments, ensuring mastery of course exercises</li>
-                                    <li><strong>Technical Support:</strong> Troubleshooted complex hardware and software issues.</li>
-                                </ul>
+                                <span class="job-tag"><i class="fas fa-globe"></i> International Education</span>
+                                <span class="job-tag"><i class="fas fa-graduation-cap"></i> High School</span>
+                                <span class="job-tag"><i class="fas fa-language"></i> Bilingual</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" id="engineering-intern" data-status="completed" data-category="research" data-year="2024">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-microchip"></i> Engineering Intern</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Purdue Applied Research Institute - Microelectronics Lab</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">May 2024 - Aug 2024</span>
-                                    <span class="job-duration">4 months</span>
-                                </div>
-                            </div>
-                            <div class="job-description">
-                                <p>Conducted advanced semiconductor research and developed custom instrumentation systems.</p>
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-industry"></i> Internship</span>
-                                <span class="job-tag"><i class="fas fa-microchip"></i> Semiconductors</span>
-                                <span class="job-tag"><i class="fab fa-python"></i> Python</span>
-                                <span class="job-tag"><i class="fas fa-eye"></i> Computer Vision</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li><strong>Semiconductor Research:</strong> Performed cutting-edge research on silicon wafer manufacturing processes, direct bonding techniques, and advanced semiconductor fabrication methods</li>
-                                    <li><strong>System Integration:</strong> Assembled and optimized a precision wafer probe station from diverse components, enhancing measurement accuracy and system performance</li>
-                                    <li><strong>Custom Hardware Development:</strong> Designed and fabricated controller hardware and software to integrate linear positioning systems with silicon wafer probe stations</li>
-                                    <li><strong>Innovation:</strong> Created additional control schemes using gestures through computer vision. </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2022-2023 -->
-                    <div class="timeline-year-group">
-                        <div class="year-divider">
-                            <span class="year-label">2022 - 2023</span>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item" id="robotics-research" data-status="completed" data-category="research" data-year="2022">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-robot"></i> Robotics Research Assistant</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Human Interactive Robotics Laboratory (HIRoLab) - Purdue University</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Sept 2022 - Feb 2025</span>
-                                    <span class="job-duration">2 years 5 months</span>
-                                </div>
-                            </div>
-                            <div class="job-description">
-                                <p>Research in educational robotics, prosthetics, and human-robot interaction with focus on K-12 STEM education.</p>
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-flask"></i> Research</span>
-                                <span class="job-tag"><i class="fas fa-robot"></i> Robotics</span>
-                                <span class="job-tag"><i class="fab fa-python"></i> ROS</span>
-                                <span class="job-tag"><i class="fas fa-heart"></i> Biomedical</span>
-                                <span class="job-tag"><i class="fas fa-graduation-cap"></i> Education</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li><strong>Communication Systems:</strong> Developed and implemented I2C communication protocols between single-board computers and microcontrollers, enabling seamless sensor and actuator integration through ROS frameworks</li>
-                                    <li><strong>Educational Innovation:</strong> Designed, fabricated, and delivered 100+ STEM-education robotic kits using advanced digital fabrication techniques, significantly enhancing K-12 student engagement in robotics</li>
-                                    <li><strong>Biomedical Engineering:</strong> Assisted in testing the design of an electromyography (EMG) muscle sensor system for safe physical interaction between robots and K-12 students in educational settings</li>
-                                    <li><strong>Curriculum Development:</strong> Created comprehensive standards-based lesson plans and mentoring programs for K-12 students, including a complete 2-week curriculum for human-interactive robotic arm assembly</li>
-                                    <li><strong>Prosthetics Research:</strong> Designed and manufactured lower leg prosthesis adapters for biomechanics research with healthy subjects.</li>
-                                </ul>
-                                
-                                <div class="experience-links">
-                                    <div class="publication-links">
-                                        <a href="http://dx.doi.org/10.1007/s41686-025-00102-9" target="_blank" class="project-link-btn">
-                                            <i class="fas fa-file-alt"></i> View Publication
-                                        </a>
+                    <!-- FIRST Robotics Achievement -->
+                    <div class="timeline-item-wrapper" data-status="completed" data-category="leadership" data-year="2019">
+                        <div class="timeline-node"></div>
+                        <div class="timeline-connector"></div>
+                        <div class="experience-card">
+                            <div class="experience-card-header">
+                                <span class="leadership-badge"><i class="fas fa-trophy"></i> Achievement</span>
+                                <h3><i class="fas fa-robot"></i> FIRST Robotics Competition</h3>
+                                <div class="job-subtitle-period">
+                                    <div class="job-subtitle">Entrepreneurship Award Winner</div>
+                                    <div class="job-period-wrapper">
+                                        <span class="job-period">2019</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" id="assessment-creator" data-status="completed" data-category="teaching" data-year="2023">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-file-alt"></i> Content Creator for Online Assessments</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Creating online assessments on the Variate and Brightspace platforms</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Sep 2023 - Mar 2025</span>
-                                    <span class="job-duration">1 year 6 months</span>
-                                </div>
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-pen"></i> Content Creation</span>
-                                <span class="job-tag"><i class="fas fa-graduation-cap"></i> Education</span>
-                                <span class="job-tag"><i class="fas fa-superscript"></i> LaTeX</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li>Developed and verified assignments for Purdue ECET and Physics courses using LaTeX, ensuring accuracy and consistency on the Variate and D2L Brightspace platforms.</li>
-                                    <li>Verified assessments for Purdue Math classes on the D2L Brightspace online learning system.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item" id="rover-team" data-status="completed" data-category="leadership" data-year="2022">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <span class="leadership-badge"><i class="fas fa-users"></i> Leadership</span>
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-rocket"></i> Instrumentation Team Member → Lead</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Human Exploration Rover Club - Purdue University</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Sep 2022 - Jan 2024</span>
-                                    <span class="job-duration">1 year 4 months</span>
-                                </div>
-                            </div>
                             <div class="job-description">
-                                <p>Progressed from contributing member to team lead for NASA Human Exploration Rover Challenge competition.</p>
+                                <p>Competed in FIRST Robotics Competition and won the Entrepreneurship Award at the Hawaii regional competition.</p>
                             </div>
                             <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-users-cog"></i> Leadership</span>
-                                <span class="job-tag"><i class="fas fa-cogs"></i> Engineering Design</span>
-                                <span class="job-tag"><i class="fas fa-space-shuttle"></i> NASA Competition</span>
+                                <span class="job-tag"><i class="fas fa-robot"></i> FIRST Robotics</span>
+                                <span class="job-tag"><i class="fas fa-trophy"></i> Entrepreneurship Award</span>
+                                <span class="job-tag"><i class="fas fa-map-marker-alt"></i> Hawaii</span>
                             </div>
+                            <button class="expand-details-btn" aria-label="Expand for more details">
+                                <span>Expand for more details</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
                             <div class="job-details">
                                 <ul class="job-responsibilities">
-                                    <li><strong>Leadership Progression:</strong> Advanced from team member to lead role, demonstrating growth in technical and management capabilities</li>
-                                    <li><strong>Engineering Design:</strong> Led and contributed to rapid prototyping of compliant end-effectors for sample collection systems</li>
-                                    <li><strong>Technical Implementation:</strong> Designed mounting hardware under geometrical and weight constraints of mobile rover</li>
-                                    <li><strong>Project Management:</strong> Coordinated team efforts and timeline management for competition preparation</li>
-                                    <li><strong>Cross-functional Collaboration:</strong> Worked closely with mechanical and electrical teams to integrate systems</li>
+                                    <li><strong>Competition Achievement:</strong> Won Entrepreneurship Award at FIRST Robotics Competition Hawaii Regional (2019)</li>
+                                    <li><strong>Team Contribution:</strong> Participated in competitive robotics program demonstrating technical skills and business acumen</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item" id="robomasters" data-status="completed" data-category="leadership" data-year="2022">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <span class="leadership-badge"><i class="fas fa-users"></i> Leadership</span>
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-bolt"></i> Electrical Team Member</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Purdue Robomasters - West Lafayette, IN</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Sep 2022 - Sep 2023</span>
-                                    <span class="job-duration">1 year</span>
+                    <!-- VEX Competition Achievement -->
+                    <div class="timeline-item-wrapper" data-status="completed" data-category="leadership" data-year="earlier">
+                        <div class="timeline-node"></div>
+                        <div class="timeline-connector"></div>
+                        <div class="experience-card">
+                            <div class="experience-card-header">
+                                <span class="leadership-badge"><i class="fas fa-trophy"></i> Achievement</span>
+                                <h3><i class="fas fa-robot"></i> VEX Robotics Competition</h3>
+                                <div class="job-subtitle-period">
+                                    <div class="job-subtitle">Competition Winner</div>
+                                    <div class="job-period-wrapper">
+                                        <span class="job-period">High School</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="job-description">
-                                <p>Developed electrical systems for competitive robotics team.</p>
+                                <p>Founded and led a VEX robotics team, achieving competition victory through innovative design and strategic planning.</p>
                             </div>
                             <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-robot"></i> Robotics</span>
-                                <span class="job-tag"><i class="fas fa-microchip"></i> PCB Design</span>
-                                <span class="job-tag"><i class="fas fa-trophy"></i> Competition</span>
+                                <span class="job-tag"><i class="fas fa-robot"></i> VEX Robotics</span>
+                                <span class="job-tag"><i class="fas fa-trophy"></i> Competition Winner</span>
+                                <span class="job-tag"><i class="fas fa-lightbulb"></i> Team Founder</span>
                             </div>
+                            <button class="expand-details-btn" aria-label="Expand for more details">
+                                <span>Expand for more details</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
                             <div class="job-details">
                                 <ul class="job-responsibilities">
-                                    <li><strong>PCB Design:</strong> Designed and manufactured custom PCBs for control of semi-autonomous mobile robots</li>
-                                    <li><strong>CAD Tools:</strong> Applied EasyEDA and KiCAD for circuit design and board layout</li>
-                                    <li><strong>System Integration:</strong> Integrated electrical systems with mechanical components for competitive robots</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item" id="space-day-volunteer" data-status="completed" data-category="leadership" data-year="2022">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <span class="leadership-badge"><i class="fas fa-heart"></i> Service</span>
-                            <div class="job-header collapsible-header">
-                                <h3><i class="fas fa-hands-helping"></i> Volunteer & Group Leader</h3>
-                                <button class="collapse-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="job-subtitle-period">
-                                <div class="job-subtitle">Purdue Space Day - Purdue University</div>
-                                <div class="job-period-wrapper">
-                                    <span class="job-period">Oct 2022, Oct 2023</span>
-                                    <span class="job-duration">2 events</span>
-                                </div>
-                            </div>
-                            <div class="job-description">
-                                <p>Multi-year volunteer for campus-wide K-12 STEM outreach event, progressing to leadership role.</p>
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag"><i class="fas fa-heart"></i> Volunteer</span>
-                                <span class="job-tag"><i class="fas fa-users"></i> Leadership</span>
-                                <span class="job-tag"><i class="fas fa-graduation-cap"></i> Outreach</span>
-                            </div>
-                            <div class="job-details">
-                                <ul class="job-responsibilities">
-                                    <li><strong>Leadership Development:</strong> Progressed from operational support crew to group leader over two years of participation</li>
-                                    <li><strong>Student Engagement:</strong> Led team of 5 volunteers managing groups of elementary students during hands-on STEM demonstrations</li>
-                                    <li><strong>Safety & Logistics:</strong> Ensured safe navigation and managed logistics for student activities across campus</li>
-                                    <li><strong>Operations Support:</strong> Managed attendee check-in, crowd flow, and provided information to families</li>
-                                    <li><strong>Event Coordination:</strong> Coordinated general operations support throughout various campus activities during peak attendance</li>
+                                    <li><strong>Team Leadership:</strong> Founded and started a VEX robotics competition team</li>
+                                    <li><strong>Competition Success:</strong> Led team to victory in VEX robotics competition</li>
+                                    <li><strong>Technical Skills:</strong> Developed robotics design, programming, and competition strategy skills</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="technical-expertise" class="content-section">
-            <h2><i class="fas fa-cogs"></i> Technical Expertise Gained</h2>
-            <div class="section-content">
-                <div class="development-grid">
-                    <div class="development-card">
-                        <h3><i class="fas fa-microchip"></i> Hardware & Instrumentation</h3>
-                        <ul>
-                            <li>Advanced semiconductor device characterization and testing</li>
-                            <li>Precision instrumentation design and calibration</li>
-                            <li>Custom PCB design and embedded system development</li>
-                            <li>Digital fabrication techniques (3D printing, designing, and laser cutting)</li>
-                            <li>Electromyography (EMG) sensor signal processing</li>
-                            <li>Sensor fusion between different types of data through ROS</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="development-card">
-                        <h3><i class="fas fa-code"></i> Software & Programming</h3>
-                        <ul>
-                            <li>Python automation and data analysis scripting</li>
-                            <li>Prototype application development with Python and Qt framework</li>
-                            <li>LabVIEW programming for instrumentation control and display</li>
-                            <li>ROS (Robot Operating System) framework development</li>
-                            <li>Computer vision and AI algorithm implementation</li>
-                            <li>Programming PID controllers for use with SLAM</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="development-card">
-                        <h3><i class="fas fa-project-diagram"></i> Systems & Integration</h3>
-                        <ul>
-                            <li>I2C communication protocol implementation</li>
-                            <li>Multi-platform hardware-software integration</li>
-                            <li>Real-time data acquisition and processing systems</li>
-                            <li>Quality control and testing protocol development</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Technical Expertise Section -->
+    <section id="technical-expertise" class="technical-expertise-section">
+        <div class="section-header animate-on-scroll">
+            <h2>Technical Expertise Gained</h2>
+            <p>Skills Developed Through Experience</p>
+        </div>
+        <div class="development-grid">
+            <div class="development-card animate-on-scroll">
+                <h3><i class="fas fa-microchip"></i> Hardware & Instrumentation</h3>
+                <ul>
+                    <li>Advanced semiconductor device characterization and testing</li>
+                    <li>Precision instrumentation design and calibration</li>
+                    <li>Custom PCB design and embedded system development</li>
+                    <li>Digital fabrication techniques (3D printing, designing, and laser cutting)</li>
+                    <li>Electromyography (EMG) sensor signal processing</li>
+                    <li>Sensor fusion between different types of data through ROS</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- Section commented out before I am able to secure a reliable reference-->
-        <!--<section id="recommendations" class="content-section">
-            <h2><i class="fas fa-quote-left"></i> Professional References</h2>
-            <div class="section-content">
-                <div class="references-note">
-                    <div class="development-card">
-                        <p>
-                            <i class="fas fa-info-circle"></i>
-                            Professional references from faculty advisors, research supervisors, and industry mentors are available upon request. 
-                            References can speak to technical capabilities, research contributions, leadership skills, and professional growth.
-                        </p>
-                        <p>
-                            <strong>Available Reference Categories:</strong>
-                        </p>
-                        <ul>
-                            <li>Academic Research Supervisors</li>
-                            <li>Teaching and Mentorship Coordinators</li>
-                            <li>Peer Collaboration Partners</li>
-                        </ul>
-                        <p>
-                            Please <a href="contact.html">contact me</a> for detailed reference information and contact details.
-                        </p>
-                    </div>
-                </div>
+            
+            <div class="development-card animate-on-scroll">
+                <h3><i class="fas fa-code"></i> Software & Programming</h3>
+                <ul>
+                    <li>Python automation and data analysis scripting</li>
+                    <li>Prototype application development with Python and Qt framework</li>
+                    <li>LabVIEW programming for instrumentation control and display</li>
+                    <li>ROS (Robot Operating System) framework development</li>
+                    <li>Computer vision and AI algorithm implementation</li>
+                    <li>Programming PID controllers for use with SLAM</li>
+                </ul>
             </div>
-        </section>-->
-    </main>
+            
+            <div class="development-card animate-on-scroll">
+                <h3><i class="fas fa-project-diagram"></i> Systems & Integration</h3>
+                <ul>
+                    <li>I2C communication protocol implementation</li>
+                    <li>Multi-platform hardware-software integration</li>
+                    <li>Real-time data acquisition and processing systems</li>
+                    <li>Quality control and testing protocol development</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <a href="#top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -564,17 +678,17 @@
                 <div class="footer-main">
                     <div class="footer-left">
                         <div class="social-links">
-                            <a href="mailto:chen3901@purdue.edu?cc=ckyb63@gmail.com" target="_blank" aria-label="Email">
+                            <a href="index.html#contact" aria-label="Contact">
                                 <i class="fas fa-envelope"></i>
-                                <span>Email</span>
                             </a>
                             <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
                             </a>
                             <a href="https://github.com/ckyb63" target="_blank" aria-label="GitHub">
                                 <i class="fab fa-github"></i>
-                                <span>GitHub</span>
+                            </a>
+                            <a href="index.html#downloads" aria-label="Resume & CV downloads">
+                                <i class="fas fa-file-download"></i>
                             </a>
                         </div>
                     </div>
@@ -590,136 +704,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="toc.js"></script>
-    <script>
-        // Collapsible experience cards functionality
-        function toggleExperience(header) {
-            const timelineContent = header.closest('.timeline-content');
-            const isExpanded = timelineContent.classList.contains('expanded');
-            const isMobile = window.innerWidth <= 768;
-            
-            // On mobile, toggle between collapsed and expanded
-            if (isMobile) {
-                if (isExpanded) {
-                    timelineContent.classList.remove('expanded');
-                } else {
-                    timelineContent.classList.add('expanded');
-                }
-            } else {
-                // On desktop, toggle between normal and collapsed
-                if (timelineContent.classList.contains('collapsed')) {
-                    timelineContent.classList.remove('collapsed');
-                } else {
-                    timelineContent.classList.add('collapsed');
-                }
-            }
-        }
-        
-        // Initialize mobile state on page load
-        function initializeMobileState() {
-            const isMobile = window.innerWidth <= 768;
-            const timelineContents = document.querySelectorAll('.timeline-content');
-            
-            if (isMobile) {
-                // On mobile, start collapsed
-                timelineContents.forEach(content => {
-                    content.classList.remove('expanded', 'collapsed');
-                });
-            } else {
-                // On desktop, start expanded
-                timelineContents.forEach(content => {
-                    content.classList.remove('expanded', 'collapsed');
-                });
-            }
-        }
-        
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeMobileState();
-            
-            // Re-initialize on window resize
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(initializeMobileState, 250);
-            });
-            
-            // Initialize filters and view toggle
-            initializeFilters();
-            initializeViewToggle();
-        });
-        
-        // Filter functionality
-        function initializeFilters() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const yearGroups = document.querySelectorAll('.timeline-year-group');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active state
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    // Filter items with animation
-                    timelineItems.forEach((item, index) => {
-                        const category = item.getAttribute('data-category');
-                        const status = item.getAttribute('data-status');
-                        
-                        let shouldShow = false;
-                        
-                        if (filter === 'all') {
-                            shouldShow = true;
-                        } else if (filter === 'current') {
-                            shouldShow = status === 'current';
-                        } else {
-                            shouldShow = category === filter;
-                        }
-                        
-                        if (shouldShow) {
-                            setTimeout(() => {
-                                item.style.display = '';
-                                item.style.animation = 'fadeInUp 0.4s ease-out forwards';
-                            }, index * 50);
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    
-                    // Show/hide year groups based on visible items
-                    yearGroups.forEach(group => {
-                        const nextItem = group.nextElementSibling;
-                        if (nextItem && nextItem.classList.contains('timeline-item')) {
-                            group.style.display = nextItem.style.display === 'none' ? 'none' : '';
-                        }
-                    });
-                });
-            });
-        }
-        
-        // View toggle functionality
-        function initializeViewToggle() {
-            const viewButtons = document.querySelectorAll('.view-btn');
-            const timeline = document.querySelector('.timeline');
-            
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active state
-                    viewButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const view = this.getAttribute('data-view');
-                    
-                    if (view === 'compact') {
-                        timeline.classList.add('compact-view');
-                    } else {
-                        timeline.classList.remove('compact-view');
-                    }
-                });
-            });
-        }
-    </script>
- </body>
- </html> 
+</body>
+</html>
