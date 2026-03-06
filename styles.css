@@ -3656,6 +3656,13 @@
             z-index: 2;
         }
 
+        .showcase-image-card picture {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
         .showcase-image-card img {
             position: absolute;
             top: 0;
@@ -3951,6 +3958,14 @@
             );
         }
 
+        .project-card.has-image picture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
         .project-card.has-image img {
             position: absolute;
             top: 0;
@@ -4537,6 +4552,81 @@
         /* Project Card Tech Tags */
         .project-card-tech {
             margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-card-tech .tech-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+        }
+
+        /* Project card detail blocks (R&D grid) */
+        .project-card-detail {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .project-card-detail > p {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card-detail ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .project-card-detail li {
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .project-card-detail li .bullet {
+            position: absolute;
+            left: 0;
+        }
+
+        /* Project page link row (e.g. View Code + optional links) */
+        .project-links-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        /* Inline link with primary color */
+        .link-primary {
+            color: var(--primary-color);
+        }
+
+        /* Publication link in project card */
+        .project-link-publication {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .project-link-publication:hover {
+            color: var(--accent-color);
+        }
+
+        /* Gallery & video card typography */
+        .gallery-card-title {
+            font-size: 1.25rem;
+        }
+
+        .gallery-card-desc {
+            font-size: 0.875rem;
         }
 
         /* Back to Top Button */

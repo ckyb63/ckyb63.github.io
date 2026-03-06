@@ -236,6 +236,9 @@ window.toggleEarlierExperiences = toggleEarlierExperiences;
                     }
                 }
             });
+        } else {
+            // Desktop: remove cloned job-tags from job-details to avoid duplicates when resizing back
+            document.querySelectorAll('.job-details .job-tags').forEach(el => el.remove());
         }
     }
     
