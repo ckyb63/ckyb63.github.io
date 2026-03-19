@@ -4,7 +4,11 @@
     <meta name="google-site-verification" content="XWWSoOOOvjL2eiB1G7jfkM6c2Z-rXZyBmSPSG9jO3aA" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Max Chen</title>
+    <style>html.i18n-pending body{visibility:hidden}</style>
+    <script>
+    (function(){try{if(localStorage.getItem('max-portfolio-lang')==='zh-Hant')document.documentElement.classList.add('i18n-pending');}catch(e){}})();
+    </script>
+    <title data-i18n="metaTitleProjects">Projects - Max Chen</title>
     <link rel="icon" type="image/svg+xml" href="pictures/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
@@ -12,17 +16,25 @@
     <meta name="msapplication-TileImage" content="pictures/favicon-32x32.png">
     <meta name="msapplication-TileColor" content="#2563eb">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <link rel="canonical" href="https://ckyb63.github.io/projects.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="description" content="Project Portfolio - Visual Showcase">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckyb63.github.io/projects.html">
+    <meta property="og:title" content="Projects - Max Chen">
+    <meta property="og:description" content="Project portfolio of Max Chen - Robotics, AI, and engineering projects.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Projects - Max Chen">
+    <meta name="twitter:description" content="Project portfolio of Max Chen - Robotics, AI, and engineering projects.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
     <!-- Floating TOC -->
     <div class="floating-toc">
-        <button class="toc-toggle" aria-label="Toggle table of contents">
+        <button class="toc-toggle" aria-label="Toggle table of contents" data-i18n-attr="aria-label:aria.toggleToc">
             <i class="fas fa-list"></i>
         </button>
         <div class="toc-panel">
@@ -30,26 +42,26 @@
                 <div class="toc-progress-bar"></div>
             </div>
             <div class="toc-header">
-                <i class="fas fa-list"></i> Contents
+                <i class="fas fa-list"></i> <span data-i18n="sections.projects.tocContents">Contents</span>
             </div>
             <ul class="toc-list">
                 <li class="toc-item">
-                    <a href="#ppe-vending-machine" class="toc-link">PPE AI Vending Machine</a>
+                    <a href="#projects" class="toc-link" data-i18n="sections.projects.tocProjects">Portfolio</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#educational-robotics" class="toc-link">Educational Robotics</a>
+                    <a href="#ppe-vending-machine" class="toc-link" data-i18n="sections.projects.tocPPE">PPE AI Vending Machine</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#autonomous-rally-car" class="toc-link">Autonomous Rally Car</a>
+                    <a href="#educational-robotics" class="toc-link" data-i18n="sections.projects.tocEduRobotics">Educational Robotics</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#research-development" class="toc-link">Research & Development</a>
+                    <a href="#autonomous-rally-car" class="toc-link" data-i18n="sections.projects.tocRallyCar">Autonomous Rally Car</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#project-gallery" class="toc-link">Project Gallery</a>
+                    <a href="#research-development" class="toc-link" data-i18n="sections.projects.tocRD">Research & Development</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#project-videos" class="toc-link">Project Videos</a>
+                    <a href="#project-gallery" class="toc-link" data-i18n="sections.projects.tocGallery">Gallery & media</a>
                 </li>
             </ul>
         </div>
@@ -57,7 +69,7 @@
 
     <nav>
         <div class="nav-container">
-            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu">
+            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu" data-i18n-attr="aria-label:aria.toggleNav">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -65,16 +77,18 @@
             <a href="index.html" class="nav-logo-link">
                 <img src="pictures/favicon.svg" alt="Max Chen Logo" class="nav-logo" loading="lazy">
             </a>
-            <a href="index.html" class="nav-home-icon" aria-label="Go to home page">
-                <i class="fas fa-home"></i>
-            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-switcher" role="group" aria-label="Language">
+                <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="zh-Hant" aria-pressed="false">繁中</button>
+            </div>
         </div>
     </nav>
 
@@ -82,518 +96,470 @@
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="mobile-menu-content">
             <ul class="mobile-menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </div>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="parallax-bg"></div>
         <div class="hero-content">
-            <h1>Project Portfolio</h1>
-            <p>Robotics • AI • Engineering Solutions</p>
+            <h1 data-i18n="hero.projects.title">Project Portfolio</h1>
+            <p data-i18n="hero.projects.subtitle">Robotics • AI • Engineering Solutions</p>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Featured Project 1: PPE AI Vending Machine -->
-    <section id="ppe-vending-machine" class="project-showcase animate-on-scroll">
-        <div class="showcase-container">
-            <div class="showcase-image-card">
-                <picture>
-                    <source srcset="pictures/ai_vending_machine.webp" type="image/webp">
-                    <img src="pictures/ai_vending_machine.jpg" 
-                         alt="PPE AI Vending Machine"
-                         loading="lazy"
-                         data-project-title="PPE A.I. Vending Machine"
-                         data-project-badge="Senior Capstone Project"
-                         data-project-description="Intelligent vending machine system utilizing AI camera technology to detect PPE compliance and automatically dispense missing Personal Protective Equipment to workers. This project addresses workplace safety through cutting-edge computer vision technology."
-                         data-project-tech="Computer Vision,YOLO,Python,PySide6,Nvidia Jetson Orin Nano,OpenCV,Hardware Integration,Networking Systems">
-                </picture>
-                <div class="showcase-title-overlay">
-                    <span class="project-badge">Senior Capstone Project</span>
-                    <h2>PPE A.I. Vending Machine</h2>
-                </div>
-            </div>
-            <div class="project-content">
-            <span class="project-badge">Senior Capstone Project</span>
-            <h2>PPE A.I. Vending Machine</h2>
-            <p>
-                Intelligent vending machine system utilizing AI camera technology to detect PPE compliance 
-                and automatically dispense missing Personal Protective Equipment to workers. This project 
-                addresses workplace safety through cutting-edge computer vision technology.
-            </p>
-            <div class="project-features">
-                <div class="feature-item">
-                    <i class="fas fa-eye"></i>
-                    <span>Real-time YOLO Detection</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-robot"></i>
-                    <span>Automated Dispensing</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-desktop"></i>
-                    <span>PySide6 GUI Interface</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-microchip"></i>
-                    <span>Nvidia Jetson Orin Nano</span>
-                </div>
-            </div>
-            <div class="project-tech-stack">
-                <span class="tech-tag primary">Computer Vision</span>
-                <span class="tech-tag primary">YOLO</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">PySide6</span>
-                <span class="tech-tag">Nvidia Jetson Orin Nano</span>
-                <span class="tech-tag">OpenCV</span>
-                <span class="tech-tag">Hardware Integration</span>
-                <span class="tech-tag">Networking Systems</span>
-            </div>
-            <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" rel="noopener noreferrer" class="project-link">
-                <i class="fas fa-external-link-alt"></i>
-                View Project Website
-            </a>
-            <button class="toggle-details-btn" onclick="toggleDetails(this)">
-                <i class="fas fa-chevron-down"></i>
-                Show More Details
-            </button>
-            <div class="project-details-expanded">
-                <h4><i class="fas fa-cogs"></i> Key Features</h4>
-                <ul>
-                    <li>Intelligent vending machine system utilizing AI camera technology to detect PPE compliance</li>
-                    <li>Automatically dispenses missing Personal Protective Equipment to workers</li>
-                    <li>Real-time PPE detection using YOLO object detection algorithm with custom trained model</li>
-                    <li>User-friendly GUI built with PySide6 and Nvidia Jetson Orin Nano for edge AI processing</li>
-                </ul>
-                
-                <h4><i class="fas fa-tools"></i> Technical Implementation</h4>
-                <ul>
-                    <li>Tools Used: Python, PySide6, OpenCV, YOLO, Nvidia Jetson Orin Nano, Hardware Integration</li>
-                    <li>Project Website: <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" rel="noopener noreferrer" class="link-primary">ckyb63.github.io/capstone_T54_gui</a></li>
-                </ul>
+    <!-- Projects at a glance - compact card grid -->
+    <section id="projects" class="content-section portfolio-section first-content-section">
+        <div class="section-container">
+            <div class="portfolio-grid">
+                <!-- PPE AI Vending Machine -->
+                <article id="ppe-vending-machine" class="portfolio-card animate-on-scroll">
+                    <a href="#" class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View PPE AI Vending Machine details">
+                        <picture>
+                            <source srcset="pictures/ai_vending_machine.webp" type="image/webp">
+                            <img src="pictures/ai_vending_machine.jpg" alt="PPE AI Vending Machine" loading="lazy">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeCapstone">Senior Capstone Project</span>
+                    </a>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.ppeTitle">PPE A.I. Vending Machine</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.ppeDesc">Intelligent vending machine system utilizing AI camera technology to detect PPE compliance and automatically dispense missing Personal Protective Equipment to workers. This project addresses workplace safety through cutting-edge computer vision technology.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag primary">Computer Vision</span>
+                            <span class="tech-tag">YOLO</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Jetson</span>
+                        </div>
+                        <div class="portfolio-card-actions">
+                            <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" rel="noopener noreferrer" class="portfolio-btn primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span data-i18n="sections.projects.viewProjectWebsite">View Project Website</span>
+                            </a>
+                            <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                                <i class="fas fa-info-circle"></i>
+                                <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.ppeModalOverview">This senior capstone project delivers an intelligent vending system that uses computer vision to detect PPE compliance in real time and automatically dispenses missing equipment—addressing workplace safety through automated, AI-driven detection.</p>
+                                <div class="detail-modal-meta">
+                                    <p><strong data-i18n="sections.projects.roleLabel">Role:</strong> <span data-i18n="sections.projects.ppeRole">Computer vision and integration lead</span></p>
+                                    <p><strong data-i18n="sections.projects.scopeLabel">Scope:</strong> <span data-i18n="sections.projects.ppeScope">YOLO model training, edge deployment, hardware integration, GUI development</span></p>
+                                    <p><strong data-i18n="sections.projects.outcomeLabel">Outcome:</strong> <span data-i18n="sections.projects.ppeOutcome">Built an end-to-end PPE compliance system that detects missing gear and triggers automated dispensing</span></p>
+                                </div>
+                                <h4 data-i18n="sections.projects.keyFeatures">Key Features</h4>
+                                <ul>
+                                    <li data-i18n="sections.projects.ppeKf1">Real-time PPE detection via AI camera and custom-trained YOLO model</li>
+                                    <li data-i18n="sections.projects.ppeKf2">Automated dispensing of missing Personal Protective Equipment to workers</li>
+                                    <li data-i18n="sections.projects.ppeKf3">Edge deployment on Nvidia Jetson Orin Nano with PySide6 GUI</li>
+                                    <li data-i18n="sections.projects.ppeKf4">Hardware integration and networking for end-to-end system operation</li>
+                                </ul>
+                                <h4 data-i18n="sections.projects.technicalImplementation">Technical Implementation</h4>
+                                <p><span data-i18n="sections.projects.ppeTechStack">Python, PySide6, OpenCV, YOLO, Nvidia Jetson Orin Nano. Full project site:</span> <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" rel="noopener noreferrer">ckyb63.github.io/capstone_T54_gui</a></p>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryDetectionTitle">PPE Detection Demo</p>
+                                    <img src="pictures/ai_vending_machine_demo.jpg" alt="PPE Detection Demo" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Educational Robotics -->
+                <article id="educational-robotics" class="portfolio-card animate-on-scroll">
+                    <a href="#" class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View Educational Robotics details">
+                        <picture>
+                            <source srcset="pictures/Nuplator_1.webp" type="image/webp">
+                            <img src="pictures/Nuplator_1.png" alt="Educational Robotics" loading="lazy">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeResearch">Research Project</span>
+                    </a>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.eduRoboticsTitle">Educational Robotics</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.eduRoboticsDesc">Educational robotics program designed to engage K-12 students in STEM learning through hands-on robotics experiences. Includes custom hardware design, manufacturing, and comprehensive curriculum development.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag primary">ROS</span>
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">PCB</span>
+                            <span class="tech-tag">Curriculum</span>
+                        </div>
+                        <div class="portfolio-card-actions">
+                            <a href="https://dx.doi.org/10.1007/s41686-025-00102-9" target="_blank" rel="noopener noreferrer" class="portfolio-btn primary">
+                                <i class="fas fa-file-alt"></i>
+                                <span data-i18n="sections.experience.viewPublication">View Publication</span>
+                            </a>
+                            <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                                <i class="fas fa-info-circle"></i>
+                                <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.eduModalOverview">This research initiative at HIRoLab brings hands-on robotics to K–12 education through custom hardware, curriculum development, and scalable kit manufacturing.</p>
+                                <h4 data-i18n="sections.projects.educationalImpact">Educational Impact</h4>
+                                <ul>
+                                    <li data-i18n="sections.projects.eduImpact1">Designed and fabricated over 100 STEM-education robotic kits for K-12 students</li>
+                                    <li data-i18n="sections.projects.eduImpact2">Developed comprehensive standards-based curriculum for 2-week robotics programs</li>
+                                </ul>
+                                <h4 data-i18n="sections.projects.technicalComponents">Technical Components</h4>
+                                <ul>
+                                    <li data-i18n="sections.projects.eduTech1">Custom PCB design for educational microcontroller boards</li>
+                                    <li data-i18n="sections.projects.eduTech2">EMG-based robot arm control on Microchip platform</li>
+                                </ul>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryNuplatorTitle">Nuplator Robotics Kit</p>
+                                    <img src="pictures/Nuplator_1.png" alt="Nuplator Robotics Kit" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Autonomous Rally Car -->
+                <article id="autonomous-rally-car" class="portfolio-card animate-on-scroll">
+                    <a href="#" class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View Autonomous Rally Car details">
+                        <picture>
+                            <source srcset="pictures/442_Car.webp" type="image/webp">
+                            <img src="pictures/442_Car.jpg" alt="Autonomous Rally Car" loading="lazy">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeCourse">Course Project</span>
+                    </a>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.rallyCarTitle">Autonomous Rally Car Race</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.rallyCarDesc">Developed an autonomous navigation system for a rally car with wall-following capabilities and waypoint-based path navigation given a map. Achieved a 48 second lap time in the KNOY 500 competition using ROS-based control systems and LIDAR-guided navigation.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag primary">ROS</span>
+                            <span class="tech-tag primary">SLAM</span>
+                            <span class="tech-tag">LIDAR</span>
+                            <span class="tech-tag">AMCL</span>
+                        </div>
+                        <div class="portfolio-card-actions">
+                            <a href="https://github.com/ckyb63/MFET442-Team6-Exploding-Car.git" target="_blank" rel="noopener noreferrer" class="portfolio-btn primary">
+                                <i class="fab fa-github"></i>
+                                <span data-i18n="sections.projects.viewCode">View Code</span>
+                            </a>
+                            <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                                <i class="fas fa-info-circle"></i>
+                                <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.rallyModalOverview">As part of MFET 442, our team developed a full autonomous navigation stack: wall-following, waypoint navigation with AMCL and Hector SLAM, achieving third place (48 s) in the KNOY 500 competition at Knoy Hall.</p>
+                                <div class="detail-modal-meta">
+                                    <p><strong data-i18n="sections.projects.roleLabel">Role:</strong> <span data-i18n="sections.projects.rallyRole">Autonomy and controls contributor</span></p>
+                                    <p><strong data-i18n="sections.projects.scopeLabel">Scope:</strong> <span data-i18n="sections.projects.rallyScope">LIDAR-based wall/lane following, waypoint navigation, AMCL/SLAM integration</span></p>
+                                    <p><strong data-i18n="sections.projects.outcomeLabel">Outcome:</strong> <span data-i18n="sections.projects.rallyOutcome">Placed 3rd in KNOY 500 with a 48-second lap using a robust ROS navigation stack</span></p>
+                                </div>
+                                <h4 data-i18n="sections.projects.keyAchievements">Key Achievements</h4>
+                                <ul>
+                                    <li data-i18n="sections.projects.rallyKa1">Third place (48 s) in KNOY 500 around Knoy Hall first floor</li>
+                                    <li data-i18n="sections.projects.rallyKa2">Wall and lane following using LIDAR and PD control</li>
+                                    <li data-i18n="sections.projects.rallyKa3">Waypoint navigation with AMCL and Hector mapping</li>
+                                    <li data-i18n="sections.projects.rallyKa4">IMU and LIDAR sensor fusion for robust localization</li>
+                                </ul>
+                                <h4 data-i18n="sections.projects.technicalImplementation">Technical Implementation</h4>
+                                <p><span data-i18n="sections.projects.rallyTechStack">ROS, SLAM, path planning, LIDAR, AMCL, PD control, sensor fusion. Repository:</span> <a href="https://github.com/ckyb63/MFET442-Team6-Exploding-Car" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                                <h4 data-i18n="sections.projects.projectVideos">Project Videos</h4>
+                                <p class="detail-modal-videos-intro" data-i18n="sections.projects.videosPlayable">Watch the demos below or open on YouTube.</p>
+                                <p class="detail-modal-links">
+                                    <a href="https://www.youtube.com/watch?v=4C2afGXk0eE" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Demo 1</a>
+                                    <span aria-hidden="true"> · </span>
+                                    <a href="https://www.youtube.com/watch?v=88CAjAFp_bs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Demo 2</a>
+                                </p>
+                                <div class="detail-modal-videos detail-modal-videos-bottom">
+                                    <div class="detail-modal-video">
+                                        <iframe src="https://www.youtube.com/embed/4C2afGXk0eE" title="Rally Car Navigation Demo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <p class="detail-modal-video-caption" data-i18n="sections.projects.videoDemo1Title">Rally Car Demo 1</p>
+                                    </div>
+                                    <div class="detail-modal-video">
+                                        <iframe src="https://www.youtube.com/embed/88CAjAFp_bs" title="Rally Car Navigation Demo 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <p class="detail-modal-video-caption" data-i18n="sections.projects.videoDemo2Title">Rally Car Demo 2</p>
+                                    </div>
+                                    <div class="detail-modal-video">
+                                        <iframe
+                                            src="https://www.youtube.com/embed/GYT60xfsQQI?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1"
+                                            title="Rally Car Waypoint Run Demo"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                        <p class="detail-modal-video-caption" data-i18n="sections.projects.videoDemo3Title">Rally Car Waypoint Run Demo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryRallyTitle">Autonomous Rally Car</p>
+                                    <img src="pictures/442_Car.jpg" alt="Autonomous Rally Car" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Silicon Wafer Probe Station -->
+                <article id="research-development" class="portfolio-card animate-on-scroll">
+                    <div class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View Silicon Wafer Probe Station details">
+                        <picture>
+                            <source srcset="pictures/Wafer_Probe_1.webp" type="image/webp">
+                            <img src="pictures/Wafer_Probe_1.webp" alt="Silicon Wafer Probe Station" loading="lazy" data-gallery-key="Wafer">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeInternship">Internship Project</span>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.rdWaferTitle">Silicon Wafer Probe Station</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.rdWaferDesc">Assembled and optimized a prototype silicon wafer probe station for semiconductor testing with custom automation controls and enhanced measurement capabilities.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">PARI</span>
+                            <span class="tech-tag">Microelectronics</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                            <i class="fas fa-info-circle"></i>
+                            <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                        </button>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.rdWaferModalOverview">At Purdue Applied Research Institute's microelectronics lab, I assembled and optimized a prototype silicon wafer probe station and developed custom automation and measurement protocols for semiconductor testing.</p>
+                                <div class="detail-modal-meta">
+                                    <p><strong data-i18n="sections.projects.roleLabel">Role:</strong> <span data-i18n="sections.projects.waferRole">Engineering intern for system integration and automation</span></p>
+                                    <p><strong data-i18n="sections.projects.scopeLabel">Scope:</strong> <span data-i18n="sections.projects.waferScope">Probe station assembly, linear rail control design, GUI-assisted automated measurements</span></p>
+                                    <p><strong data-i18n="sections.projects.outcomeLabel">Outcome:</strong> <span data-i18n="sections.projects.waferOutcome">Delivered a working wafer test setup with improved repeatability and faster measurement workflows</span></p>
+                                </div>
+                                <p><strong data-i18n="sections.projects.rdWaferAchieve">Technical Achievements</strong></p>
+                                <ul>
+                                    <li data-i18n="sections.projects.rdWafer1">Integrated diverse components into cohesive testing system</li>
+                                    <li data-i18n="sections.projects.rdWafer2">Designed custom controller for linear positioning rails</li>
+                                    <li data-i18n="sections.projects.rdWafer3">Implemented automated measurement protocols with custom GUI</li>
+                                </ul>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryWaferTitle">Silicon Wafer Probe Station</p>
+                                    <img src="pictures/Wafer_Probe_1.webp" alt="Silicon Wafer Probe Station overview" loading="lazy">
+                                </div>
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryWafer2Title">Wafer probe (detail)</p>
+                                    <img src="pictures/Wafer_Probe_2.webp" alt="Wafer probe station detail" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Audio Impedance Measurement -->
+                <article class="portfolio-card animate-on-scroll">
+                    <div class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View Audio Impedance Measurement System details">
+                        <picture>
+                            <source srcset="pictures/Ear_Impedance_1.webp" type="image/webp">
+                            <img src="pictures/Ear_Impedance_1.webp" alt="Audio Impedance Measurement System" loading="lazy" data-gallery-key="Ear">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeResearch">Research Project</span>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.rdAudioTitle">Audio Impedance Measurement System</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.rdAudioDesc">Improved and automated data collection system for earphone impedance measurements using Python scripting and creating procedures.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">SEAT Lab</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Data Acquisition</span>
+                        </div>
+                        <div class="portfolio-card-actions">
+                            <a href="https://doi.org/10.5703/1288284317876" target="_blank" rel="noopener noreferrer" class="portfolio-btn primary">
+                                <i class="fas fa-file-alt"></i>
+                                <span data-i18n="sections.experience.viewPublicationExtended">View Publication</span>
+                            </a>
+                            <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                                <i class="fas fa-info-circle"></i>
+                                <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.rdAudioModalOverview">At SEAT Lab I improved and automated earphone impedance measurement workflows using Python and DIGILENT instrumentation, supporting reproducible research data collection.</p>
+                                <div class="detail-modal-meta">
+                                    <p><strong data-i18n="sections.projects.roleLabel">Role:</strong> <span data-i18n="sections.projects.audioRole">Research assistant for measurement automation</span></p>
+                                    <p><strong data-i18n="sections.projects.scopeLabel">Scope:</strong> <span data-i18n="sections.projects.audioScope">Python tooling, DIGILENT integration, standardized test workflow design</span></p>
+                                    <p><strong data-i18n="sections.projects.outcomeLabel">Outcome:</strong> <span data-i18n="sections.projects.audioOutcome">Improved repeatability and reduced manual effort in impedance data collection</span></p>
+                                </div>
+                                <p><strong data-i18n="sections.projects.rdAudioImprove">Technical Improvements</strong></p>
+                                <ul>
+                                    <li data-i18n="sections.projects.rdAudio1">Developed Python automation scripts and application for data collection</li>
+                                    <li data-i18n="sections.projects.rdAudio2">Integrated DIGILENT instrumentation tools</li>
+                                    <li data-i18n="sections.projects.rdAudio3">Created standardized testing procedures</li>
+                                </ul>
+                                <p><a href="https://doi.org/10.5703/1288284317876" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt"></i> View Publication (Extended Abstract)</a></p>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryEarTitle">Audio Impedance Measurement</p>
+                                    <img src="pictures/Ear_Impedance_1.webp" alt="Audio Impedance Measurement setup" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Prosthetics Research -->
+                <article class="portfolio-card animate-on-scroll">
+                    <div class="portfolio-card-image-link" onclick="openProjectModal(this); return false;" aria-label="View Prosthetics Research Platform details">
+                        <picture>
+                            <source srcset="pictures/Lower_Leg_Prosthetics_1.webp" type="image/webp">
+                            <img src="pictures/Lower_Leg_Prosthetics_1.webp" alt="Prosthetics Research Platform" loading="lazy" data-gallery-key="Prosthetics">
+                        </picture>
+                        <span class="portfolio-badge" data-i18n="sections.projects.badgeResearch">Research Project</span>
+                    </div>
+                    <div class="portfolio-card-body">
+                        <h3 class="portfolio-card-title" data-i18n="sections.projects.rdProstheticsTitle">Prosthetics Research Platform</h3>
+                        <p class="portfolio-card-desc" data-i18n="sections.projects.rdProstheticsDesc">Design and fabrication of lower leg prosthesis adapter for biomechanics research with healthy subjects, contributing to advancement in below ankle prosthetic device development and testing.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">HIRoLab</span>
+                            <span class="tech-tag">Biomechanics</span>
+                            <span class="tech-tag">CAD</span>
+                        </div>
+                        <button type="button" class="portfolio-btn secondary" onclick="openProjectModal(this)">
+                            <i class="fas fa-info-circle"></i>
+                            <span data-i18n="sections.projects.showMoreDetails">View details</span>
+                        </button>
+                    </div>
+                    <div class="project-detail-body" hidden>
+                        <div class="detail-modal-layout has-aside">
+                            <div class="detail-modal-main">
+                                <h4 data-i18n="sections.projects.modalOverview">Overview</h4>
+                                <p data-i18n="sections.projects.rdProstheticsModalOverview">At HIRoLab I contributed to biomechanics research by designing and fabricating lower-leg prosthesis adapters for healthy-subject studies, supporting development of below-ankle prosthetic devices.</p>
+                                <div class="detail-modal-meta">
+                                    <p><strong data-i18n="sections.projects.roleLabel">Role:</strong> <span data-i18n="sections.projects.prostheticsRole">Design and fabrication contributor</span></p>
+                                    <p><strong data-i18n="sections.projects.scopeLabel">Scope:</strong> <span data-i18n="sections.projects.prostheticsScope">CAD design, rapid prototyping, adapter build iterations, test support</span></p>
+                                    <p><strong data-i18n="sections.projects.outcomeLabel">Outcome:</strong> <span data-i18n="sections.projects.prostheticsOutcome">Delivered adapter prototypes that supported biomechanics testing workflows</span></p>
+                                </div>
+                                <p><strong data-i18n="sections.projects.rdProstheticsContrib">Research Contributions</strong></p>
+                                <ul>
+                                    <li data-i18n="sections.projects.rdProsthetics1">Rapid prototyping of various prosthetic adapter designs</li>
+                                    <li data-i18n="sections.projects.rdProsthetics2">CAD design of prosthetic adapter components</li>
+                                    <li data-i18n="sections.projects.rdProsthetics3">Testing protocol development for human subjects</li>
+                                </ul>
+                            </div>
+                            <div class="detail-modal-aside">
+                                <div class="detail-modal-media">
+                                    <p class="detail-modal-media-caption" data-i18n="sections.projects.galleryProstheticsTitle">Prosthetics Research Platform</p>
+                                    <img src="pictures/Lower_Leg_Prosthetics_2.webp" alt="Prosthetics research lower-leg adapter" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Featured Project 2: Educational Robotics -->
-    <section id="educational-robotics" class="project-showcase animate-on-scroll">
-        <div class="showcase-container showcase-reversed">
-            <div class="showcase-image-card">
-                <picture>
-                    <source srcset="pictures/Nuplator_1.webp" type="image/webp">
-                    <img src="pictures/Nuplator_1.png" 
-                         alt="Educational Robotics"
-                         loading="lazy"
-                         data-project-title="Educational Robotics"
-                         data-project-badge="Research Project"
-                         data-project-description="Educational robotics program designed to engage K-12 students in STEM learning through hands-on robotics experiences. Includes custom hardware design, manufacturing, and comprehensive curriculum development."
-                         data-project-tech="HIRoLab,ROS,Arduino,Laser Cutting,PCB Design,Curriculum Design,Manufacturing">
-                </picture>
-                <div class="showcase-title-overlay">
-                    <span class="project-badge">Research Project</span>
-                    <h2>Educational Robotics</h2>
-                </div>
+    <!-- Gallery & media - compact strip -->
+    <section id="project-gallery" class="content-section portfolio-media-section">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="sections.projects.galleryTitle">Gallery & media</h2>
             </div>
-            <div class="project-content">
-            <span class="project-badge">Research Project</span>
-            <h2>Educational Robotics</h2>
-            <p>
-                Educational robotics program designed to engage K-12 students in STEM learning through 
-                hands-on robotics experiences. Includes custom hardware design, manufacturing, and 
-                comprehensive curriculum development.
-            </p>
-            <div class="project-features">
-                <div class="feature-item">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>100+ Robotic Kits</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-book"></i>
-                    <span>Standards-Based Curriculum</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-microchip"></i>
-                    <span>Custom PCB Design</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-cogs"></i>
-                    <span>ROS Framework</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-cut"></i>
-                    <span>Laser Cut Components</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-brain"></i>
-                    <span>EMG Circuit Control</span>
-                </div>
-            </div>
-            <div class="project-tech-stack">
-                <span class="tech-tag lab">HIRoLab</span>
-                <span class="tech-tag primary">ROS</span>
-                <span class="tech-tag">Arduino</span>
-                <span class="tech-tag">Laser Cutting</span>
-                <span class="tech-tag">PCB Design</span>
-                <span class="tech-tag">Curriculum Design</span>
-                <span class="tech-tag">Manufacturing</span>
-            </div>
-            <a href="https://dx.doi.org/10.1007/s41686-025-00102-9" target="_blank" rel="noopener noreferrer" class="project-link">
-                <i class="fas fa-file-alt"></i>
-                View Publication
-            </a>
-            <button class="toggle-details-btn" onclick="toggleDetails(this)">
-                <i class="fas fa-chevron-down"></i>
-                Show More Details
-            </button>
-            <div class="project-details-expanded">
-                <h4><i class="fas fa-graduation-cap"></i> Educational Impact</h4>
-                <ul>
-                    <li>Designed and fabricated over 100 STEM-education robotic kits for K-12 students</li>
-                    <li>Developed comprehensive standards-based curriculum for 2-week robotics programs</li>
-                </ul>
-                
-                <h4><i class="fas fa-robot"></i> Technical Components</h4>
-                <ul>
-                    <li>Created custom Printed Circuit Board (PCB) design for educational microcontroller boards</li>
-                    <li>Implemented EMG circuit to control robot arm based on Microchip platform</li>
-                    <li>Tools Used: ROS, Arduino, Laser Cutting, PCB Design, Curriculum Development</li>
-                </ul>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Project 3: Autonomous Rally Car -->
-    <section id="autonomous-rally-car" class="project-showcase animate-on-scroll">
-        <div class="showcase-container">
-            <div class="showcase-image-card">
-                <picture>
-                    <source srcset="pictures/442_Car.webp" type="image/webp">
-                    <img src="pictures/442_Car.jpg" 
-                         alt="Autonomous Rally Car"
-                         loading="lazy"
-                         data-project-title="Autonomous Rally Car Race"
-                         data-project-badge="Course Project"
-                         data-project-description="Developed an autonomous navigation system for a rally car with wall-following capabilities and waypoint-based path navigation given a map. Achieved a 48 second lap time in the KNOY 500 competition using ROS-based control systems and LIDAR-guided navigation."
-                         data-project-tech="MFET 442,ROS,SLAM,Path Planning,LIDAR,AMCL,PD Control,Sensor Fusion">
-                </picture>
-                <div class="showcase-title-overlay">
-                    <span class="project-badge">Course Project</span>
-                    <h2>Autonomous Rally Car Race</h2>
-                </div>
-            </div>
-            <div class="project-content">
-            <span class="project-badge">Course Project</span>
-            <h2>Autonomous Rally Car Race</h2>
-            <p>
-                Developed an autonomous navigation system for a rally car with wall-following capabilities 
-                and waypoint-based path navigation given a map. Achieved <strong>a 48 second lap time</strong> 
-                in the KNOY 500 competition using ROS-based control systems and LIDAR-guided navigation.
-            </p>
-            <div class="project-features">
-                <div class="feature-item">
-                    <i class="fas fa-route"></i>
-                    <span>Wall-Following Algorithm</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span>Waypoint Navigation</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-radar"></i>
-                    <span>LIDAR-Based SLAM</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>48 Second Lap Time</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-satellite-dish"></i>
-                    <span>AMCL Localization</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>PID Control Tuning</span>
-                </div>
-            </div>
-            <div class="project-tech-stack">
-                <span class="tech-tag lab">MFET 442</span>
-                <span class="tech-tag primary">ROS</span>
-                <span class="tech-tag primary">SLAM</span>
-                <span class="tech-tag">Path Planning</span>
-                <span class="tech-tag">LIDAR</span>
-                <span class="tech-tag">AMCL</span>
-                <span class="tech-tag">PD Control</span>
-                <span class="tech-tag">Sensor Fusion</span>
-            </div>
-            <div class="project-links-row">
-                <a href="https://github.com/ckyb63/MFET442-Team6-Exploding-Car.git" target="_blank" rel="noopener noreferrer" class="project-link">
-                    <i class="fab fa-github"></i>
-                    View Code
+            <div class="portfolio-media-grid">
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/ai_vending_machine.webp','PPE AI Vending Machine',this.querySelector('img')); return false;">
+                    <img src="pictures/ai_vending_machine.webp" alt="PPE AI Vending Machine" loading="lazy" data-gallery-key="Ppe">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryPpeTitle">PPE AI Vending Machine</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/ai_vending_machine_demo.webp','PPE Detection Demo',this.querySelector('img')); return false;">
+                    <img src="pictures/ai_vending_machine_demo.webp" alt="PPE Detection Demo" loading="lazy" data-gallery-key="Detection">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryDetectionTitle">PPE Detection Demo</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/442_Car.webp','Autonomous Rally Car',this.querySelector('img')); return false;">
+                    <img src="pictures/442_Car.webp" alt="Autonomous Rally Car" loading="lazy" data-gallery-key="Rally">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryRallyTitle">Autonomous Rally Car</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Nuplator_1.webp','Nuplator Robotics Kit',this.querySelector('img')); return false;">
+                    <img src="pictures/Nuplator_1.webp" alt="Nuplator Robotics Kit" loading="lazy" data-gallery-key="Nuplator">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryNuplatorTitle">Nuplator Robotics Kit</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Nuplator_2.webp','End Effector Location',this.querySelector('img')); return false;">
+                    <img src="pictures/Nuplator_2.webp" alt="End Effector Location" loading="lazy" data-gallery-key="EndEffector">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryEndEffectorTitle">End Effector Location</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Nuplator_3.webp','Sample End Effector',this.querySelector('img')); return false;">
+                    <img src="pictures/Nuplator_3.webp" alt="Sample End Effector" loading="lazy" data-gallery-key="Sample">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.gallerySampleTitle">Sample End Effector</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Wafer_Probe_1.webp','Silicon Wafer Probe Station',this.querySelector('img')); return false;">
+                    <img src="pictures/Wafer_Probe_1.webp" alt="Silicon Wafer Probe Station" loading="lazy" data-gallery-key="Wafer">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryWaferTitle">Silicon Wafer Probe Station</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Wafer_Probe_2.webp','Wafer probe station detail',this.querySelector('img')); return false;">
+                    <img src="pictures/Wafer_Probe_2.webp" alt="Wafer probe station detail" loading="lazy" data-gallery-key="Wafer2">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryWafer2Title">Wafer probe (detail)</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Ear_Impedance_1.webp','Audio Impedance Measurement System',this.querySelector('img')); return false;">
+                    <img src="pictures/Ear_Impedance_1.webp" alt="Audio Impedance Measurement System" loading="lazy" data-gallery-key="Ear">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryEarTitle">Audio Impedance Measurement</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Lower_Leg_Prosthetics_1.webp','Prosthetics Research Platform',this.querySelector('img')); return false;">
+                    <img src="pictures/Lower_Leg_Prosthetics_1.webp" alt="Prosthetics Research Platform" loading="lazy" data-gallery-key="Prosthetics">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryProstheticsTitle">Prosthetics Research Platform</span>
+                </a>
+                <a href="#" class="portfolio-media-card" onclick="openImageModal('pictures/Lower_Leg_Prosthetics_2.webp','Prosthetics adapter close-up',this.querySelector('img')); return false;">
+                    <img src="pictures/Lower_Leg_Prosthetics_2.webp" alt="Prosthetics adapter close-up" loading="lazy" data-gallery-key="Prosthetics2">
+                    <span class="portfolio-media-label" data-i18n="sections.projects.galleryProsthetics2Title">Prosthetics (close-up)</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=4C2afGXk0eE" target="_blank" rel="noopener noreferrer" class="portfolio-media-card portfolio-media-video">
+                    <img src="https://img.youtube.com/vi/4C2afGXk0eE/mqdefault.jpg" alt="Rally Car Demo 1" loading="lazy">
+                    <span class="portfolio-media-label"><i class="fas fa-play"></i> <span data-i18n="sections.projects.videoDemo1Title">Rally Car Demo 1</span></span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=88CAjAFp_bs" target="_blank" rel="noopener noreferrer" class="portfolio-media-card portfolio-media-video">
+                    <img src="https://img.youtube.com/vi/88CAjAFp_bs/mqdefault.jpg" alt="Rally Car Demo 2" loading="lazy">
+                    <span class="portfolio-media-label"><i class="fas fa-play"></i> <span data-i18n="sections.projects.videoDemo2Title">Rally Car Demo 2</span></span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=GYT60xfsQQI" target="_blank" rel="noopener noreferrer" class="portfolio-media-card portfolio-media-video">
+                    <img src="https://img.youtube.com/vi/GYT60xfsQQI/mqdefault.jpg" alt="Rally Car Waypoint Run Demo" loading="lazy">
+                    <span class="portfolio-media-label"><i class="fas fa-play"></i> <span data-i18n="sections.projects.videoDemo3Title">Rally Car Waypoint Run Demo</span></span>
                 </a>
             </div>
-            <button class="toggle-details-btn" onclick="toggleDetails(this)">
-                <i class="fas fa-chevron-down"></i>
-                Show More Details
-            </button>
-            <div class="project-details-expanded">
-                <h4><i class="fas fa-car"></i> Key Achievements</h4>
-                <ul>
-                    <li>Developed autonomous navigation system for rally car with a third place (48 seconds) finish in the KNOY 500 competition around the first floor of Knoy Hall (Polytechnic Institute Building)</li>
-                    <li>Implemented wall and lane following algorithm using LIDAR distance measurements and Proportional-Derivative (PD) control</li>
-                    <li>Developed waypoint navigation system with Adaptive Monte Carlo Localization (AMCL) and Hector mapping</li>
-                    <li>Integrated Inertial Measurement Unit (IMU) and LIDAR sensor readings for robust autonomous navigation</li>
-                </ul>
-                
-                <h4><i class="fas fa-cogs"></i> Technical Implementation</h4>
-                <ul>
-                    <li>Tools Used: ROS, SLAM, Path Planning, LIDAR, AMCL, PD Control, Sensor Fusion</li>
-                </ul>
-                
-                <h4><i class="fas fa-video"></i> Project Videos</h4>
-                <div class="project-videos">
-                    <div class="youtube-embed">
-                        <iframe src="https://www.youtube.com/embed/4C2afGXk0eE" 
-                                title="Rally Car Navigation Demo 1" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="youtube-embed">
-                        <iframe src="https://www.youtube.com/embed/88CAjAFp_bs" 
-                                title="Rally Car Navigation Demo 2" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Section Header for Other Projects -->
-    <section id="research-development" class="section-header animate-on-scroll">
-        <h2>Research & Development Projects</h2>
-        <p>Additional Engineering Solutions</p>
-    </section>
+    </main>
 
-    <!-- Other Projects Grid -->
-    <div class="projects-grid">
-        <!-- Silicon Wafer Probe Station -->
-        <div class="project-card animate-on-scroll">
-            <div class="project-card-content">
-                <span class="project-card-badge">Internship Project</span>
-                <h3>Silicon Wafer Probe Station</h3>
-                <p>Assembled and optimized a prototype silicon wafer probe station for semiconductor testing with custom automation controls and enhanced measurement capabilities.</p>
-                <div class="project-card-detail">
-                    <p><strong>Technical Achievements:</strong></p>
-                    <ul>
-                        <li>
-                            <span class="bullet">•</span>
-                            Integrated diverse components into cohesive testing system
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            Designed custom controller for linear positioning rails
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            Implemented automated measurement protocols with custom GUI
-                        </li>
-                    </ul>
-                </div>
-                <div class="project-card-tech">
-                    <span class="tech-tag">PARI Microelectronics Lab</span>
-                    <span class="tech-tag">Hardware System Design</span>
-                    <span class="tech-tag">Microelectronics</span>
-                    <span class="tech-tag">Automation</span>
-                </div>
+    <!-- Project detail modal -->
+    <div id="projectDetailModal" class="modal project-detail-modal" role="dialog" aria-modal="true" aria-labelledby="projectDetailModalTitle">
+        <div class="modal-content project-detail-modal-content">
+            <div class="modal-header">
+                <h3 id="projectDetailModalTitle" class="project-detail-modal-title"></h3>
+                <button type="button" class="modal-close" onclick="closeProjectModal()" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-        </div>
-
-        <!-- Audio Impedance Measurement -->
-        <div class="project-card animate-on-scroll">
-            <div class="project-card-content">
-                <span class="project-card-badge">Research Project</span>
-                <h3>Audio Impedance Measurement System</h3>
-                <p>Improved and automated data collection system for earphone impedance measurements using Python scripting and creating procedures.</p>
-                <div class="project-card-detail">
-                    <p><strong>Technical Improvements:</strong></p>
-                    <ul>
-                        <li>
-                            <span class="bullet">•</span>
-                            Developed Python automation scripts and application for data collection
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            Integrated DIGILENT instrumentation tools
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            Created standardized testing procedures
-                        </li>
-                    </ul>
-                </div>
-                <div class="project-card-tech">
-                    <span class="tech-tag">SEAT Lab</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Data Acquisition</span>
-                    <span class="tech-tag">Automation</span>
-                    <span class="tech-tag">Audio Engineering</span>
-                </div>
-                <a href="https://doi.org/10.5703/1288284317876" target="_blank" rel="noopener noreferrer" class="project-link-publication">
-                    <i class="fas fa-file-alt"></i> View Publication - Extended Abstract
-                </a>
-            </div>
-        </div>
-
-        <!-- Prosthetics Research -->
-        <div class="project-card animate-on-scroll">
-            <div class="project-card-content">
-                <span class="project-card-badge">Research Project</span>
-                <h3>Prosthetics Research Platform</h3>
-                <p>Design and fabrication of lower leg prosthesis adapter for biomechanics research with healthy subjects, contributing to advancement in below ankle prosthetic device development and testing.</p>
-                <div class="project-card-detail">
-                    <p><strong>Research Contributions:</strong></p>
-                    <ul>
-                        <li>
-                            <span class="bullet">•</span>
-                            Rapid prototyping of various prosthetic adapter designs
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            CAD design of prosthetic adapter components
-                        </li>
-                        <li>
-                            <span class="bullet">•</span>
-                            Testing protocol development for human subjects
-                        </li>
-                    </ul>
-                </div>
-                <div class="project-card-tech">
-                    <span class="tech-tag">HIRoLab</span>
-                    <span class="tech-tag">Biomechanics</span>
-                    <span class="tech-tag">CAD Design</span>
-                    <span class="tech-tag">Rapid Prototyping</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project Gallery Section -->
-    <section id="project-gallery" class="section-header animate-on-scroll">
-        <h2>Project Gallery</h2>
-        <p>Visual Showcase of Work</p>
-    </section>
-
-    <div class="projects-grid gallery-grid">
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/ai_vending_machine.webp" type="image/webp">
-                <img src="pictures/ai_vending_machine.jpg" alt="PPE AI Vending Machine" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">PPE AI Vending Machine</h3>
-                <p class="gallery-card-desc">Computer vision-based safety system</p>
-            </div>
-        </div>
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/ai_vending_machine_demo.webp" type="image/webp">
-                <img src="pictures/ai_vending_machine_demo.jpg" alt="PPE AI Vending Machine Demo" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">PPE Detection Demo</h3>
-                <p class="gallery-card-desc">AI system identifying missing safety equipment</p>
-            </div>
-        </div>
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/442_Car.webp" type="image/webp">
-                <img src="pictures/442_Car.jpg" alt="Autonomous Rally Car" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">Autonomous Rally Car</h3>
-                <p class="gallery-card-desc">LIDAR-guided navigation system</p>
-            </div>
-        </div>
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/Nuplator_1.webp" type="image/webp">
-                <img src="pictures/Nuplator_1.png" alt="Educational Robotics Kit" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">Nuplator Robotics Kit</h3>
-                <p class="gallery-card-desc">Fully assembled robot arm</p>
-            </div>
-        </div>
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/Nuplator_2.webp" type="image/webp">
-                <img src="pictures/Nuplator_2.jpg" alt="Nuplator Assembly Process" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">End Effector Location</h3>
-                <p class="gallery-card-desc">Students to design their own end effector for the robot arm</p>
-            </div>
-        </div>
-        <div class="project-card has-image animate-on-scroll">
-            <picture>
-                <source srcset="pictures/Nuplator_3.webp" type="image/webp">
-                <img src="pictures/Nuplator_3.jpg" alt="Nuplator in Action" loading="lazy">
-            </picture>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">Sample End Effector</h3>
-                <p class="gallery-card-desc">One of the end effector sample designs</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project Videos Section -->
-    <section id="project-videos" class="section-header animate-on-scroll">
-        <h2>Project Videos</h2>
-        <p>Demonstrations & Showcases</p>
-    </section>
-
-    <div class="videos-grid">
-        <div class="project-card has-video animate-on-scroll">
-            <div class="youtube-embed">
-                <iframe src="https://www.youtube.com/embed/4C2afGXk0eE" 
-                        title="Rally Car Navigation Demo 1" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">Rally Car Navigation Demo 1</h3>
-                <p class="gallery-card-desc">Autonomous navigation system demonstration</p>
-            </div>
-        </div>
-        <div class="project-card has-video animate-on-scroll">
-            <div class="youtube-embed">
-                <iframe src="https://www.youtube.com/embed/88CAjAFp_bs" 
-                        title="Rally Car Navigation Demo 2" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div class="project-card-content">
-                <h3 class="gallery-card-title">Rally Car Navigation Demo 2</h3>
-                <p class="gallery-card-desc">Advanced waypoint navigation showcase</p>
-            </div>
+            <div class="modal-body project-detail-modal-body"></div>
         </div>
     </div>
 
@@ -620,7 +586,7 @@
                     
                     <div class="footer-right">
                         <div class="footer-info">
-                            <p class="footer-title">© 2026 Max Chen - Robotics Engineering</p>
+                            <p class="footer-title" data-i18n="footer.title">© 2026 Max Chen - Robotics Engineering</p>
                         </div>
                     </div>
                 </div>
@@ -633,12 +599,15 @@
     </a>
 
     <!-- Image Modal/Lightbox -->
-    <div class="image-modal" id="imageModal">
-        <span class="image-modal-close" onclick="closeImageModal()">
+    <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button type="button" class="image-modal-close" onclick="closeImageModal()" aria-label="Close">
             <i class="fas fa-times"></i>
-        </span>
-        <div class="image-modal-content">
-            <img id="modalImage" src="" alt="Enlarged view" loading="lazy">
+        </button>
+        <div class="image-modal-backdrop" onclick="closeImageModal()" aria-hidden="true"></div>
+        <div class="image-modal-card">
+            <div class="image-modal-image-wrap">
+                <img id="modalImage" src="" alt="Enlarged view" loading="lazy">
+            </div>
             <div class="image-modal-details" id="modalDetails">
                 <span class="modal-badge" id="modalBadge"></span>
                 <h3 id="modalTitle"></h3>
@@ -648,6 +617,7 @@
         </div>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

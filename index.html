@@ -4,7 +4,11 @@
     <meta name="google-site-verification" content="XWWSoOOOvjL2eiB1G7jfkM6c2Z-rXZyBmSPSG9jO3aA" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Chen - Robotics Engineering Technology</title>
+    <style>html.i18n-pending body{visibility:hidden}</style>
+    <script>
+    (function(){try{if(localStorage.getItem('max-portfolio-lang')==='zh-Hant')document.documentElement.classList.add('i18n-pending');}catch(e){}})();
+    </script>
+    <title data-i18n="metaTitle">Max Chen - Robotics Engineering</title>
     <link rel="icon" type="image/svg+xml" href="pictures/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
@@ -17,25 +21,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="description" content="Max Chen - Robotics Engineering Technology student at Purdue University. Experienced in robotics, embedded systems, and research.">
+    <meta name="description" content="Max Chen - Robotics Engineering student at Purdue University. Experienced in robotics, embedded systems, and research.">
     <!-- Open Graph / social sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckyb63.github.io/">
-    <meta property="og:title" content="Max Chen - Robotics Engineering Technology">
+    <meta property="og:title" content="Max Chen - Robotics Engineering">
     <meta property="og:description" content="Max Chen - Robotics Engineering Technology student at Purdue University. Experienced in robotics, embedded systems, and research.">
-    <meta property="og:image" content="https://ckyb63.github.io/pictures/ai_vending_machine.jpg">
     <meta property="og:locale" content="en_US">
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Max Chen - Robotics Engineering Technology">
     <meta name="twitter:description" content="Max Chen - Robotics Engineering Technology student at Purdue University. Experienced in robotics, embedded systems, and research.">
-    <meta name="twitter:image" content="https://ckyb63.github.io/pictures/ai_vending_machine.jpg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
     <nav>
         <div class="nav-container">
-            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu">
+            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu" data-i18n-attr="aria-label:aria.toggleNav">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -43,16 +45,18 @@
             <a href="index.html" class="nav-logo-link">
                 <img src="pictures/favicon.svg" alt="Max Chen Logo" class="nav-logo" loading="lazy">
             </a>
-            <a href="index.html" class="nav-home-icon" aria-label="Go to home page">
-                <i class="fas fa-home"></i>
-            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-switcher" role="group" aria-label="Language">
+                <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="zh-Hant" aria-pressed="false">繁中</button>
+            </div>
         </div>
     </nav>
 
@@ -60,21 +64,22 @@
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="mobile-menu-content">
             <ul class="mobile-menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </div>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="parallax-bg"></div>
         <div class="hero-content">
-            <h1>Max Chen</h1>
-            <p class="subtitle">Aspiring Robotics Engineer</p>
+            <h1 data-i18n="hero.index.title">Max Chen</h1>
+            <p class="subtitle" data-i18n="hero.index.subtitle">Aspiring Robotics Engineer</p>
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
@@ -82,67 +87,36 @@
     </section>
 
     <!-- About & Education Section -->
-    <section id="about-education" class="content-section">
+    <section id="about-education" class="content-section first-content-section">
         <div class="section-container">
-            <div class="section-header animate-on-scroll">
-                <h2>About Me</h2>
-                <p>Passion for Innovation & Excellence</p>
-            </div>
-            <!-- Statistics Cards -->
-            <div class="stats-grid">
-                <div class="stat-card animate-on-scroll">
-                    <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-card animate-on-scroll">
-                    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat-card animate-on-scroll">
-                    <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
-                    <div class="stat-number">2</div>
-                    <div class="stat-label">Publications</div>
-                </div>
-                <div class="stat-card animate-on-scroll">
-                    <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="stat-number">2025</div>
-                    <div class="stat-label">Graduation Year</div>
-                </div>
-            </div>
 
             <div class="about-education-layout">
                 <div class="about-main animate-on-scroll">
-                    <h3><i class="fas fa-user-astronaut"></i> Professional Overview</h3>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>
-                                Results driven Robotics Engineer with proven expertise spanning AI, embedded systems, and hardware design.
-                            </p>
-                            <p>
-                                Specialized in computer vision, machine learning, and full-stack robotics development from PCB design to edge AI deployment. Unique background combining cutting-edge robotics research with audio engineering demonstrating versatility across interdisciplinary domains.
-                            </p>
+                    <div class="about-body">
+                        <div class="about-photo" id="aboutPhoto">
+                            <!-- To add your headshot, uncomment and set src: <img src="pictures/headshot.jpg" alt="Max Chen" class="about-headshot"> -->
+                            <img src="pictures/Max_Chen.webp" alt="Max Chen" class="about-headshot">
+                            <div class="about-headshot-placeholder" aria-hidden="true"><i class="fas fa-user"></i></div>
                         </div>
-                        <div class="education-compact">
-                            <div class="education-compact-header">
-                                <i class="fas fa-graduation-cap"></i>
-                                <div class="education-compact-header-content">
-                                    <h3>Purdue University</h3>
-                                    <span class="location"><i class="fas fa-map-marker-alt"></i> West Lafayette, IN</span>
-                                </div>
+                        <div class="about-info">
+                            <div class="about-text">
+                                <p data-i18n="sections.about.para1">
+                                    Results driven Robotics Engineer with proven expertise spanning AI, embedded systems, and hardware design.
+                                </p>
+                                <p data-i18n="sections.about.para2">
+                                    Specialized in computer vision, machine learning, and full-stack robotics development from PCB design to edge AI deployment. Unique background combining cutting-edge robotics research with audio engineering demonstrating versatility across interdisciplinary domains.
+                                </p>
                             </div>
-                            <div class="education-compact-details">
-                                <div>
-                                    <div class="education-compact-degree">Bachelor of Science in Robotics Engineering Technology</div>
-                                    <div class="education-compact-minor">Minor in Electrical Engineering Technology</div>
-                                </div>
-                                <div class="education-compact-meta">
-                                    <div class="education-compact-graduation">Aug 2021 – <strong>May 2025</strong></div>
-                                    <span class="education-compact-badge">
-                                        <i class="fas fa-trophy"></i>
-                                        Dean's List & Semester Honors 2022-2025
-                                    </span>
+                            <div class="education-block" aria-label="Education">
+                                <div class="education-item">
+                                    <div class="education-school" data-i18n="sections.about.university">Purdue University</div>
+                                    <div class="education-location" data-i18n="sections.about.location">West Lafayette, Indiana</div>
+                                    <div class="education-degree" data-i18n="sections.about.degree">Bachelor of Science in Robotics Engineering Technology</div>
+                                    <div class="education-degree" data-i18n="sections.about.minor">Minor in Electrical Engineering Technology</div>
+                                    <div class="education-meta">
+                                        <span class="education-dates">Aug 2021 – May 2025</span>
+                                        <span class="education-badge"><i class="fas fa-trophy"></i> <span data-i18n="sections.about.deansList">Dean's List & Semester Honors 2022-2025</span></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -156,12 +130,11 @@
     <section id="skills" class="content-section">
         <div class="section-container">
             <div class="section-header animate-on-scroll">
-                <h2>Technical Skills</h2>
-                <p>Technologies & Tools I Work With</p>
+                <h2 data-i18n="sections.skills.title">Technical Skills</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <h3><i class="fas fa-code"></i> <span data-i18n="sections.skills.categoryProgramming">Programming Languages</span></h3>
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
                         <span class="skill-tag"><i class="fas fa-code"></i> C</span>
@@ -169,11 +142,12 @@
                         <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
                         <span class="skill-tag"><i class="fas fa-project-diagram"></i> LabVIEW</span>
                         <span class="skill-tag"><i class="fas fa-microchip"></i> PLC</span>
+                        <span class="skill-tag"><i class="fas fa-window-maximize"></i> Qt</span>
                     </div>
                 </div>
                 
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-cube"></i> CAD Software</h3>
+                    <h3><i class="fas fa-cube"></i> <span data-i18n="sections.skills.categoryCAD">CAD Software</span></h3>
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fas fa-cube"></i> SolidWorks</span>
                         <span class="skill-tag"><i class="fas fa-cube"></i> Siemens NX</span>
@@ -184,18 +158,20 @@
                 </div>
                 
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-robot"></i> Robotics & AI</h3>
+                    <h3><i class="fas fa-robot"></i> <span data-i18n="sections.skills.categoryRoboticsAI">Robotics & AI</span></h3>
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fas fa-robot"></i> ROS</span>
                         <span class="skill-tag"><i class="fas fa-eye"></i> OpenCV</span>
                         <span class="skill-tag"><i class="fas fa-brain"></i> YOLO</span>
                         <span class="skill-tag"><i class="fas fa-camera"></i> Computer Vision</span>
                         <span class="skill-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+                        <span class="skill-tag"><i class="fas fa-sliders-h"></i> PID</span>
+                        <span class="skill-tag"><i class="fas fa-map"></i> SLAM</span>
                     </div>
                 </div>
                 
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-hammer"></i> Digital Fabrication</h3>
+                    <h3><i class="fas fa-hammer"></i> <span data-i18n="sections.skills.categoryDigitalFab">Digital Fabrication</span></h3>
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fas fa-cube"></i> 3D Printing</span>
                         <span class="skill-tag"><i class="fas fa-cut"></i> Laser Cutting</span>
@@ -206,20 +182,33 @@
                 </div>
                 
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-microchip"></i> Embedded Systems</h3>
+                    <h3><i class="fas fa-microchip"></i> <span data-i18n="sections.skills.categoryEmbedded">Embedded Systems</span></h3>
                     <div class="skill-tags">
                         <span class="skill-tag"><i class="fas fa-microchip"></i> Arduino</span>
                         <span class="skill-tag"><i class="fas fa-microchip"></i> Microbit</span>
                         <span class="skill-tag"><i class="fab fa-raspberry-pi"></i> Raspberry Pi</span>
                         <span class="skill-tag"><i class="fas fa-server"></i> Nvidia Jetson</span>
+                        <span class="skill-tag"><i class="fas fa-database"></i> Data acquisition</span>
+                        <span class="skill-tag"><i class="fas fa-exchange-alt"></i> I2C</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-on-scroll">
+                    <h3><i class="fas fa-tachometer-alt"></i> <span data-i18n="sections.skills.categoryInstrumentationSystems">Instrumentation & Systems</span></h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fas fa-tachometer-alt"></i> Instrumentation</span>
+                        <span class="skill-tag"><i class="fas fa-wave-square"></i> Sensor fusion</span>
+                        <span class="skill-tag"><i class="fas fa-microchip"></i> Semiconductor characterization</span>
+                        <span class="skill-tag"><i class="fas fa-project-diagram"></i> PCB design</span>
+                        <span class="skill-tag"><i class="fas fa-check-double"></i> Quality control</span>
                     </div>
                 </div>
                 
                 <div class="skill-category animate-on-scroll">
-                    <h3><i class="fas fa-language"></i> Languages</h3>
+                    <h3><i class="fas fa-language"></i> <span data-i18n="sections.skills.categoryLanguages">Languages</span></h3>
                     <div class="skill-tags">
-                        <span class="skill-tag"><i class="fas fa-globe"></i> English</span>
-                        <span class="skill-tag"><i class="fas fa-globe"></i> Mandarin</span>
+                        <span class="skill-tag" data-i18n="sections.languages.english"><i class="fas fa-globe"></i> English</span>
+                        <span class="skill-tag" data-i18n="sections.languages.mandarin"><i class="fas fa-globe"></i> Mandarin</span>
                     </div>
                 </div>
             </div>
@@ -230,48 +219,48 @@
     <section id="quick-overview" class="content-section">
         <div class="section-container">
             <div class="section-header animate-on-scroll">
-                <h2>Experience & Projects</h2>
-                <p>Highlights of My Work</p>
+                <h2 data-i18n="sections.overview.title">Experience & Projects</h2>
+                <p data-i18n="sections.overview.subtitle">Highlights of My Work</p>
             </div>
             
             <!-- Quick Stats -->
             <div class="overview-stats">
                 <div class="overview-stat animate-on-scroll">
                     <div class="overview-stat-number">3+</div>
-                    <div class="overview-stat-label">Research Positions</div>
+                    <div class="overview-stat-label" data-i18n="sections.overview.statResearch">Research Positions</div>
                 </div>
                 <div class="overview-stat animate-on-scroll">
                     <div class="overview-stat-number">100+</div>
-                    <div class="overview-stat-label">Robotics Kits Manufactured</div>
+                    <div class="overview-stat-label" data-i18n="sections.overview.statKits">Robotics Kits Manufactured</div>
                 </div>
                 <div class="overview-stat animate-on-scroll">
                     <div class="overview-stat-number">2</div>
-                    <div class="overview-stat-label">Publications</div>
+                    <div class="overview-stat-label" data-i18n="sections.overview.statPubs">Publications</div>
                 </div>
                 <div class="overview-stat animate-on-scroll">
                     <div class="overview-stat-number">1</div>
-                    <div class="overview-stat-label">Teaching Role</div>
+                    <div class="overview-stat-label" data-i18n="sections.overview.statTeaching">Teaching Role</div>
                 </div>
             </div>
             
             <div class="overview-grid">
                 <div class="overview-card animate-on-scroll">
-                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
-                    <p>
+                    <h3><i class="fas fa-briefcase"></i> <span data-i18n="sections.overview.cardExperienceTitle">Experience</span></h3>
+                    <p data-i18n="sections.overview.cardExperienceDesc">
                         Currently serving as an Audio Engineering Research Assistant at Purdue SEAT Lab. Recent experience includes Military Service with the Republic of China Air Force, Engineering Intern at Purdue Applied Research Institute, and Robotics Research Assistant at HIRoLab where I contributed to educational robotics and prosthetics research.
                     </p>
                     <a href="experience.html" class="overview-link">
-                        View Detailed Experience <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="sections.overview.viewDetailedExperience">View Detailed Experience</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 
                 <div class="overview-card animate-on-scroll">
-                    <h3><i class="fas fa-project-diagram"></i> Projects</h3>
-                    <p>
+                    <h3><i class="fas fa-project-diagram"></i> <span data-i18n="sections.overview.cardProjectsTitle">Projects</span></h3>
+                    <p data-i18n="sections.overview.cardProjectsDesc">
                         Led development of AI-powered PPE detection system, manufactured 100+ educational robotics kits, and created custom hardware/software for research applications.
                     </p>
                     <a href="projects.html" class="overview-link">
-                        View Project Portfolio <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="sections.overview.viewProjectPortfolio">View Project Portfolio</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -282,37 +271,29 @@
     <section id="contact" class="content-section">
         <div class="section-container">
             <div class="section-header animate-on-scroll">
-                <h2>Get In Touch</h2>
-                <p>Let's Connect & Collaborate</p>
+                <h2 data-i18n="sections.contact.title">Get In Touch</h2>
             </div>
             <div class="contact-main-grid">
                 <!-- Left: Quick Links -->
                 <div class="contact-quick-links animate-on-scroll">
-                    <a href="tel:+12132467020" class="contact-quick-link">
-                        <i class="fas fa-phone"></i>
+                    <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
+                        <i class="fab fa-linkedin"></i>
                         <div class="contact-quick-link-content">
-                            <strong>+1 (213) 246-7020</strong>
-                            <small>Urgent matters & interviews</small>
+                            <strong data-i18n="sections.contact.linkedinHandle">LinkedIn</strong>
+                            <small>maxchen-cky</small>
                         </div>
                     </a>
                     <a href="https://orcid.org/0009-0000-3557-4299" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
                         <i class="fab fa-orcid"></i>
                         <div class="contact-quick-link-content">
-                            <strong>ORCID</strong>
+                            <strong data-i18n="sections.contact.orcidId">ORCID</strong>
                             <small>0009-0000-3557-4299</small>
-                        </div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
-                        <i class="fab fa-linkedin"></i>
-                        <div class="contact-quick-link-content">
-                            <strong>LinkedIn</strong>
-                            <small>maxchen-cky</small>
                         </div>
                     </a>
                     <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
                         <i class="fab fa-github"></i>
                         <div class="contact-quick-link-content">
-                            <strong>GitHub</strong>
+                            <strong data-i18n="sections.contact.githubHandle">GitHub</strong>
                             <small>ckyb63</small>
                         </div>
                     </a>
@@ -322,24 +303,24 @@
                 <div class="contact-card animate-on-scroll">
                     <div class="contact-card-header">
                         <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
+                        <h3 data-i18n="sections.contact.emailTitle">Email</h3>
                     </div>
                     <div class="contact-card-content">
                         <div class="email-methods">
                             <a href="mailto:chen3901@purdue.edu?cc=ckyb63@gmail.com" class="email-method">
                                 <i class="fas fa-university"></i>
                                 <div class="main-info">
-                                    <strong>University</strong>
+                                    <strong data-i18n="sections.contact.universityLabel">University</strong>
                                     <span>chen3901@purdue.edu</span>
-                                    <small>Academic & research</small>
+                                    <small data-i18n="sections.contact.universityHint">Academic & research</small>
                                 </div>
                             </a>
                             <a href="mailto:ckyb63@gmail.com" class="email-method">
                                 <i class="fas fa-user"></i>
                                 <div class="main-info">
-                                    <strong>Personal</strong>
+                                    <strong data-i18n="sections.contact.personalLabel">Personal</strong>
                                     <span>ckyb63@gmail.com</span>
-                                    <small>General & projects</small>
+                                    <small data-i18n="sections.contact.personalHint">General & projects</small>
                                 </div>
                             </a>
                         </div>
@@ -350,70 +331,67 @@
                 <div class="contact-card animate-on-scroll">
                     <div class="contact-card-header">
                         <i class="fas fa-code-branch"></i>
-                        <h3>Projects & Research</h3>
+                        <h3 data-i18n="sections.contact.projectsCardTitle">Projects & Research</h3>
                     </div>
                     <div class="contact-card-content">
                         <div class="project-links">
                             <a href="https://ckyb63.github.io/capstone_T54_gui" target="_blank" rel="noopener noreferrer" class="project-link-item">
                                 <i class="fas fa-graduation-cap"></i>
                                 <div class="main-info">
-                                    <strong>Capstone Project</strong>
-                                    <span>PPE AI Vending Machine</span>
-                                    <small>Senior design project</small>
+                                    <strong data-i18n="sections.contact.capstoneTitle">Capstone Project</strong>
+                                    <span data-i18n="sections.contact.capstoneSubtitle">PPE AI Vending Machine</span>
+                                    <small data-i18n="sections.contact.capstoneHint">Senior design project</small>
                                 </div>
                             </a>
                             <a href="https://seat-lab.github.io/" target="_blank" rel="noopener noreferrer" class="project-link-item" id="seat-lab-link">
                                 <i class="fas fa-flask"></i>
                                 <div class="main-info">
-                                    <strong>SEAT Lab</strong>
-                                    <span>Research Repository</span>
-                                    <small>Audio engineering research</small>
+                                    <strong data-i18n="sections.contact.seatLabTitle">SEAT Lab</strong>
+                                    <span data-i18n="sections.contact.seatLabSubtitle">Research Repository</span>
+                                    <small data-i18n="sections.contact.seatLabHint">Audio engineering research</small>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Downloads (spans all 3 columns) -->
-                <!-- <div class="contact-card avatar-card animate-on-scroll">
-                    <img src="https://via.placeholder.com/220x220.png?text=Your+Photo" alt="Portrait" class="avatar-photo">
-                </div> -->
+                <!-- Downloads (spans all 3 columns). Resume/CV links switch by language: set data-id-zh to your Chinese Google Drive file IDs when ready. -->
                 <div id="downloads" class="contact-card downloads-card animate-on-scroll">
                     <div class="contact-card-header">
                         <i class="fas fa-file-download"></i>
-                        <h3>Downloads</h3>
+                        <h3 data-i18n="sections.contact.downloadsTitle">Downloads</h3>
                     </div>
                     <div class="download-item">
                         <div class="download-item-header">
                             <i class="fas fa-file-pdf"></i>
-                            <h4>Resume</h4>
+                            <h4 data-i18n="sections.contact.resumeTitle">Resume</h4>
                         </div>
-                        <p class="download-item-description">One-page professional summary highlighting key skills and experience</p>
+                        <p class="download-item-description" data-i18n="sections.contact.resumeDescription">One-page professional summary highlighting key skills and experience</p>
                         <div class="download-options">
                             <button class="download-btn" onclick="openResumeModal()">
                                 <i class="fas fa-eye"></i>
-                                Preview
+                                <span data-i18n="sections.contact.preview">Preview</span>
                             </button>
-                            <a href="https://drive.google.com/uc?export=download&id=1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH" target="_blank" rel="noopener noreferrer" class="download-btn secondary">
+                            <a href="https://drive.google.com/uc?export=download&id=1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH" target="_blank" rel="noopener noreferrer" class="download-btn secondary" data-download-resume data-id-en="1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH" data-id-zh="">
                                 <i class="fas fa-download"></i>
-                                PDF
+                                <span data-i18n="sections.contact.pdf">PDF</span>
                             </a>
                         </div>
                     </div>
                     <div class="download-item">
                         <div class="download-item-header">
                             <i class="fas fa-file-alt"></i>
-                            <h4>CV</h4>
+                            <h4 data-i18n="sections.contact.cvTitle">CV</h4>
                         </div>
-                        <p class="download-item-description">Comprehensive academic and research background with publications</p>
+                        <p class="download-item-description" data-i18n="sections.contact.cvDescription">Comprehensive academic and research background with publications</p>
                         <div class="download-options">
                             <button class="download-btn" onclick="openCVModal()">
                                 <i class="fas fa-eye"></i>
-                                Preview
+                                <span data-i18n="sections.contact.preview">Preview</span>
                             </button>
-                            <a href="https://drive.google.com/uc?export=download&id=1Jqawj3NNS9IppNr9htB7A40ifYQvji4g" target="_blank" rel="noopener noreferrer" class="download-btn secondary">
+                            <a href="https://drive.google.com/uc?export=download&id=1Jqawj3NNS9IppNr9htB7A40ifYQvji4g" target="_blank" rel="noopener noreferrer" class="download-btn secondary" data-download-cv data-id-en="1Jqawj3NNS9IppNr9htB7A40ifYQvji4g" data-id-zh="">
                                 <i class="fas fa-download"></i>
-                                PDF
+                                <span data-i18n="sections.contact.pdf">PDF</span>
                             </a>
                         </div>
                     </div>
@@ -422,19 +400,21 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Resume Preview Modal -->
     <div id="resumeModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-file-pdf"></i> Resume Preview</h3>
+                <h3 data-i18n="sections.contact.resumeModalTitle"><i class="fas fa-file-pdf"></i> Resume Preview</h3>
                 <div class="modal-actions">
                     <button class="download-btn" onclick="downloadFromModal()">
                         <i class="fas fa-download"></i>
-                        Download PDF
+                        <span data-i18n="sections.contact.downloadPdf">Download PDF</span>
                     </button>
                     <button class="download-btn secondary" onclick="closeResumeModal()">
                         <i class="fas fa-times"></i>
-                        Close
+                        <span data-i18n="sections.contact.close">Close</span>
                     </button>
                 </div>
             </div>
@@ -448,15 +428,15 @@
     <div id="cvModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-file-alt"></i> CV Preview</h3>
+                <h3 data-i18n="sections.contact.cvModalTitle"><i class="fas fa-file-alt"></i> CV Preview</h3>
                 <div class="modal-actions">
                     <button class="download-btn" onclick="downloadCVFromModal()">
                         <i class="fas fa-download"></i>
-                        Download PDF
+                        <span data-i18n="sections.contact.downloadPdf">Download PDF</span>
                     </button>
                     <button class="download-btn secondary" onclick="closeCVModal()">
                         <i class="fas fa-times"></i>
-                        Close
+                        <span data-i18n="sections.contact.close">Close</span>
                     </button>
                 </div>
             </div>
@@ -466,7 +446,7 @@
         </div>
     </div>
 
-    <a href="#top" class="back-to-top" aria-label="Back to top">
+    <a href="#top" class="back-to-top" aria-label="Back to top" data-i18n-attr="aria-label:aria.backToTop">
         <i class="fas fa-arrow-up"></i>
     </a>
 
@@ -476,16 +456,16 @@
                 <div class="footer-main">
                     <div class="footer-left">
                         <div class="social-links">
-                            <a href="#contact" aria-label="Contact">
+                            <a href="#contact" aria-label="Contact" data-i18n-attr="aria-label:aria.contact">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-i18n-attr="aria-label:aria.linkedin">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-i18n-attr="aria-label:aria.github">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#downloads" aria-label="Resume & CV downloads">
+                            <a href="#downloads" aria-label="Resume & CV downloads" data-i18n-attr="aria-label:aria.resumeDownloads">
                                 <i class="fas fa-file-download"></i>
                             </a>
                         </div>
@@ -493,7 +473,7 @@
                     
                     <div class="footer-right">
                         <div class="footer-info">
-                            <p class="footer-title">© 2026 Max Chen - Robotics Engineering</p>
+                            <p class="footer-title" data-i18n="footer.title">© 2026 Max Chen</p>
                         </div>
                     </div>
                 </div>
@@ -501,6 +481,7 @@
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

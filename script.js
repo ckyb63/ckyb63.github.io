@@ -168,17 +168,18 @@
     document.querySelectorAll('.expand-details-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const card = this.closest('.experience-card');
-            if (card) {
-                card.classList.toggle('expanded');
-                const span = this.querySelector('span');
-                if (span) {
-                    if (card.classList.contains('expanded')) {
-                        span.textContent = 'Collapse details';
-                    } else {
-                        span.textContent = 'Expand for more details';
-                    }
-                }
+        if (card) {
+            card.classList.toggle('expanded');
+            const span = this.querySelector('span');
+            if (span) {
+                const expanded = card.classList.contains('expanded');
+                const expandKey = 'aria.expandDetails';
+                const collapseKey = 'aria.collapseDetails';
+                const expandStr = (typeof window.__i18nGet === 'function' && window.__i18nGet(expandKey)) || 'Expand for more details';
+                const collapseStr = (typeof window.__i18nGet === 'function' && window.__i18nGet(collapseKey)) || 'Collapse details';
+                span.textContent = expanded ? collapseStr : expandStr;
             }
+        }
         });
     });
 })();
@@ -195,14 +196,14 @@ function toggleEarlierExperiences(button) {
         button.classList.remove('expanded');
         const span = button.querySelector('span');
         if (span) {
-            span.textContent = 'View Earlier Experiences & Education';
+            span.textContent = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.experience.earlierToggle')) || 'View Earlier Experiences & Education';
         }
     } else {
         content.classList.add('expanded');
         button.classList.add('expanded');
         const span = button.querySelector('span');
         if (span) {
-            span.textContent = 'Hide Earlier Experiences & Education';
+            span.textContent = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.experience.earlierToggleHide')) || 'Hide Earlier Experiences & Education';
         }
     }
 }
@@ -403,14 +404,21 @@ window.toggleEarlierExperiences = toggleEarlierExperiences;
 })();
 
 // ============================================================================
-// Index Page Specific: Modal Functions for Resume/CV
+// Index Page Specific: Modal Functions for Resume/CV (use EN/zh Drive link by current language)
 // ============================================================================
+function getDriveIdFromLink(link) {
+    if (!link || !link.href) return null;
+    const m = link.href.match(/[?&]id=([^&]+)/);
+    return m ? m[1] : null;
+}
+
 function openResumeModal() {
     const modal = document.getElementById('resumeModal');
     const frame = document.getElementById('resumeFrame');
-    if (modal && frame) {
-        // Open without side panel, fit width for better initial zoom
-        frame.src = 'https://drive.google.com/file/d/1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH/preview?usp=sharing#pagemode=none&view=FitH';
+    const resumeLink = document.querySelector('a[data-download-resume]');
+    const id = getDriveIdFromLink(resumeLink);
+    if (modal && frame && id) {
+        frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=none&view=FitH';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -429,9 +437,10 @@ function closeResumeModal() {
 function openCVModal() {
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
-    if (modal && frame) {
-        // Open with thumbnails TOC visible, fit width for less zoom
-        frame.src = 'https://drive.google.com/file/d/1Jqawj3NNS9IppNr9htB7A40ifYQvji4g/preview?usp=sharing#pagemode=bookmarks&view=FitH';
+    const cvLink = document.querySelector('a[data-download-cv]');
+    const id = getDriveIdFromLink(cvLink);
+    if (modal && frame && id) {
+        frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=bookmarks&view=FitH';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -448,17 +457,17 @@ function closeCVModal() {
 }
 
 function downloadFromModal() {
-    const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=1Xl3cYURKR95I8-tTFOWrQk8yO_RXuxKH';
-    link.download = 'Max_Chen_Resume.pdf';
-    link.click();
+    const resumeLink = document.querySelector('a[data-download-resume]');
+    if (resumeLink && resumeLink.href) {
+        window.open(resumeLink.href, '_blank', 'noopener,noreferrer');
+    }
 }
 
 function downloadCVFromModal() {
-    const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=1Jqawj3NNS9IppNr9htB7A40ifYQvji4g';
-    link.download = 'Max_Chen_CV.pdf';
-    link.click();
+    const cvLink = document.querySelector('a[data-download-cv]');
+    if (cvLink && cvLink.href) {
+        window.open(cvLink.href, '_blank', 'noopener,noreferrer');
+    }
 }
 
 // Make functions globally available for onclick handlers
@@ -499,6 +508,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeResumeModal();
         closeCVModal();
+        closeProjectModal();
     }
 });
 
@@ -508,13 +518,15 @@ document.addEventListener('keydown', (e) => {
 function toggleDetails(button) {
     const detailsSection = button.nextElementSibling;
     const icon = button.querySelector('i');
+    const showStr = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.projects.showMoreDetails')) || 'Show More Details';
+    const hideStr = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.projects.hideDetails')) || 'Hide Details';
     
     if (detailsSection.classList.contains('expanded')) {
         detailsSection.classList.remove('expanded');
-        button.innerHTML = '<i class="fas fa-chevron-down"></i> Show More Details';
+        button.innerHTML = '<i class="fas fa-chevron-down"></i> ' + showStr;
     } else {
         detailsSection.classList.add('expanded');
-        button.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
+        button.innerHTML = '<i class="fas fa-chevron-up"></i> ' + hideStr;
     }
 }
 
@@ -522,7 +534,100 @@ function toggleDetails(button) {
 window.toggleDetails = toggleDetails;
 
 // ============================================================================
-// Projects Page Specific: Smooth Scroll for Navigation Links
+// Projects Page: Project detail modal (compact card "View details")
+// ============================================================================
+function openProjectModal(trigger) {
+    const card = trigger.closest('.portfolio-card');
+    if (!card) return;
+    const titleEl = card.querySelector('.portfolio-card-title');
+    const bodyEl = card.querySelector('.project-detail-body');
+    const modal = document.getElementById('projectDetailModal');
+    const modalTitleEl = document.getElementById('projectDetailModalTitle');
+    const modalBodyEl = document.querySelector('.project-detail-modal-body');
+    const modalContent = document.querySelector('.project-detail-modal-content');
+    if (!modal || !modalTitleEl || !modalBodyEl) return;
+    modalTitleEl.textContent = titleEl ? titleEl.textContent : '';
+    modalBodyEl.innerHTML = bodyEl ? bodyEl.innerHTML : '';
+    if (modalContent) {
+        if (modalBodyEl.querySelector('.detail-modal-videos') || modalBodyEl.querySelector('iframe')) {
+            modalContent.classList.add('is-wide');
+        } else {
+            modalContent.classList.remove('is-wide');
+        }
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectDetailModal');
+    const modalContent = document.querySelector('.project-detail-modal-content');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    if (modalContent) modalContent.classList.remove('is-wide');
+}
+
+window.openProjectModal = openProjectModal;
+window.closeProjectModal = closeProjectModal;
+
+(function initProjectDetailModal() {
+    const modal = document.getElementById('projectDetailModal');
+    if (!modal) return;
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeProjectModal();
+    });
+    const content = modal.querySelector('.project-detail-modal-content');
+    if (content) content.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeProjectModal();
+    });
+})();
+
+// ============================================================================
+// Experience Page: Experience detail modal (compact card "View details")
+// ============================================================================
+function openExperienceModal(trigger) {
+    const card = trigger.closest('.experience-card-compact');
+    if (!card) return;
+    const titleEl = card.querySelector('h3');
+    const bodyEl = card.querySelector('.experience-detail-body');
+    const modal = document.getElementById('experienceDetailModal');
+    const modalTitleEl = document.getElementById('experienceDetailModalTitle');
+    const modalBodyEl = document.querySelector('.experience-detail-modal-body');
+    if (!modal || !modalTitleEl || !modalBodyEl) return;
+    modalTitleEl.textContent = titleEl ? titleEl.textContent.trim() : '';
+    modalBodyEl.innerHTML = bodyEl ? bodyEl.innerHTML : '';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeExperienceModal() {
+    const modal = document.getElementById('experienceDetailModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+window.openExperienceModal = openExperienceModal;
+window.closeExperienceModal = closeExperienceModal;
+
+(function initExperienceDetailModal() {
+    const modal = document.getElementById('experienceDetailModal');
+    if (!modal) return;
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeExperienceModal();
+    });
+    const content = modal.querySelector('.experience-detail-modal-content');
+    if (content) content.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeExperienceModal();
+    });
+})();
+
+// ============================================================================
 // ============================================================================
 (function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -557,25 +662,40 @@ window.toggleDetails = toggleDetails;
 // ============================================================================
 // Projects Page Specific: Image Modal Functionality
 // ============================================================================
+let __imageModalToken = 0;
+
 function openImageModal(imageSrc, imageAlt, imageElement) {
+    const token = ++__imageModalToken;
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalBadge = document.getElementById('modalBadge');
     const modalDescription = document.getElementById('modalDescription');
     const modalTech = document.getElementById('modalTech');
+    const imageWrap = modalImg ? modalImg.closest('.image-modal-image-wrap') : null;
     
     if (!modal || !modalImg) return;
-    
-    modalImg.src = imageSrc;
+
+    // Clear first to prevent "previous image flash" while the new image loads.
+    modalImg.removeAttribute('src');
     modalImg.alt = imageAlt;
+    if (imageWrap) imageWrap.classList.add('is-loading');
     
-    // Get project details from data attributes
+    // Get project details from data attributes (or derive from i18n gallery keys)
     if (imageElement && imageElement.dataset) {
-        const title = imageElement.dataset.projectTitle || imageAlt;
-        const badge = imageElement.dataset.projectBadge || '';
-        const description = imageElement.dataset.projectDescription || '';
+        let title = imageElement.dataset.projectTitle || imageAlt;
+        let badge = imageElement.dataset.projectBadge || '';
+        let description = imageElement.dataset.projectDescription || '';
         const tech = imageElement.dataset.projectTech || '';
+
+        // If this is a gallery item, use i18n keys for localized title/description
+        const galleryKey = imageElement.dataset.galleryKey;
+        if (galleryKey && typeof window.__i18nGet === 'function') {
+            const tKey = `sections.projects.gallery${galleryKey}Title`;
+            const dKey = `sections.projects.gallery${galleryKey}Desc`;
+            title = window.__i18nGet(tKey) || title;
+            description = window.__i18nGet(dKey) || description;
+        }
         
         if (modalTitle) modalTitle.textContent = title;
         if (modalBadge) modalBadge.textContent = badge;
@@ -616,14 +736,35 @@ function openImageModal(imageSrc, imageAlt, imageElement) {
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Preload and only apply if this is the latest request (prevents race conditions).
+    const pre = new Image();
+    pre.decoding = 'async';
+    pre.src = imageSrc;
+    const apply = () => {
+        if (__imageModalToken !== token) return;
+        modalImg.src = imageSrc;
+        if (imageWrap) imageWrap.classList.remove('is-loading');
+    };
+    if (pre.decode) {
+        pre.decode().then(apply).catch(apply);
+    } else {
+        pre.onload = apply;
+        pre.onerror = apply;
+    }
 }
 
 function closeImageModal() {
+    __imageModalToken++;
     const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const imageWrap = modalImg ? modalImg.closest('.image-modal-image-wrap') : null;
     if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
+    if (modalImg) modalImg.removeAttribute('src');
+    if (imageWrap) imageWrap.classList.remove('is-loading');
 }
 
 // Make functions globally available for onclick handlers
@@ -635,17 +776,16 @@ window.closeImageModal = closeImageModal;
     const imageModal = document.getElementById('imageModal');
     if (!imageModal) return;
     
-    const imageModalContent = document.querySelector('.image-modal-content');
+    const imageModalContent = document.querySelector('.image-modal-card');
     
-    // Close modal when clicking outside the content
+    // Close when clicking backdrop (backdrop has its own onclick; also handle click on modal container)
     imageModal.addEventListener('click', function(e) {
-        // Close if clicking directly on the modal background (not on content)
-        if (e.target === imageModal) {
+        if (e.target === imageModal || e.target.classList.contains('image-modal-backdrop')) {
             closeImageModal();
         }
     });
     
-    // Prevent closing when clicking on modal content
+    // Prevent closing when clicking the card (image + details)
     if (imageModalContent) {
         imageModalContent.addEventListener('click', function(e) {
             e.stopPropagation();

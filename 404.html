@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - Max Chen</title>
+    <style>html.i18n-pending body{visibility:hidden}</style>
+    <script>
+    (function(){try{if(localStorage.getItem('max-portfolio-lang')==='zh-Hant')document.documentElement.classList.add('i18n-pending');}catch(e){}})();
+    </script>
+    <title data-i18n="metaTitle404">Page Not Found - Max Chen</title>
     <link rel="icon" type="image/svg+xml" href="pictures/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="pictures/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="pictures/favicon-16x16.png">
@@ -35,7 +39,7 @@
 <body id="top">
     <nav>
         <div class="nav-container">
-            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu">
+            <button class="nav-hamburger hamburger-menu" aria-label="Toggle navigation menu" data-i18n-attr="aria-label:aria.toggleNav">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -43,27 +47,27 @@
             <a href="index.html" class="nav-logo-link">
                 <img src="pictures/favicon.svg" alt="Max Chen Logo" class="nav-logo" loading="lazy">
             </a>
-            <a href="index.html" class="nav-home-icon" aria-label="Go to home page">
-                <i class="fas fa-home"></i>
-            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
+            <div class="lang-switcher" role="group" aria-label="Language">
+                <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="zh-Hant" aria-pressed="false">繁中</button>
+            </div>
         </div>
     </nav>
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="mobile-menu-content">
             <ul class="mobile-menu-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -74,21 +78,21 @@
                 <i class="fas fa-robot"></i>
             </div>
             <h1 class="error-404-title">404</h1>
-            <p class="error-404-subtitle">Page not found</p>
-            <p class="error-404-tagline">This page went off the map—maybe it’s out collecting sensor data. No worries: head back to base and we’ll get you back on track.</p>
+            <p class="error-404-subtitle" data-i18n="hero.error404.subtitle">Page not found</p>
+            <p class="error-404-tagline" data-i18n="hero.error404.tagline">This page went off the map—maybe it’s out collecting sensor data. No worries: head back to base and we’ll get you back on track.</p>
             <div class="error-404-actions">
                 <a href="index.html" class="download-btn">
                     <i class="fas fa-home"></i>
-                    Back to home
+                    <span data-i18n="hero.error404.backHome">Back to home</span>
                 </a>
             </div>
-            <p class="error-404-quicklinks-label">Or jump straight to:</p>
+            <p class="error-404-quicklinks-label" data-i18n="hero.error404.quickLinksLabel">Or jump straight to:</p>
             <div class="error-404-quicklinks">
-                <a href="index.html#about-education"><i class="fas fa-user-astronaut"></i> About</a>
-                <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
-                <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
-                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
-                <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="index.html#about-education"><i class="fas fa-user-astronaut"></i> <span data-i18n="hero.error404.about">About</span></a>
+                <a href="index.html#skills"><i class="fas fa-code"></i> <span data-i18n="hero.error404.skills">Skills</span></a>
+                <a href="experience.html"><i class="fas fa-briefcase"></i> <span data-i18n="hero.error404.experience">Experience</span></a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> <span data-i18n="hero.error404.projects">Projects</span></a>
+                <a href="index.html#contact"><i class="fas fa-envelope"></i> <span data-i18n="hero.error404.contact">Contact</span></a>
             </div>
         </div>
     </section>
@@ -115,7 +119,7 @@
                     </div>
                     <div class="footer-right">
                         <div class="footer-info">
-                            <p class="footer-title">© 2026 Max Chen - Robotics Engineering</p>
+                            <p class="footer-title" data-i18n="footer.title">© 2026 Max Chen - Robotics Engineering</p>
                         </div>
                     </div>
                 </div>
@@ -123,6 +127,7 @@
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
