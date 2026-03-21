@@ -7,8 +7,18 @@ function getI18nText(key, fallback) {
     return (typeof window.__i18nGet === 'function' && window.__i18nGet(key)) || fallback;
 }
 
+function hasActiveOverlay() {
+    return Boolean(document.querySelector('.modal.active, #projectDetailModal.active, #experienceDetailModal.active, #imageModal.active'));
+}
+
 function setBodyScrollLocked(locked) {
-    document.body.style.overflow = locked ? 'hidden' : '';
+    if (locked) {
+        document.body.style.overflow = 'hidden';
+        return;
+    }
+    if (!hasActiveOverlay() && !document.body.classList.contains('menu-open')) {
+        document.body.style.overflow = '';
+    }
 }
 
 // ============================================================================
@@ -532,13 +542,14 @@ window.addEventListener('click', (e) => {
     }
 })();
 
-// Close modals with Escape key
+// Close overlays with a single global Escape handler.
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeResumeModal();
-        closeCVModal();
-        closeProjectModal();
-    }
+    if (e.key !== 'Escape') return;
+    closeImageModal();
+    closeExperienceModal();
+    closeProjectModal();
+    closeResumeModal();
+    closeCVModal();
 });
 
 // ============================================================================
@@ -608,9 +619,6 @@ window.closeProjectModal = closeProjectModal;
     });
     const content = modal.querySelector('.project-detail-modal-content');
     if (content) content.addEventListener('click', function (e) { e.stopPropagation(); });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeProjectModal();
-    });
 })();
 
 // ============================================================================
@@ -650,9 +658,6 @@ window.closeExperienceModal = closeExperienceModal;
     });
     const content = modal.querySelector('.experience-detail-modal-content');
     if (content) content.addEventListener('click', function (e) { e.stopPropagation(); });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeExperienceModal();
-    });
 })();
 
 // ============================================================================
@@ -660,14 +665,17 @@ window.closeExperienceModal = closeExperienceModal;
 (function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            // Let TOC and other custom handlers manage their own offsets.
+            if (this.classList.contains('toc-link') || this.hasAttribute('data-no-smooth')) return;
+            const target = document.querySelector(href);
+            if (!target) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         });
     });
 })();
@@ -819,13 +827,6 @@ window.closeImageModal = closeImageModal;
             e.stopPropagation();
         });
     }
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeImageModal();
-        }
-    });
     
     // Add click handlers to all project images and containers (excluding video cards)
     document.querySelectorAll('.showcase-image-card, .project-card.has-image').forEach(container => {
