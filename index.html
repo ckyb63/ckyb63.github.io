@@ -50,8 +50,7 @@
                 <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
                 <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
                 <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
-                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact & Resources</a></li>
             </ul>
             <div class="lang-switcher" role="group" aria-label="Language">
                 <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
@@ -68,8 +67,7 @@
                 <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
                 <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
                 <li><a href="projects.html" data-i18n="nav.projects">Portfolio</a></li>
-                <li><a href="index.html#downloads" data-i18n="nav.downloads">Resume & CV</a></li>
-                <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="index.html#contact" data-i18n="nav.contact">Contact & Resources</a></li>
             </ul>
         </div>
     </div>
@@ -282,36 +280,7 @@
                     </div>
                 </div>
 
-                <!-- Secondary: Professional Links -->
-                <div class="contact-quick-links animate-on-scroll">
-                    <div class="contact-card-header">
-                        <i class="fas fa-link"></i>
-                        <h3 data-i18n="sections.contact.professionalLinksTitle">Professional Links</h3>
-                    </div>
-                    <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
-                        <i class="fab fa-linkedin"></i>
-                        <div class="contact-quick-link-content">
-                            <strong data-i18n="sections.contact.linkedinHandle">LinkedIn</strong>
-                            <small>maxchen-cky</small>
-                        </div>
-                    </a>
-                    <a href="https://orcid.org/0009-0000-3557-4299" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
-                        <i class="fab fa-orcid"></i>
-                        <div class="contact-quick-link-content">
-                            <strong data-i18n="sections.contact.orcidId">ORCID</strong>
-                            <small>0009-0000-3557-4299</small>
-                        </div>
-                    </a>
-                    <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" class="contact-quick-link">
-                        <i class="fab fa-github"></i>
-                        <div class="contact-quick-link-content">
-                            <strong data-i18n="sections.contact.githubHandle">GitHub</strong>
-                            <small>ckyb63</small>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Tertiary: Related Sites -->
+                <!-- Related Sites -->
                 <div class="contact-card animate-on-scroll">
                     <div class="contact-card-header">
                         <i class="fas fa-code-branch"></i>
@@ -324,22 +293,20 @@
                                 <div class="main-info">
                                     <strong data-i18n="sections.contact.capstoneTitle">Capstone Project</strong>
                                     <span data-i18n="sections.contact.capstoneSubtitle">PPE AI Vending Machine</span>
-                                    <small data-i18n="sections.contact.capstoneHint">Senior design project</small>
                                 </div>
                             </a>
                             <a href="https://seat-lab.github.io/" target="_blank" rel="noopener noreferrer" class="project-link-item" id="seat-lab-link">
                                 <i class="fas fa-flask"></i>
                                 <div class="main-info">
-                                    <strong data-i18n="sections.contact.seatLabTitle">SEAT Lab</strong>
-                                    <span data-i18n="sections.contact.seatLabSubtitle">Research Repository</span>
-                                    <small data-i18n="sections.contact.seatLabHint">Audio engineering research</small>
+                                    <strong data-i18n="sections.contact.seatLabTitle"></strong>
+                                    <span data-i18n="sections.contact.seatLabSubtitle"></span>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Downloads (spans all 3 columns). Resume/CV links switch by language: set data-id-zh to your Chinese Google Drive file IDs when ready. -->
+                <!-- Downloads -->
                 <div id="downloads" class="contact-card downloads-card animate-on-scroll">
                     <div class="contact-card-header">
                         <i class="fas fa-file-download"></i>
@@ -440,16 +407,19 @@
                 <div class="footer-main">
                     <div class="footer-left">
                         <div class="social-links">
-                            <a href="#contact" aria-label="Contact" data-i18n-attr="aria-label:aria.contact">
+                            <a href="#contact" aria-label="Contact" data-i18n-attr="aria-label:aria.contact" data-tooltip="Contact">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-i18n-attr="aria-label:aria.linkedin">
+                            <a href="https://www.linkedin.com/in/maxchen-cky" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-i18n-attr="aria-label:aria.linkedin" data-tooltip="LinkedIn">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-i18n-attr="aria-label:aria.github">
+                            <a href="https://github.com/ckyb63" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-i18n-attr="aria-label:aria.github" data-tooltip="GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="#downloads" aria-label="Resume & CV downloads" data-i18n-attr="aria-label:aria.resumeDownloads">
+                            <a href="https://orcid.org/0009-0000-3557-4299" target="_blank" rel="noopener noreferrer" aria-label="ORCID" data-tooltip="ORCID profile">
+                                <i class="fab fa-orcid"></i>
+                            </a>
+                            <a href="#downloads" aria-label="Resume & CV downloads" data-i18n-attr="aria-label:aria.resumeDownloads" data-tooltip="Resume & CV downloads">
                                 <i class="fas fa-file-download"></i>
                             </a>
                         </div>

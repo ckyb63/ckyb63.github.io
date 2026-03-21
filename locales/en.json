@@ -9,7 +9,7 @@
     "skills": "Skills",
     "experience": "Experience",
     "projects": "Portfolio",
-    "contact": "Contact",
+    "contact": "Contact & Resources",
     "downloads": "Resume & CV"
   },
   "aria": {
@@ -115,7 +115,7 @@
       "capstoneSubtitle": "PPE AI Vending Machine",
       "capstoneHint": "Senior design project",
       "seatLabTitle": "SEAT Lab",
-      "seatLabSubtitle": "Research Repository",
+      "seatLabSubtitle": "Laboratory website",
       "seatLabHint": "Audio engineering research",
       "downloadsTitle": "Downloads",
       "resumeTitle": "Resume",

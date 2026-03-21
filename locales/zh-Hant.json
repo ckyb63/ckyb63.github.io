@@ -9,7 +9,7 @@
     "skills": "技能",
     "experience": "經歷",
     "projects": "作品集",
-    "contact": "聯絡方式",
+    "contact": "聯絡與資源",
     "downloads": "履歷"
   },
   "aria": {
@@ -115,7 +115,7 @@
       "capstoneSubtitle": "個人防護裝備人工智慧自動販賣機",
       "capstoneHint": "畢業設計專題",
       "seatLabTitle": "SEAT 實驗室",
-      "seatLabSubtitle": "研究資源庫",
+      "seatLabSubtitle": "實驗室網站",
       "seatLabHint": "音訊工程研究",
       "downloadsTitle": "檔案下載",
       "resumeTitle": "履歷表 (Resume)",

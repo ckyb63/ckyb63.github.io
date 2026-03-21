@@ -416,11 +416,23 @@ function getDriveIdFromLink(link) {
     return m ? m[1] : null;
 }
 
+function isPhoneLikeDevice() {
+    const ua = navigator.userAgent || '';
+    const mobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+    const narrowViewport = window.matchMedia('(max-width: 900px)').matches;
+    return mobileUA || narrowViewport;
+}
+
 function openResumeModal() {
     const modal = document.getElementById('resumeModal');
     const frame = document.getElementById('resumeFrame');
     const resumeLink = document.querySelector('a[data-download-resume]');
     const id = getDriveIdFromLink(resumeLink);
+    const previewUrl = id ? ('https://drive.google.com/file/d/' + id + '/view') : '';
+    if (isPhoneLikeDevice() && previewUrl) {
+        window.location.href = previewUrl;
+        return;
+    }
     if (modal && frame && id) {
         frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=none&view=FitH';
         modal.classList.add('active');
@@ -443,6 +455,11 @@ function openCVModal() {
     const frame = document.getElementById('cvFrame');
     const cvLink = document.querySelector('a[data-download-cv]');
     const id = getDriveIdFromLink(cvLink);
+    const previewUrl = id ? ('https://drive.google.com/file/d/' + id + '/view') : '';
+    if (isPhoneLikeDevice() && previewUrl) {
+        window.location.href = previewUrl;
+        return;
+    }
     if (modal && frame && id) {
         frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=bookmarks&view=FitH';
         modal.classList.add('active');
@@ -463,6 +480,10 @@ function closeCVModal() {
 function downloadFromModal() {
     const resumeLink = document.querySelector('a[data-download-resume]');
     if (resumeLink && resumeLink.href) {
+        if (isPhoneLikeDevice()) {
+            window.location.href = resumeLink.href;
+            return;
+        }
         window.open(resumeLink.href, '_blank', 'noopener,noreferrer');
     }
 }
@@ -470,6 +491,10 @@ function downloadFromModal() {
 function downloadCVFromModal() {
     const cvLink = document.querySelector('a[data-download-cv]');
     if (cvLink && cvLink.href) {
+        if (isPhoneLikeDevice()) {
+            window.location.href = cvLink.href;
+            return;
+        }
         window.open(cvLink.href, '_blank', 'noopener,noreferrer');
     }
 }
