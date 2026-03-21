@@ -1214,9 +1214,9 @@
 
         .downloads-card {
             grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
 
         .downloads-card .contact-card-header {
@@ -1225,20 +1225,27 @@
         }
 
         .download-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0.85rem 0;
+            margin: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             transition: var(--transition-fast);
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.65rem;
+        }
+
+        .download-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0.25rem;
         }
 
         .download-item:hover {
-            background: rgba(37, 99, 235, 0.1);
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.14);
+            transform: none;
         }
 
         .download-item-header {
@@ -3429,98 +3436,6 @@
             }
         }
 
-        /* ------------------------------------------------------------------ */
-        /* Final mobile overrides (kept at file end to beat duplicate blocks) */
-        /* ------------------------------------------------------------------ */
-        @media (max-width: 768px) {
-            .skill-category,
-            .overview-card,
-            .contact-card,
-            .contact-quick-links,
-            .download-item,
-            .project-card,
-            .portfolio-card,
-            .experience-card,
-            .experience-card-compact {
-                border-radius: 12px !important;
-                box-shadow: none !important;
-                backdrop-filter: blur(8px) !important;
-                -webkit-backdrop-filter: blur(8px) !important;
-            }
-
-            .skill-category:hover,
-            .overview-card:hover,
-            .contact-card:hover,
-            .download-item:hover,
-            .project-card:hover,
-            .portfolio-card:hover,
-            .timeline-item-wrapper:hover .experience-card,
-            .experience-card-compact:hover {
-                transform: none !important;
-                box-shadow: none !important;
-            }
-
-            .contact-main-grid {
-                gap: 0.65rem !important;
-            }
-
-            .contact-quick-link,
-            .email-method,
-            .project-link-item,
-            .download-item {
-                background: rgba(255, 255, 255, 0.02) !important;
-                border-color: rgba(255, 255, 255, 0.08) !important;
-                border-radius: 10px !important;
-                box-shadow: none !important;
-            }
-
-            .contact-quick-link:hover,
-            .email-method:hover,
-            .project-link-item:hover,
-            .download-item:hover {
-                transform: none !important;
-            }
-
-            /* Some content no longer needs card containers on mobile */
-            .contact-quick-links,
-            .downloads-card {
-                background: transparent !important;
-                border: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                padding: 0 !important;
-            }
-
-            .contact-card-content {
-                gap: 0.4rem !important;
-            }
-
-            .contact-quick-link,
-            .email-method,
-            .project-link-item,
-            .download-item {
-                background: transparent !important;
-                border: none !important;
-                border-radius: 0 !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-
-            .contact-quick-link,
-            .email-method,
-            .project-link-item {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-                padding-top: 0.75rem !important;
-                padding-bottom: 0.75rem !important;
-            }
-
-            .download-item {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
-                padding-top: 0.75rem !important;
-                padding-bottom: 0.9rem !important;
-            }
-        }
-
         /* Strong, obvious close buttons for modal UIs */
         .project-detail-modal .modal-close,
         .experience-detail-modal .modal-close,
@@ -3564,55 +3479,6 @@
             background: rgba(255, 255, 255, 0.025);
             border-color: rgba(255, 255, 255, 0.08);
             padding: 0.42rem 0.72rem;
-        }
-
-        @media (max-width: 768px) {
-            .about-main {
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                padding: 0 !important;
-                border-radius: 0 !important;
-            }
-
-            .about-main::before {
-                display: none !important;
-            }
-
-            .skills-grid {
-                gap: 0.85rem !important;
-            }
-
-            .skill-category {
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                padding: 0.4rem 0 !important;
-                border-radius: 0 !important;
-            }
-
-            .skill-category h3 {
-                border-bottom: none !important;
-                margin-bottom: 0.55rem !important;
-                padding-bottom: 0 !important;
-                font-size: 1.02rem !important;
-            }
-
-            .skill-tags {
-                gap: 0.45rem !important;
-            }
-
-            .skill-tag {
-                padding: 0.3rem 0.5rem !important;
-                border-radius: 5px !important;
-                background: rgba(255, 255, 255, 0.02) !important;
-                border: 1px solid rgba(255, 255, 255, 0.06) !important;
-                font-size: 0.8rem !important;
-            }
         }
 
         /* Mobile TOC: smaller edge tab so it does not cover content */
@@ -3709,56 +3575,6 @@
 
             .earlier-experiences-toggle span {
                 font-size: 0.95rem !important;
-            }
-        }
-
-        /* Mobile visual density pass: keep content, reduce "card-in-card" feel */
-        @media (max-width: 768px) {
-            .skill-category,
-            .overview-card,
-            .contact-card,
-            .contact-quick-links,
-            .download-item,
-            .project-card,
-            .portfolio-card,
-            .experience-card,
-            .experience-card-compact {
-                border-radius: 12px;
-                box-shadow: none;
-                backdrop-filter: blur(8px);
-            }
-
-            .skill-category:hover,
-            .overview-card:hover,
-            .contact-card:hover,
-            .download-item:hover,
-            .project-card:hover,
-            .portfolio-card:hover,
-            .experience-card:hover,
-            .experience-card-compact:hover {
-                transform: none;
-                box-shadow: none;
-            }
-
-            .contact-main-grid {
-                gap: 0.65rem;
-            }
-
-            .contact-quick-link,
-            .email-method,
-            .project-link-item,
-            .download-item {
-                background: rgba(255, 255, 255, 0.02);
-                border-color: rgba(255, 255, 255, 0.08);
-                border-radius: 10px;
-                box-shadow: none;
-            }
-
-            .contact-quick-link:hover,
-            .email-method:hover,
-            .project-link-item:hover,
-            .download-item:hover {
-                transform: none;
             }
         }
 
