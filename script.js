@@ -3,6 +3,14 @@
 // Consolidated from experience-visual.html, index-visual.html, projects-visual.html
 // ============================================================================
 
+function getI18nText(key, fallback) {
+    return (typeof window.__i18nGet === 'function' && window.__i18nGet(key)) || fallback;
+}
+
+function setBodyScrollLocked(locked) {
+    document.body.style.overflow = locked ? 'hidden' : '';
+}
+
 // ============================================================================
 // Intersection Observer for Animations
 // ============================================================================
@@ -106,13 +114,10 @@
 (function initNavScroll() {
     let lastScrollTop = 0;
     const nav = document.querySelector('nav');
-    let scrollTimeout;
+    if (!nav) return;
 
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Clear any existing timeout
-        clearTimeout(scrollTimeout);
         
         // Always show nav at the top
         if (scrollTop < 50) {
@@ -189,21 +194,20 @@
 // ============================================================================
 function toggleEarlierExperiences(button) {
     const content = button.nextElementSibling;
-    const icon = button.querySelector('i');
     
     if (content.classList.contains('expanded')) {
         content.classList.remove('expanded');
         button.classList.remove('expanded');
         const span = button.querySelector('span');
         if (span) {
-            span.textContent = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.experience.earlierToggle')) || 'View Earlier Experiences & Education';
+            span.textContent = getI18nText('sections.experience.earlierToggle', 'View Earlier Experiences & Education');
         }
     } else {
         content.classList.add('expanded');
         button.classList.add('expanded');
         const span = button.querySelector('span');
         if (span) {
-            span.textContent = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.experience.earlierToggleHide')) || 'Hide Earlier Experiences & Education';
+            span.textContent = getI18nText('sections.experience.earlierToggleHide', 'Hide Earlier Experiences & Education');
         }
     }
 }
@@ -420,7 +424,7 @@ function openResumeModal() {
     if (modal && frame && id) {
         frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=none&view=FitH';
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        setBodyScrollLocked(true);
     }
 }
 
@@ -430,7 +434,7 @@ function closeResumeModal() {
     if (modal && frame) {
         modal.classList.remove('active');
         frame.src = '';
-        document.body.style.overflow = '';
+        setBodyScrollLocked(false);
     }
 }
 
@@ -442,7 +446,7 @@ function openCVModal() {
     if (modal && frame && id) {
         frame.src = 'https://drive.google.com/file/d/' + id + '/preview?usp=sharing#pagemode=bookmarks&view=FitH';
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        setBodyScrollLocked(true);
     }
 }
 
@@ -452,7 +456,7 @@ function closeCVModal() {
     if (modal && frame) {
         modal.classList.remove('active');
         frame.src = '';
-        document.body.style.overflow = '';
+        setBodyScrollLocked(false);
     }
 }
 
@@ -517,9 +521,8 @@ document.addEventListener('keydown', (e) => {
 // ============================================================================
 function toggleDetails(button) {
     const detailsSection = button.nextElementSibling;
-    const icon = button.querySelector('i');
-    const showStr = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.projects.showMoreDetails')) || 'Show More Details';
-    const hideStr = (typeof window.__i18nGet === 'function' && window.__i18nGet('sections.projects.hideDetails')) || 'Hide Details';
+    const showStr = getI18nText('sections.projects.showMoreDetails', 'Show More Details');
+    const hideStr = getI18nText('sections.projects.hideDetails', 'Hide Details');
     
     if (detailsSection.classList.contains('expanded')) {
         detailsSection.classList.remove('expanded');
@@ -556,7 +559,7 @@ function openProjectModal(trigger) {
         }
     }
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    setBodyScrollLocked(true);
 }
 
 function closeProjectModal() {
@@ -564,7 +567,7 @@ function closeProjectModal() {
     const modalContent = document.querySelector('.project-detail-modal-content');
     if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+        setBodyScrollLocked(false);
     }
     if (modalContent) modalContent.classList.remove('is-wide');
 }
@@ -600,14 +603,14 @@ function openExperienceModal(trigger) {
     modalTitleEl.textContent = titleEl ? titleEl.textContent.trim() : '';
     modalBodyEl.innerHTML = bodyEl ? bodyEl.innerHTML : '';
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    setBodyScrollLocked(true);
 }
 
 function closeExperienceModal() {
     const modal = document.getElementById('experienceDetailModal');
     if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+        setBodyScrollLocked(false);
     }
 }
 
@@ -735,7 +738,7 @@ function openImageModal(imageSrc, imageAlt, imageElement) {
     }
     
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    setBodyScrollLocked(true);
 
     // Preload and only apply if this is the latest request (prevents race conditions).
     const pre = new Image();
@@ -761,7 +764,7 @@ function closeImageModal() {
     const imageWrap = modalImg ? modalImg.closest('.image-modal-image-wrap') : null;
     if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+        setBodyScrollLocked(false);
     }
     if (modalImg) modalImg.removeAttribute('src');
     if (imageWrap) imageWrap.classList.remove('is-loading');

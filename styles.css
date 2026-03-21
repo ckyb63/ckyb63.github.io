@@ -1767,11 +1767,6 @@
 
 
 /* Source: experience-visual.html */
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         :root {
             --primary-color: #2563eb;
@@ -3386,6 +3381,54 @@
             }
         }
 
+        /* Compact spacing pass: reduce excessive empty vertical space */
+        .content-section {
+            padding: 2.25rem 1.75rem;
+        }
+
+        .first-content-section {
+            padding-top: 1.25rem;
+        }
+
+        #about-education.content-section,
+        #contact.content-section {
+            padding-top: 2rem;
+            padding-bottom: 2.25rem;
+        }
+
+        .experience-section {
+            padding: 2.25rem 1.75rem;
+        }
+
+        .experience-section.first-content-section {
+            padding-top: 1.25rem;
+        }
+
+        .portfolio-section {
+            padding: clamp(1.5rem, 3vw, 2.25rem) 1.75rem clamp(2rem, 4vw, 2.75rem);
+        }
+
+        .about-main {
+            padding: 1.5rem 1.75rem;
+        }
+
+        .contact-card,
+        .skill-category,
+        .overview-card {
+            padding: 1.25rem;
+        }
+
+        @media (max-width: 900px) {
+            .content-section,
+            .experience-section {
+                padding: 2rem 1.25rem;
+            }
+
+            .portfolio-section {
+                padding: 1.5rem 1.25rem 2.25rem;
+            }
+        }
+
         /* ------------------------------------------------------------------ */
         /* Final mobile overrides (kept at file end to beat duplicate blocks) */
         /* ------------------------------------------------------------------ */
@@ -3878,11 +3921,6 @@
 
 
 /* Source: projects-visual.html */
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         :root {
             --primary-color: #2563eb;
