@@ -3387,6 +3387,339 @@
         }
 
         /* ------------------------------------------------------------------ */
+        /* Final mobile overrides (kept at file end to beat duplicate blocks) */
+        /* ------------------------------------------------------------------ */
+        @media (max-width: 768px) {
+            .skill-category,
+            .overview-card,
+            .contact-card,
+            .contact-quick-links,
+            .download-item,
+            .project-card,
+            .portfolio-card,
+            .experience-card,
+            .experience-card-compact {
+                border-radius: 12px !important;
+                box-shadow: none !important;
+                backdrop-filter: blur(8px) !important;
+                -webkit-backdrop-filter: blur(8px) !important;
+            }
+
+            .skill-category:hover,
+            .overview-card:hover,
+            .contact-card:hover,
+            .download-item:hover,
+            .project-card:hover,
+            .portfolio-card:hover,
+            .timeline-item-wrapper:hover .experience-card,
+            .experience-card-compact:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .contact-main-grid {
+                gap: 0.65rem !important;
+            }
+
+            .contact-quick-link,
+            .email-method,
+            .project-link-item,
+            .download-item {
+                background: rgba(255, 255, 255, 0.02) !important;
+                border-color: rgba(255, 255, 255, 0.08) !important;
+                border-radius: 10px !important;
+                box-shadow: none !important;
+            }
+
+            .contact-quick-link:hover,
+            .email-method:hover,
+            .project-link-item:hover,
+            .download-item:hover {
+                transform: none !important;
+            }
+
+            /* Some content no longer needs card containers on mobile */
+            .contact-quick-links,
+            .downloads-card {
+                background: transparent !important;
+                border: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding: 0 !important;
+            }
+
+            .contact-card-content {
+                gap: 0.4rem !important;
+            }
+
+            .contact-quick-link,
+            .email-method,
+            .project-link-item,
+            .download-item {
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .contact-quick-link,
+            .email-method,
+            .project-link-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+                padding-top: 0.75rem !important;
+                padding-bottom: 0.75rem !important;
+            }
+
+            .download-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+                padding-top: 0.75rem !important;
+                padding-bottom: 0.9rem !important;
+            }
+        }
+
+        /* Strong, obvious close buttons for modal UIs */
+        .project-detail-modal .modal-close,
+        .experience-detail-modal .modal-close,
+        .image-modal-close,
+        .modal .modal-actions .download-btn.secondary {
+            background: rgba(220, 38, 38, 0.22) !important;
+            border: 1px solid rgba(248, 113, 113, 0.6) !important;
+            color: #fecaca !important;
+        }
+
+        .project-detail-modal .modal-close:hover,
+        .experience-detail-modal .modal-close:hover,
+        .image-modal-close:hover,
+        .modal .modal-actions .download-btn.secondary:hover {
+            background: rgba(220, 38, 38, 0.35) !important;
+            border-color: rgba(252, 165, 165, 0.85) !important;
+            color: #ffffff !important;
+        }
+
+        @media (max-width: 640px) {
+            .project-detail-modal .modal-close,
+            .experience-detail-modal .modal-close,
+            .image-modal-close,
+            .modal .modal-actions .download-btn.secondary {
+                box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.25) !important;
+            }
+        }
+
+        /* Home page simplification: reduce card/chip intensity */
+        .about-main {
+            border-radius: 14px;
+        }
+
+        .skill-category {
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .skill-tag {
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.025);
+            border-color: rgba(255, 255, 255, 0.08);
+            padding: 0.42rem 0.72rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-main {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+            }
+
+            .about-main::before {
+                display: none !important;
+            }
+
+            .skills-grid {
+                gap: 0.85rem !important;
+            }
+
+            .skill-category {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                padding: 0.4rem 0 !important;
+                border-radius: 0 !important;
+            }
+
+            .skill-category h3 {
+                border-bottom: none !important;
+                margin-bottom: 0.55rem !important;
+                padding-bottom: 0 !important;
+                font-size: 1.02rem !important;
+            }
+
+            .skill-tags {
+                gap: 0.45rem !important;
+            }
+
+            .skill-tag {
+                padding: 0.3rem 0.5rem !important;
+                border-radius: 5px !important;
+                background: rgba(255, 255, 255, 0.02) !important;
+                border: 1px solid rgba(255, 255, 255, 0.06) !important;
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Mobile TOC: smaller edge tab so it does not cover content */
+        @media (max-width: 768px) {
+            .floating-toc {
+                top: 18% !important;
+            }
+
+            .toc-toggle {
+                width: 40px !important;
+                height: 40px !important;
+                border-radius: 0 20px 20px 0 !important;
+                font-size: 0.82rem !important;
+                border-width: 1px !important;
+            }
+
+            .toc-panel {
+                left: 40px !important;
+                width: min(270px, calc(100vw - 18px)) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .floating-toc {
+                top: 22% !important;
+            }
+
+            .toc-toggle {
+                width: 36px !important;
+                height: 36px !important;
+                border-radius: 0 18px 18px 0 !important;
+                font-size: 0.75rem !important;
+            }
+
+            .toc-panel {
+                left: 36px !important;
+                width: min(250px, calc(100vw - 14px)) !important;
+            }
+        }
+
+        /* Rework earlier education toggle into a compact section header style */
+        .earlier-experiences-toggle {
+            border-radius: 12px !important;
+            padding: 1rem 1.1rem !important;
+            min-height: 0 !important;
+            flex-direction: row !important;
+            align-items: flex-start !important;
+            justify-content: space-between !important;
+            gap: 0.9rem !important;
+            text-align: left !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: none !important;
+        }
+
+        .earlier-experiences-toggle i {
+            order: 2;
+            margin-top: 0.1rem;
+            font-size: 1rem !important;
+            flex-shrink: 0;
+        }
+
+        .earlier-experiences-toggle span {
+            order: 1;
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .earlier-experiences-toggle small {
+            order: 1;
+            display: block;
+            margin-top: 0.3rem !important;
+            font-size: 0.8rem !important;
+            line-height: 1.35;
+        }
+
+        .earlier-experiences-content.expanded {
+            margin-top: 1rem !important;
+            padding-top: 1rem !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 640px) {
+            .earlier-experiences-container {
+                padding: 1rem !important;
+            }
+
+            .earlier-experiences-toggle {
+                padding: 0.9rem 0.95rem !important;
+                border-radius: 10px !important;
+            }
+
+            .earlier-experiences-toggle span {
+                font-size: 0.95rem !important;
+            }
+        }
+
+        /* Mobile visual density pass: keep content, reduce "card-in-card" feel */
+        @media (max-width: 768px) {
+            .skill-category,
+            .overview-card,
+            .contact-card,
+            .contact-quick-links,
+            .download-item,
+            .project-card,
+            .portfolio-card,
+            .experience-card,
+            .experience-card-compact {
+                border-radius: 12px;
+                box-shadow: none;
+                backdrop-filter: blur(8px);
+            }
+
+            .skill-category:hover,
+            .overview-card:hover,
+            .contact-card:hover,
+            .download-item:hover,
+            .project-card:hover,
+            .portfolio-card:hover,
+            .experience-card:hover,
+            .experience-card-compact:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .contact-main-grid {
+                gap: 0.65rem;
+            }
+
+            .contact-quick-link,
+            .email-method,
+            .project-link-item,
+            .download-item {
+                background: rgba(255, 255, 255, 0.02);
+                border-color: rgba(255, 255, 255, 0.08);
+                border-radius: 10px;
+                box-shadow: none;
+            }
+
+            .contact-quick-link:hover,
+            .email-method:hover,
+            .project-link-item:hover,
+            .download-item:hover {
+                transform: none;
+            }
+        }
+
+        /* ------------------------------------------------------------------ */
         /* Performance Lite Overrides (for heavy/older browsers)             */
         /* ------------------------------------------------------------------ */
         .performance-lite .parallax-bg {
