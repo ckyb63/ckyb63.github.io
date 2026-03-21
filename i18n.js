@@ -22,7 +22,17 @@
     } catch (e) {
       // ignore
     }
-    return DEFAULT_LANG;
+    return detectBrowserLang();
+  }
+
+  function detectBrowserLang() {
+    const browserLang = (
+      (navigator.languages && navigator.languages[0]) ||
+      navigator.language ||
+      navigator.userLanguage ||
+      ''
+    ).toLowerCase();
+    return browserLang.startsWith('zh') ? 'zh-Hant' : DEFAULT_LANG;
   }
 
   function storeLang(lang) {
