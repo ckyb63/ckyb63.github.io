@@ -807,6 +807,61 @@ function closeImageModal() {
 window.openImageModal = openImageModal;
 window.closeImageModal = closeImageModal;
 
+function openVideoModal(videoId, titleText) {
+    const modal = document.getElementById('videoModal');
+    const frame = document.getElementById('videoModalFrame');
+    const title = document.getElementById('videoModalTitle');
+    if (!modal || !frame) return;
+    const safeTitle = titleText || 'Project video';
+    frame.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+    frame.title = safeTitle;
+    if (title) title.textContent = safeTitle;
+    modal.classList.add('active');
+    setBodyScrollLocked(true);
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const frame = document.getElementById('videoModalFrame');
+    if (modal) modal.classList.remove('active');
+    if (frame) frame.src = '';
+    setBodyScrollLocked(false);
+}
+
+function tryOpenYouTubeApp(videoId) {
+    const appUrl = `youtube://watch?v=${videoId}`;
+    const webUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    const startedAt = Date.now();
+    window.location.href = appUrl;
+    setTimeout(() => {
+        if (Date.now() - startedAt < 1700) {
+            window.location.href = webUrl;
+        }
+    }, 900);
+}
+
+function getYouTubeVideoId(urlLike) {
+    if (!urlLike) return '';
+    try {
+        const url = new URL(urlLike, window.location.origin);
+        const host = url.hostname.replace(/^www\./, '');
+        if (host === 'youtube.com' || host === 'm.youtube.com') {
+            if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+            if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2] || '';
+            if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2] || '';
+        }
+        if (host === 'youtu.be') {
+            return url.pathname.replace('/', '').trim();
+        }
+    } catch (e) {
+        return '';
+    }
+    return '';
+}
+
+window.openVideoModal = openVideoModal;
+window.closeVideoModal = closeVideoModal;
+
 // Initialize image modal functionality
 (function initImageModal() {
     const imageModal = document.getElementById('imageModal');
@@ -866,6 +921,45 @@ window.closeImageModal = closeImageModal;
                 openImageModal(img.src, img.alt, img);
             }
         });
+    });
+})();
+
+// Unified YouTube behavior: desktop modal, mobile app deep-link
+(function initUnifiedYouTubeLinks() {
+    const videoModal = document.getElementById('videoModal');
+    if (videoModal) {
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal || e.target.classList.contains('video-modal-backdrop')) {
+                closeVideoModal();
+            }
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+
+        const href = link.getAttribute('href') || '';
+        const videoIdFromData = link.getAttribute('data-youtube-id') || '';
+        const videoId = videoIdFromData || getYouTubeVideoId(href);
+        if (!videoId) return;
+
+        e.preventDefault();
+
+        if (isPhoneLikeDevice()) {
+            tryOpenYouTubeApp(videoId);
+            return;
+        }
+
+        let titleText = 'Project video';
+        const titleSource = link.querySelector('.portfolio-media-label span') || link.querySelector('span');
+        if (titleSource && titleSource.textContent) {
+            titleText = titleSource.textContent.trim();
+        } else if (link.getAttribute('aria-label')) {
+            titleText = link.getAttribute('aria-label');
+        }
+
+        openVideoModal(videoId, titleText);
     });
 })();
 

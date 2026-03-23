@@ -646,6 +646,40 @@
         }
 
         @media (max-width: 640px) {
+            nav {
+                padding: 1rem 1rem;
+            }
+
+            .nav-logo {
+                height: 34px;
+            }
+
+            .nav-hamburger {
+                width: 36px;
+                height: 36px;
+                padding: 0.35rem;
+            }
+
+            .nav-hamburger .bar {
+                width: 20px;
+                margin: 2.5px auto;
+            }
+
+            .nav-container .lang-switcher {
+                transform: scale(0.92);
+                transform-origin: right center;
+            }
+
+            .mobile-menu-content {
+                width: min(280px, 86vw);
+                padding: 4.5rem 1.25rem 1.25rem;
+            }
+
+            .mobile-menu-links a {
+                font-size: 1rem;
+                padding: 0.9rem 1rem;
+            }
+
             .back-to-top {
                 bottom: 1.5rem;
                 right: 1.5rem;
@@ -685,4 +719,177 @@
             .overview-stat-number {
                 font-size: 1.75rem;
             }
+        }
+
+        /* Mobile layout baseline */
+        img,
+        video,
+        iframe {
+            max-width: 100%;
+        }
+
+        @media (max-width: 968px) {
+            html,
+            body {
+                overflow-x: clip;
+            }
+
+            nav {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            .content-section,
+            .experience-section,
+            .project-showcase,
+            .portfolio-section,
+            .portfolio-media-section {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            footer {
+                padding: 2.25rem 1rem;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .hero-section {
+                min-height: 400px !important;
+                height: min(62vh, 540px) !important;
+                padding-top: 3.75rem;
+            }
+
+            .hero-content {
+                padding-inline: 0.75rem;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2rem, 10vw, 3.2rem) !important;
+                line-height: 1.1;
+            }
+
+            .hero-content p,
+            .hero-content .subtitle {
+                font-size: clamp(0.98rem, 4.4vw, 1.2rem) !important;
+                margin-bottom: 1.25rem;
+            }
+
+            .scroll-indicator {
+                bottom: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: clamp(1.75rem, 8vw, 2.3rem) !important;
+            }
+
+            .section-header p {
+                font-size: 0.98rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .content-section,
+            .experience-section,
+            .project-showcase,
+            .portfolio-section,
+            .portfolio-media-section {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            .mobile-menu-content {
+                width: min(260px, 84vw);
+            }
+        }
+
+        /* Detail modal close button styling (projects + experience) */
+        .project-detail-modal .modal-close,
+        .experience-detail-modal .modal-close {
+            position: static !important;
+            background: rgba(220, 38, 38, 0.24) !important;
+            border: 1px solid rgba(248, 113, 113, 0.72) !important;
+            color: #fecaca !important;
+            box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.18);
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .project-detail-modal .modal-header,
+        .experience-detail-modal .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: nowrap;
+        }
+
+        .project-detail-modal .modal-header h3,
+        .experience-detail-modal .modal-header h3 {
+            flex: 1;
+            min-width: 0;
+            width: auto;
+            padding-right: 0;
+        }
+
+        .project-detail-modal .modal-close:hover,
+        .experience-detail-modal .modal-close:hover {
+            background: rgba(220, 38, 38, 0.4) !important;
+            border-color: rgba(252, 165, 165, 0.95) !important;
+            color: #ffffff !important;
+        }
+
+        /* Keep modal title/close visible while scrolling */
+        .modal .modal-header,
+        .project-detail-modal .modal-header,
+        .experience-detail-modal .modal-header {
+            position: sticky !important;
+            top: 0;
+            z-index: 8;
+            background: rgba(10, 14, 39, 0.96) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+        }
+
+        /* Button-style links inside detail modals */
+        .project-detail-modal-body .modal-action-link,
+        .experience-detail-modal-body .modal-action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            color: #bfdbfe !important;
+            text-decoration: none !important;
+            font-size: 0.86rem;
+            font-weight: 600;
+            line-height: 1.1;
+            transition: var(--transition-fast);
+        }
+
+        .project-detail-modal-body .modal-action-link:hover,
+        .experience-detail-modal-body .modal-action-link:hover {
+            background: rgba(37, 99, 235, 0.32);
+            border-color: rgba(147, 197, 253, 0.75);
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+        .project-detail-modal-body .detail-modal-links .modal-action-link {
+            margin-right: 0.35rem;
         }

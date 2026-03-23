@@ -2386,3 +2386,231 @@
                 margin-left: 0;
             }
         }
+
+        @media (max-width: 968px) {
+            .floating-toc {
+                display: none;
+            }
+        }
+
+        /* Mobile reimplementation */
+        @media (max-width: 968px) {
+            .project-showcase {
+                padding: 1.75rem 1rem;
+            }
+
+            .showcase-container {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .showcase-image-card,
+            .project-card.has-image,
+            .project-card.has-video {
+                min-height: 320px;
+                height: min(54vh, 380px);
+                border-radius: 14px;
+            }
+
+            .showcase-image-card::after,
+            .project-card.has-image::after {
+                width: 34px;
+                height: 34px;
+                top: 12px;
+                right: 12px;
+                font-size: 15px;
+            }
+
+            .project-content {
+                padding: 0.75rem 0;
+            }
+
+            .project-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 1.1rem;
+            }
+
+            .project-features {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+
+            .feature-item {
+                padding: 0.75rem;
+            }
+
+            .portfolio-section {
+                padding: 1.5rem 1rem 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .portfolio-card {
+                border-radius: 14px;
+            }
+
+            .portfolio-card-body {
+                padding: 1rem 1rem 1.15rem;
+            }
+
+            .portfolio-card-title {
+                font-size: 1.05rem;
+            }
+
+            .portfolio-card-desc {
+                font-size: 0.88rem;
+                line-height: 1.45;
+                -webkit-line-clamp: 4;
+                line-clamp: 4;
+            }
+
+            .portfolio-card-actions {
+                flex-direction: column;
+                gap: 0.45rem;
+            }
+
+            .portfolio-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .portfolio-media-section {
+                padding: 1.25rem 1rem 2rem;
+            }
+
+            .portfolio-media-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.65rem;
+            }
+
+            .project-detail-modal .modal-header,
+            .project-detail-modal-body {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .project-detail-modal-title {
+                font-size: 1.1rem;
+                padding-right: 2.75rem;
+            }
+
+            .project-detail-modal .modal-close {
+                top: 0.7rem;
+                right: 0.7rem;
+                width: 36px;
+                height: 36px;
+                border-radius: 10px;
+            }
+
+            .project-detail-modal-body .detail-modal-videos {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-section {
+                min-height: 360px;
+            }
+
+            .portfolio-media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-modal {
+                padding: 0.35rem;
+            }
+
+            .image-modal-card {
+                border-radius: 12px;
+            }
+
+            .image-modal-details {
+                padding: 0.95rem;
+            }
+        }
+
+        /* Gallery video modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .video-modal-backdrop {
+            position: absolute;
+            inset: 0;
+        }
+
+        .video-modal-card {
+            position: relative;
+            width: min(96vw, 980px);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #0a0e27;
+            border: 1px solid var(--glass-border);
+            z-index: 1;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .video-modal-player-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .video-modal-player-wrap iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-modal-title {
+            padding: 0.85rem 1rem;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.88);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: max(0.85rem, env(safe-area-inset-top));
+            right: max(0.85rem, env(safe-area-inset-right));
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(248, 113, 113, 0.72);
+            background: rgba(220, 38, 38, 0.24);
+            color: #fecaca;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(220, 38, 38, 0.4);
+            color: #fff;
+        }

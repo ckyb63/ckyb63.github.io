@@ -484,8 +484,8 @@
 
         @media (max-width: 640px) {
             .experience-card {
-                width: calc(100% - 5px) !important;
-                margin-left: 5px !important;
+                width: 100% !important;
+                margin-left: 0 !important;
             }
 
             .timeline-node {
@@ -651,7 +651,7 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.9);
             flex: 1;
-            min-width: 200px;
+            min-width: 0;
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
@@ -1556,6 +1556,12 @@
             }
         }
 
+        @media (max-width: 968px) {
+            .floating-toc {
+                display: none;
+            }
+        }
+
         /* Rework earlier education toggle into a compact section header style */
         .earlier-experiences-toggle {
             border-radius: 12px !important;
@@ -1770,4 +1776,108 @@
 
         .earlier-experiences-content .timeline-item-wrapper:nth-child(n+4) {
             transition-delay: 0.6s;
+        }
+
+        /* Mobile reimplementation */
+        @media (max-width: 968px) {
+            .experience-section,
+            .technical-expertise-section {
+                padding: 1.5rem 1rem !important;
+            }
+
+            .experience-grid,
+            .experience-section-at-glance .experience-grid,
+            .experience-grid-earlier {
+                grid-template-columns: 1fr !important;
+                gap: 0.85rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .experience-card-compact-inner {
+                padding: 1rem;
+            }
+
+            .experience-card-compact h3 {
+                font-size: 1rem;
+            }
+
+            .experience-card-compact .exp-org {
+                font-size: 0.85rem;
+            }
+
+            .experience-card-compact .exp-desc {
+                font-size: 0.84rem;
+                -webkit-line-clamp: 3;
+                line-clamp: 3;
+            }
+
+            .exp-details-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .earlier-experiences-container {
+                padding: 1rem 0;
+            }
+
+            .earlier-experiences-content.expanded {
+                margin-top: 0.85rem;
+                padding-top: 0.85rem;
+            }
+
+            .skills-expertise-card {
+                padding: 1rem 1rem 0.95rem;
+                border-radius: 14px;
+            }
+
+            .skills-expertise-columns {
+                grid-template-columns: 1fr !important;
+                gap: 0.9rem;
+            }
+
+            .skills-expertise-col-title {
+                font-size: 0.92rem;
+            }
+
+            .skills-expertise-list li {
+                font-size: 0.83rem;
+            }
+
+            .experience-detail-modal .modal-header,
+            .experience-detail-modal-body {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .experience-detail-modal-title {
+                font-size: 1.05rem;
+                padding-right: 2.6rem;
+            }
+
+            .experience-detail-modal .modal-close {
+                top: 0.7rem;
+                right: 0.7rem;
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-section {
+                min-height: 360px !important;
+                height: min(58vh, 460px) !important;
+            }
+
+            .experience-card-compact .exp-tags {
+                gap: 0.25rem;
+            }
+
+            .experience-card-compact .exp-tags .job-tag {
+                font-size: 0.66rem;
+                padding: 0.16rem 0.42rem;
+            }
+
+            .earlier-experiences-toggle {
+                padding: 0.75rem 0.8rem !important;
+            }
         }

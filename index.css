@@ -918,6 +918,7 @@
         .download-options {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .download-btn {
@@ -937,7 +938,7 @@
             transition: var(--transition-fast);
             text-decoration: none;
             font-family: inherit;
-            min-width: 160px;
+            min-width: 0;
             white-space: nowrap;
         }
 
@@ -989,4 +990,124 @@
             width: 32px;
             text-align: center;
             flex-shrink: 0;
+        }
+
+        /* Mobile reimplementation */
+        @media (max-width: 968px) {
+            #about-education.content-section,
+            #about-education.first-content-section,
+            #contact.content-section {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.75rem !important;
+            }
+
+            .about-main {
+                padding: 1.25rem 1rem;
+                border-radius: 16px;
+            }
+
+            .about-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .about-photo {
+                order: 1;
+                align-self: center;
+            }
+
+            .about-info {
+                order: 2;
+                width: 100%;
+            }
+
+            .about-main p {
+                font-size: 0.98rem;
+                line-height: 1.65;
+            }
+
+            .about-main .about-text p:first-of-type {
+                font-size: 1.05rem;
+                line-height: 1.45;
+            }
+
+            .contact-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.85rem;
+            }
+
+            .contact-card {
+                padding: 0.9rem;
+            }
+
+            .download-item-header {
+                align-items: flex-start;
+            }
+
+            .download-btn {
+                width: 100%;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+
+            .overview-card {
+                padding: 1.1rem;
+                border-radius: 16px;
+            }
+
+            .overview-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .overview-card p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+
+            .overview-link {
+                width: 100%;
+                justify-content: center;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .about-headshot-placeholder,
+            .about-headshot {
+                width: 104px;
+                height: 104px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem;
+            }
+
+            .skill-category {
+                padding: 0.9rem;
+            }
+
+            .skill-category h3 {
+                font-size: 1rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .skill-tag {
+                font-size: 0.78rem;
+                padding: 0.4rem 0.65rem;
+            }
+
+            .email-method,
+            .project-link-item {
+                padding: 0.75rem;
+            }
         }
